@@ -39,6 +39,11 @@ CB.photos = {
   cheers: "photo-1515697061774-2399f90c2b77",
   teacup: "photo-1555118786-e18070997e5d",
   holdingCup: "photo-1543407873-30b91e5003e6",
+  roastingSign: "photo-1570053814517-6e1728f0b6a9",
+  steam: "photo-1578881748981-ce22565657b1",
+  coffeeJar: "photo-1572814392266-1620040c58be",
+  mugWood: "photo-1555118370-19d35710f1ac",
+  cortados: "photo-1564992982896-cb2a99f64a25",
 };
 
 /* Products.

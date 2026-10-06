@@ -8,12 +8,15 @@
   /* Origins ------------------------------------------------------------- */
   const originList = $("[data-origins]");
   originList.innerHTML = CB.origins
-    .map((o) => {
+    .map((o, i) => {
       const p = CB.product(o.product);
       return `
         <li>
           <button type="button" class="origin" data-product="${o.product}">
-            <span class="origin-disc" style="--tint:${p.art.color}"><span>${esc(o.country.slice(0, 3))}</span></span>
+            <span class="origin-disc" style="--tint:${p.art.color}">
+              <img src="${CB.photo(CB.photos.beans, 420, 420)}&crop=focalpoint&fp-x=${(0.2 + (i % 3) * 0.3).toFixed(2)}&fp-y=${(0.3 + (i % 2) * 0.4).toFixed(2)}&fp-z=${1 + (i % 3) * 0.6}" alt="" width="420" height="420" loading="lazy">
+              <span>${esc(o.country.slice(0, 3))}</span>
+            </span>
             <span class="origin-country">${esc(o.country)}</span>
             <span class="origin-region">${esc(o.region)}</span>
             <span class="origin-meta">${esc(o.altitude)}</span>

@@ -1421,6 +1421,37 @@ fieldset {
   transition: transform 0.4s var(--ease), border-color 0.3s;
 }
 
+.origin-disc {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.origin-disc img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tint each photo with the coffee's label color so the six read apart. */
+.origin-disc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--tint) 62%, rgb(21 16 13 / 0.6));
+  mix-blend-mode: multiply;
+}
+
+.origin-disc span {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 0.5);
+}
+
 .origin:hover .origin-disc {
   transform: scale(1.04);
   border-color: var(--copper);
@@ -1749,6 +1780,26 @@ fieldset {
   padding-block: clamp(40px, 7vw, 88px) clamp(32px, 5vw, 56px);
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+}
+
+.page-hero-photo {
+  position: absolute !important;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+}
+
+.page-hero {
+  isolation: isolate;
+}
+
+.page-hero::before {
+  z-index: 0;
+  background: linear-gradient(to right, var(--bg) 25%, rgb(21 16 13 / 0.55) 70%, rgb(21 16 13 / 0.35)),
+    linear-gradient(to top, var(--bg), transparent 45%);
 }
 
 .page-lede {
