@@ -189,10 +189,10 @@
         <path d="M58 40h84" stroke="#0E0A08" stroke-width="2" stroke-dasharray="3 3"/>
         <circle cx="128" cy="68" r="5" fill="#2A211C" stroke="#3A2E27" stroke-width="2"/>
         <rect x="64" y="96" width="74" height="96" rx="4" fill="${color}"/>
-        <text x="101" y="116" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#16100D" font-family="'Big Shoulders Display', sans-serif" font-weight="800">COPPER &amp; BEAN</text>
+        <text x="101" y="116" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="#16100D" font-family="Anton, sans-serif">COPPER &amp; BEAN</text>
         <line x1="74" y1="124" x2="128" y2="124" stroke="#16100D" stroke-opacity=".4"/>
-        <text x="101" y="148" text-anchor="middle" font-size="19" fill="#16100D" font-family="'Big Shoulders Display', sans-serif" font-weight="800">${CB.esc(l1.toUpperCase())}</text>
-        <text x="101" y="168" text-anchor="middle" font-size="19" fill="#16100D" font-family="'Big Shoulders Display', sans-serif" font-weight="800">${CB.esc((l2 || "").toUpperCase())}</text>
+        <text x="101" y="148" text-anchor="middle" font-size="19" fill="#16100D" font-family="Anton, sans-serif">${CB.esc(l1.toUpperCase())}</text>
+        <text x="101" y="168" text-anchor="middle" font-size="19" fill="#16100D" font-family="Anton, sans-serif">${CB.esc((l2 || "").toUpperCase())}</text>
         <text x="101" y="184" text-anchor="middle" font-size="6" letter-spacing=".6" fill="#16100D" opacity=".7" font-family="'Instrument Sans', sans-serif">340 G · WHOLE BEAN</text>`;
     },
     mug({ color }) {
@@ -210,7 +210,7 @@
         <path d="M56 100h90v92c0 14-10 22-24 22H80c-14 0-24-8-24-22z" fill="${color}"/>
         <ellipse cx="101" cy="100" rx="45" ry="9" fill="#2A211C"/>
         <ellipse cx="101" cy="101" rx="40" ry="6" fill="#1E1714"/>
-        <text x="101" y="164" text-anchor="middle" font-size="13" fill="#16100D" font-family="'Big Shoulders Display', sans-serif" font-weight="800">C&amp;B</text>`;
+        <text x="101" y="164" text-anchor="middle" font-size="13" fill="#16100D" font-family="Anton, sans-serif">C&amp;B</text>`;
     },
     glass({ color }) {
       const g = (x) => `

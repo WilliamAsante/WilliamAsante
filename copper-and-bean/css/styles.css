@@ -19,7 +19,7 @@
   --ink: #15100D;
   --error: #F08A6E;
 
-  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --display: "Anton", "Arial Narrow", "Roboto Condensed", sans-serif;
   --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --header-h: 72px;
@@ -38,6 +38,7 @@
 }
 
 html {
+  font-synthesis-weight: none;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 16px);
   -webkit-text-size-adjust: 100%;
@@ -198,18 +199,18 @@ button {
 
 .h-display {
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 400;
   font-size: clamp(2.6rem, 6.4vw, 5rem);
-  line-height: 0.9;
+  line-height: 0.98;
   text-transform: uppercase;
   letter-spacing: 0.005em;
 }
 
 .stretch-title {
   font-family: var(--display);
-  font-weight: 900;
+  font-weight: 400;
   font-size: clamp(4.6rem, 17vw, 15rem);
-  line-height: 0.8;
+  line-height: 0.9;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   transform: scaleY(1.12);
@@ -658,7 +659,7 @@ fieldset {
   color: var(--ink);
   font-family: var(--display);
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 400;
   vertical-align: 0.15em;
 }
 
@@ -706,7 +707,7 @@ fieldset {
 .logo {
   font-family: var(--display);
   font-size: 1.75rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -817,7 +818,7 @@ fieldset {
   padding-block: 4px;
   font-family: var(--display);
   font-size: clamp(2.6rem, 13vw, 4.5rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
@@ -905,8 +906,8 @@ fieldset {
 .hero-title {
   font-family: var(--display);
   font-size: clamp(3.4rem, 8.6vw, 9.4rem);
-  font-weight: 900;
-  line-height: 0.84;
+  font-weight: 400;
+  line-height: 0.94;
   letter-spacing: -0.005em;
   text-transform: uppercase;
 }
@@ -1041,7 +1042,7 @@ fieldset {
   background: none;
   font-family: var(--display);
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.05;
   text-align: left;
   text-transform: uppercase;
@@ -1140,7 +1141,7 @@ fieldset {
   display: block;
   font-family: var(--display);
   font-size: clamp(1.8rem, 3.4vw, 2.8rem);
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   text-transform: uppercase;
@@ -1254,7 +1255,7 @@ fieldset {
 .step-time {
   font-family: var(--display);
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--copper);
 }
@@ -1263,7 +1264,7 @@ fieldset {
   margin-block: 6px 12px;
   font-family: var(--display);
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.95;
   text-transform: uppercase;
   opacity: 0.4;
@@ -1357,7 +1358,7 @@ fieldset {
 .pillar-title {
   font-family: var(--display);
   font-size: clamp(2rem, 3.2vw, 2.9rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.92;
   text-transform: uppercase;
 }
@@ -1435,7 +1436,7 @@ fieldset {
 .origin-disc span {
   font-family: var(--display);
   font-size: clamp(2.4rem, 4vw, 3.4rem);
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
   color: var(--text);
 }
@@ -1443,7 +1444,7 @@ fieldset {
 .origin-country {
   font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -1501,7 +1502,7 @@ fieldset {
 .sub-media-text {
   font-family: var(--display);
   font-size: clamp(2.6rem, 6vw, 5.4rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.88;
   text-transform: uppercase;
 }
@@ -1581,7 +1582,7 @@ fieldset {
   margin-block: 2px;
   font-family: var(--display);
   font-size: 2.6rem;
-  font-weight: 900;
+  font-weight: 400;
   color: var(--text);
 }
 
@@ -1589,7 +1590,7 @@ fieldset {
 .booking-item h3 {
   font-family: var(--display);
   font-size: 1.7rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.05;
   text-transform: uppercase;
 }
@@ -1607,7 +1608,7 @@ fieldset {
 .session-price {
   font-family: var(--display);
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 400;
 }
 
 /* Reviews --------------------------------------------------------------- */
@@ -1639,7 +1640,7 @@ fieldset {
   height: 0.5em;
   font-family: var(--display);
   font-size: 5rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   color: var(--copper);
 }
@@ -1789,7 +1790,7 @@ fieldset {
   margin-bottom: 8px;
   font-family: var(--display);
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--copper);
 }
 
@@ -1797,7 +1798,7 @@ fieldset {
   display: block;
   font-family: var(--display);
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.1;
   text-transform: uppercase;
   color: var(--text);
@@ -1922,7 +1923,7 @@ dialog::backdrop {
   padding-right: 48px;
   font-family: var(--display);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.92;
   text-transform: uppercase;
 }
@@ -2021,7 +2022,7 @@ dialog::backdrop {
 .drawer-head h2 {
   font-family: var(--display);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2083,7 +2084,7 @@ dialog::backdrop {
 .thumb-label {
   font-family: var(--display);
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--copper);
@@ -2144,7 +2145,7 @@ dialog::backdrop {
   justify-content: space-between;
   font-family: var(--display);
   font-size: 1.7rem;
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2165,7 +2166,7 @@ dialog::backdrop {
 .drawer-empty p {
   font-family: var(--display);
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2232,7 +2233,7 @@ dialog::backdrop {
   margin-bottom: 18px;
   font-family: var(--display);
   font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -2275,7 +2276,7 @@ dialog::backdrop {
 .option-card strong {
   font-family: var(--display);
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.05;
   text-transform: uppercase;
 }
@@ -2309,7 +2310,7 @@ dialog::backdrop {
 .plan-summary h2 {
   font-family: var(--display);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2337,7 +2338,7 @@ dialog::backdrop {
 .summary-price {
   font-family: var(--display);
   font-size: 3.6rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   color: var(--copper);
 }
@@ -2377,7 +2378,7 @@ dialog::backdrop {
   padding-block: 22px;
   font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.1;
   text-transform: uppercase;
   list-style: none;
@@ -2445,7 +2446,7 @@ dialog::backdrop {
 .workshop-body h3 {
   font-family: var(--display);
   font-size: 1.9rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 0.95;
   text-transform: uppercase;
 }
@@ -2481,7 +2482,7 @@ dialog::backdrop {
 .workshop-price {
   font-family: var(--display);
   font-size: 1.9rem;
-  font-weight: 900;
+  font-weight: 400;
 }
 
 .workshop-price small {
@@ -2521,7 +2522,7 @@ dialog::backdrop {
 .cal-head h3 {
   font-family: var(--display);
   font-size: 1.8rem;
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2555,7 +2556,7 @@ dialog::backdrop {
   border-radius: 12px;
   font-family: var(--display);
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 400;
   color: rgb(239 230 218 / 0.3);
 }
 
@@ -2632,7 +2633,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .day-title {
   font-family: var(--display);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -2675,7 +2676,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .slot-time {
   font-family: var(--display);
   font-size: 1.4rem;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--copper);
 }
 
@@ -2712,7 +2713,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .book-name {
   font-family: var(--display);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 400;
   line-height: 1.05;
   text-transform: uppercase;
 }
@@ -2854,7 +2855,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   gap: 12px;
   font-family: var(--display);
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
   list-style: none;
   cursor: pointer;
@@ -2895,7 +2896,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   border-top: 1px solid var(--line);
   font-family: var(--display);
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -2953,7 +2954,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .empty-state > p {
   font-family: var(--display);
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -3056,7 +3057,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .edit-card h3 {
   font-family: var(--display);
   font-size: 2rem;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -3278,8 +3279,8 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   gap: 0 0.45em;
   font-family: var(--display);
   font-size: clamp(2.4rem, 5.4vw, 4.6rem);
-  font-weight: 900;
-  line-height: 0.9;
+  font-weight: 400;
+  line-height: 0.98;
   text-transform: uppercase;
 }
 
@@ -3411,8 +3412,8 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .footer-wordmark {
   margin: 0 -0.02em -0.2em;
   font-family: var(--display);
-  font-size: clamp(4rem, 17.4vw, 21rem);
-  font-weight: 900;
+  font-size: clamp(3.8rem, 16.4vw, 20rem);
+  font-weight: 400;
   line-height: 0.82;
   letter-spacing: -0.01em;
   text-align: center;
