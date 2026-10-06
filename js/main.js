@@ -15,6 +15,8 @@
   const ORDER_NOTICE_DAYS = 2;
   // Where order requests go.
   const ORDER_EMAIL = "orders@example.com";
+  // Where newsletter sign-ups go.
+  const NEWSLETTER_EMAIL = "hello@example.com";
 
   /* Helpers -------------------------------------------------------------- */
 
@@ -84,7 +86,7 @@
       }
     });
 
-    window.matchMedia("(min-width: 761px)").addEventListener("change", (event) => {
+    window.matchMedia("(min-width: 961px)").addEventListener("change", (event) => {
       if (event.matches) setNavOpen(false);
     });
   }
@@ -167,18 +169,47 @@
   updateStatus();
   setInterval(updateStatus, 60 * 1000);
 
-  /* Menu filter ---------------------------------------------------------- */
+  /* Menu tabs ------------------------------------------------------------ */
 
-  const chips = document.querySelectorAll(".chip[data-filter]");
-  const groups = document.querySelectorAll(".menu-group[data-category]");
+  const tabs = [...document.querySelectorAll('.menu-tabs [role="tab"]')];
+  const menuPhoto = document.querySelector("[data-menu-photo]");
 
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const filter = chip.dataset.filter;
-      chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
-      groups.forEach((group) => {
-        group.hidden = filter !== "all" && group.dataset.category !== filter;
-      });
+  function selectTab(tab, { focus = false } = {}) {
+    tabs.forEach((t) => {
+      const selected = t === tab;
+      t.setAttribute("aria-selected", String(selected));
+      t.tabIndex = selected ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
+    });
+    if (menuPhoto && tab.dataset.img) {
+      menuPhoto.classList.remove("is-broken");
+      menuPhoto.src = tab.dataset.img;
+    }
+    if (focus) tab.focus();
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectTab(tab));
+    tab.addEventListener("keydown", (event) => {
+      const moves = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+      let next = null;
+      if (event.key in moves) next = tabs[(index + moves[event.key] + tabs.length) % tabs.length];
+      else if (event.key === "Home") next = tabs[0];
+      else if (event.key === "End") next = tabs[tabs.length - 1];
+      if (next) {
+        event.preventDefault();
+        selectTab(next, { focus: true });
+      }
+    });
+  });
+
+  if (tabs.length) selectTab(tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0]);
+
+  // Links like <a href="#menu" data-menu-tab="drinks"> open that section of the menu.
+  document.querySelectorAll("[data-menu-tab]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const tab = tabs.find((t) => t.dataset.tab === link.dataset.menuTab);
+      if (tab) selectTab(tab);
     });
   });
 
@@ -280,6 +311,72 @@
       );
     });
   }
+
+  /* Newsletter ----------------------------------------------------------- */
+
+  const newsletter = document.getElementById("newsletter-form");
+
+  if (newsletter) {
+    const input = newsletter.elements.email;
+    const statusEl = document.getElementById("newsletter-status");
+
+    newsletter.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!input.checkValidity()) {
+        statusEl.textContent = input.validity.valueMissing
+          ? "Enter your email address to sign up."
+          : "Enter an email address like name@example.com.";
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return;
+      }
+      input.removeAttribute("aria-invalid");
+      const subject = "Add me to the weekly bake list";
+      const body = `Please add ${input.value} to the weekly bake list.`;
+      window.location.href = `mailto:${NEWSLETTER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      statusEl.textContent = "Your email app should open with the sign-up filled in. Send it and you're on the list.";
+    });
+  }
+
+  /* Links that pre-select an order type ---------------------------------- */
+
+  document.querySelectorAll("[data-order-item]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const select = document.getElementById("item");
+      if (select) select.value = link.dataset.orderItem;
+    });
+  });
+
+  /* Announcement bar ----------------------------------------------------- */
+
+  const announce = document.querySelector("[data-announce]");
+  const ANNOUNCE_KEY = "sunday-oven-announce-dismissed";
+
+  if (announce) {
+    try {
+      if (localStorage.getItem(ANNOUNCE_KEY) === announce.textContent.trim()) announce.hidden = true;
+    } catch {
+      /* Storage unavailable: always show the bar. */
+    }
+    announce.querySelector("[data-announce-close]")?.addEventListener("click", () => {
+      announce.hidden = true;
+      try {
+        localStorage.setItem(ANNOUNCE_KEY, announce.textContent.trim());
+      } catch {
+        /* Storage unavailable: the bar comes back next visit. */
+      }
+    });
+  }
+
+  /* Photos that fail to load --------------------------------------------- */
+
+  // Hide broken images so their pink container shows instead of a broken icon.
+  const markBroken = (img) => img.classList.add("is-broken");
+  document.querySelectorAll("img").forEach((img) => {
+    if (img.complete && img.naturalWidth === 0 && img.currentSrc) markBroken(img);
+    img.addEventListener("error", () => markBroken(img));
+    img.addEventListener("load", () => img.classList.remove("is-broken"));
+  });
 
   /* Footer year ---------------------------------------------------------- */
 
