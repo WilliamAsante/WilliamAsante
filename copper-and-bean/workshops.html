@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Barista workshops and tasting flights | Copper &amp; Bean</title>
+  <meta name="description" content="Weekend barista classes, latte art, pour-over and tasting flights at our cafe. See available dates, pick a time and book your seat online.">
+  <meta name="theme-color" content="#15100D">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="workshops">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-site-header></div>
+
+  <main id="main">
+    <section class="page-hero grid-bg" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">[ Saturdays &amp; Sundays at the cafe ]</p>
+        <h1 id="page-title" class="stretch-title">Workshops</h1>
+        <p class="page-lede">Small groups on our own machines, taught by the people who roast your coffee. All equipment and coffee included.</p>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-labelledby="types-title">
+      <div class="wrap">
+        <h2 id="types-title" class="visually-hidden">Workshops</h2>
+        <ul class="workshop-grid" data-workshops></ul>
+      </div>
+    </section>
+
+    <section class="section booking-section grid-bg" id="book" aria-labelledby="book-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="book-title" class="h-display">Pick a date</h2>
+            <p>Highlighted days have workshops. Choose a day, then a time.</p>
+          </div>
+        </div>
+
+        <div class="chip-row" role="group" aria-label="Show workshops" data-filter></div>
+
+        <div class="booking">
+          <div class="calendar">
+            <div class="cal-head">
+              <button type="button" class="icon-btn" data-month="-1" aria-label="Previous month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+              <h3 data-month-label aria-live="polite"></h3>
+              <button type="button" class="icon-btn" data-month="1" aria-label="Next month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+            </div>
+            <table class="cal-grid">
+              <thead><tr><th scope="col" abbr="Monday">M</th><th scope="col" abbr="Tuesday">T</th><th scope="col" abbr="Wednesday">W</th><th scope="col" abbr="Thursday">T</th><th scope="col" abbr="Friday">F</th><th scope="col" abbr="Saturday">S</th><th scope="col" abbr="Sunday">S</th></tr></thead>
+              <tbody data-cal-body></tbody>
+            </table>
+            <p class="cal-legend"><span class="dot"></span> Seats available <span class="dot dot-full"></span> Sold out</p>
+          </div>
+
+          <div class="day-panel" data-day-panel aria-live="polite"></div>
+        </div>
+
+        <ul class="policy">
+          <li><strong>Free cancellation</strong> up to 48 hours before your session. After that, you can move to another date once.</li>
+          <li><strong>Arrive 10 minutes early.</strong> Sessions start on time and we'll have a coffee waiting.</li>
+          <li><strong>Private groups</strong> of 4 to 8 people can book any workshop on a weekday evening. <a href="mailto:hello@example.com">Email us</a>.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/workshops.js" defer></script>
+</body>
+</html>

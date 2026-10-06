@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Copper &amp; Bean | Small-batch coffee roastery and cafe</title>
+  <meta name="description" content="Small-batch coffee roasted twice a week in our cafe. Shop beans and brewing gear, start a Roaster's Choice subscription, or book a weekend barista workshop.">
+  <meta name="theme-color" content="#15100D">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home" data-overlay-header="true">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-site-header></div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero grid-bg" aria-labelledby="hero-title">
+      <img class="hero-photo" data-photo="beans" data-w="2000" alt="" fetchpriority="high">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">[ Roastery &amp; cafe, <span data-city>Your City</span> ]</p>
+        <h1 class="hero-title" id="hero-title">
+          <span class="line">Roasted Tuesday.</span>
+          <span class="line line-copper">In your cup by Friday.</span>
+        </h1>
+        <div class="hero-foot">
+          <p>Small-batch coffee from six origins, roasted in the back of our cafe and shipped the day it's packed.</p>
+          <div class="actions">
+            <a class="btn btn-copper" href="shop.html">Shop coffee</a>
+            <a class="btn btn-ghost" href="subscribe.html">Start a subscription</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perks -->
+    <ul class="perks wrap" aria-label="Why buy from us">
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l4.5 3"/></svg>
+        <span><strong>Roasted to order</strong>Never more than 3 days old when it ships</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 10h16v12H3zM19 14h6l4 4v4h-10z"/><circle cx="9" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg>
+        <span><strong>Free shipping over $50</strong>Or pick up at the cafe</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28c-7 0-11-6-11-12C5 9 10 4 16 4s11 5 11 12c0 6-4 12-11 12Z"/><path d="M16 5c-4 6-4 16 0 22"/></svg>
+        <span><strong>Traceable origins</strong>Every bag names its region and process</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 27C7 15 14 7 27 5c0 13-8 21-20 22Z"/><path d="M7 27 19 15"/></svg>
+        <span><strong>Compostable bags</strong>Valve and liner included</span>
+      </li>
+    </ul>
+
+    <!-- Bestsellers -->
+    <section class="section" aria-labelledby="best-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="best-title" class="h-display">Bestsellers</h2>
+            <p>The coffees and gear our regulars come back for.</p>
+          </div>
+          <a class="link-arrow" href="shop.html">View all products</a>
+        </div>
+        <ul class="product-grid" data-bestsellers></ul>
+      </div>
+    </section>
+
+    <!-- Roasting process: the roast curve draws as you scroll through the steps -->
+    <section class="section roastery grid-bg" id="roastery" aria-labelledby="roast-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">[ How we roast ]</p>
+            <h2 id="roast-title" class="h-display">Ten and a half minutes</h2>
+            <p>That's a typical roast for our house espresso. Here's what happens in the drum, minute by minute.</p>
+          </div>
+        </div>
+
+        <div class="roast-layout">
+          <div class="curve-card" aria-hidden="true">
+            <div class="curve-readout">
+              <div><span class="readout-label">Time</span><span class="readout-value" data-readout-time>0:00</span></div>
+              <div><span class="readout-label">Bean temp</span><span class="readout-value" data-readout-temp>200°C</span></div>
+              <div><span class="readout-label">Phase</span><span class="readout-value readout-phase" data-readout-phase>Charge</span></div>
+            </div>
+            <svg class="curve" viewBox="0 0 600 380" data-curve>
+              <g class="curve-bands">
+                <rect data-band="drying" y="20" height="320"/>
+                <rect data-band="browning" y="20" height="320"/>
+                <rect data-band="development" y="20" height="320"/>
+              </g>
+              <g class="curve-grid"></g>
+              <path class="curve-ghost"/>
+              <path class="curve-line"/>
+              <g class="curve-markers"></g>
+              <circle class="curve-dot" r="7"/>
+            </svg>
+          </div>
+
+          <ol class="roast-steps">
+            <li class="roast-step" data-step="0">
+              <p class="step-time">0:00 / 200°C</p>
+              <h3>Charge</h3>
+              <p>Green coffee drops into a preheated drum. The cold beans pull heat out so fast that the probe falls to about 95°C before the temperature turns around.</p>
+              <figure class="frame">
+                <img data-photo="beans" data-w="900" data-h="600" alt="Roasted coffee beans" width="900" height="600" loading="lazy">
+              </figure>
+            </li>
+            <li class="roast-step" data-step="1">
+              <p class="step-time">4:30 / 150°C</p>
+              <h3>Drying</h3>
+              <p>Moisture cooks off and the beans fade from green to straw yellow. Rush this and the outside scorches before the center catches up.</p>
+            </li>
+            <li class="roast-step" data-step="2">
+              <p class="step-time">8:30 / 196°C</p>
+              <h3>Browning</h3>
+              <p>Sugars and amino acids react and the roastery starts to smell like bread and caramel. Most of a coffee's sweetness is built in these four minutes.</p>
+            </li>
+            <li class="roast-step" data-step="3">
+              <p class="step-time">8:30 to 10:30</p>
+              <h3>First crack</h3>
+              <p>Steam pressure splits the beans with a pop, like popcorn. From here we pull a sample every few seconds and decide exactly when to stop.</p>
+            </li>
+            <li class="roast-step" data-step="4">
+              <p class="step-time">10:30 / 210°C</p>
+              <h3>Drop and rest</h3>
+              <p>The beans pour into the cooling tray and are cold in four minutes. They rest overnight, get bagged by hand and ship the next afternoon.</p>
+              <figure class="frame">
+                <img data-photo="latteBeans" data-w="900" data-h="600" alt="A latte beside a scoop of roasted beans" width="900" height="600" loading="lazy">
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three pillars -->
+    <section class="section" aria-label="What we do">
+      <ul class="wrap pillars">
+        <li>
+          <a class="pillar" href="shop.html">
+            <img data-photo="cupSaucer" data-w="800" data-h="1000" alt="" loading="lazy">
+            <span class="pillar-title">The roastery shop</span>
+            <span class="pillar-text">Beans, mugs and the gear we use at the bar.</span>
+            <span class="pillar-link">Shop now</span>
+          </a>
+        </li>
+        <li>
+          <a class="pillar" href="subscribe.html">
+            <img data-photo="coffeeCup" data-w="800" data-h="1000" alt="" loading="lazy">
+            <span class="pillar-title">Roaster's Choice</span>
+            <span class="pillar-text">Our pick of the week's roast, delivered on your schedule.</span>
+            <span class="pillar-link">Build your plan</span>
+          </a>
+        </li>
+        <li>
+          <a class="pillar" href="workshops.html">
+            <img data-photo="espressoMachine" data-w="800" data-h="1000" alt="" loading="lazy">
+            <span class="pillar-title">Weekend workshops</span>
+            <span class="pillar-text">Barista classes and tasting flights, Saturdays and Sundays.</span>
+            <span class="pillar-link">See dates</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Origins -->
+    <section class="section origins" aria-labelledby="origins-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="origins-title" class="h-display">This season's origins</h2>
+            <p>Six coffees, six places. Tap one to see the bag.</p>
+          </div>
+          <div class="scroller-btns">
+            <button type="button" class="icon-btn" data-scroll="-1" aria-label="Previous origins"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+            <button type="button" class="icon-btn" data-scroll="1" aria-label="Next origins"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+        </div>
+        <ul class="origin-list" data-origins></ul>
+      </div>
+    </section>
+
+    <!-- Subscription split -->
+    <section class="sub-split" aria-labelledby="sub-title">
+      <div class="sub-media">
+        <img data-photo="twoMugs" data-w="1200" data-h="1000" alt="Two people holding mugs of coffee" loading="lazy">
+        <p class="sub-media-text">Fresh coffee.<br>Zero effort.</p>
+      </div>
+      <div class="sub-body">
+        <p class="eyebrow eyebrow-dark">[ Roaster's Choice ]</p>
+        <h2 id="sub-title" class="h-display">Let the roaster pick</h2>
+        <p>Every delivery is a coffee we're excited about that week, roasted the day before it ships. Tell us how you brew and we'll grind it to suit.</p>
+        <ul class="ticks">
+          <li>From <strong data-sub-price>$18</strong> a bag, shipping included</li>
+          <li>Every 2 or 4 weeks</li>
+          <li>Pause, skip or cancel any time from your account</li>
+        </ul>
+        <a class="btn btn-dark" href="subscribe.html">Build your plan</a>
+      </div>
+    </section>
+
+    <!-- Upcoming workshops -->
+    <section class="section" aria-labelledby="up-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="up-title" class="h-display">Weekend workshops</h2>
+            <p>Small groups, real machines, and plenty of coffee. Book a seat online.</p>
+          </div>
+          <a class="link-arrow" href="workshops.html">Full calendar</a>
+        </div>
+        <ul class="session-list" data-upcoming></ul>
+      </div>
+    </section>
+
+    <!-- Reviews: placeholders, replace with real customer reviews -->
+    <section class="section reviews grid-bg" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <div class="section-head section-head-center">
+          <div>
+            <h2 id="reviews-title" class="h-display">From the regulars</h2>
+          </div>
+        </div>
+        <ul class="review-grid">
+          <li class="review">
+            <blockquote><p>The Ethiopia tastes like peach tea. I didn't know coffee could do that. My subscription is the best thing that comes in the mail.</p></blockquote>
+            <p class="review-by">Customer name <span>Subscriber</span></p>
+          </li>
+          <li class="review">
+            <blockquote><p>Took the latte art class with my partner. We left with wobbly hearts and huge smiles, and our home coffee has been better ever since.</p></blockquote>
+            <p class="review-by">Customer name <span>Workshop guest</span></p>
+          </li>
+          <li class="review">
+            <blockquote><p>The best flat white in the city, and the people behind the bar actually love talking about coffee.</p></blockquote>
+            <p class="review-by">Customer name <span>Regular</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Visit -->
+    <section class="section visit" id="visit" aria-labelledby="visit-title">
+      <div class="wrap visit-inner">
+        <div class="visit-info">
+          <h2 id="visit-title" class="h-display">Visit the cafe</h2>
+          <p class="visit-address" data-address></p>
+          <table class="hours" data-hours></table>
+          <div class="actions">
+            <a class="btn btn-copper" data-directions target="_blank" rel="noopener">Get directions</a>
+            <a class="btn btn-ghost" data-phone></a>
+          </div>
+        </div>
+        <ul class="gallery">
+          <li class="frame"><img data-photo="counter" data-w="700" data-h="900" alt="The coffee bar" loading="lazy"></li>
+          <li class="frame"><img data-photo="windowTable" data-w="700" data-h="900" alt="A table by the cafe window" loading="lazy"></li>
+          <li class="frame"><img data-photo="cheers" data-w="700" data-h="900" alt="Friends raising their mugs" loading="lazy"></li>
+          <li class="frame"><img data-photo="teacup" data-w="700" data-h="900" alt="A cup of coffee on a saucer" loading="lazy"></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/home.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Roaster's Choice coffee subscription | Copper &amp; Bean</title>
+  <meta name="description" content="Our roaster's pick of the week, roasted the day before it ships. Every 2 or 4 weeks, ground for how you brew. Pause, skip or cancel any time.">
+  <meta name="theme-color" content="#15100D">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="subscribe">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-site-header></div>
+
+  <main id="main">
+    <section class="page-hero grid-bg" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">[ Coffee subscription ]</p>
+        <h1 id="page-title" class="stretch-title">Roaster's Choice</h1>
+        <ol class="how-steps">
+          <li><strong>Build your plan</strong>Tell us how you brew, what you like and how much you drink.</li>
+          <li><strong>We roast and ship</strong>Each delivery is the coffee we're most excited about that week.</li>
+          <li><strong>You're in control</strong>Pause, skip, change or cancel from your account. No fees.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-labelledby="build-title">
+      <div class="wrap builder">
+        <form class="builder-form" data-builder novalidate>
+          <h2 id="build-title" class="visually-hidden">Build your plan</h2>
+
+          <fieldset class="option-group">
+            <legend><span class="legend-num">1</span>How do you brew?</legend>
+            <div class="option-grid option-grid-4" data-options="grind"></div>
+          </fieldset>
+
+          <fieldset class="option-group">
+            <legend><span class="legend-num">2</span>What do you like in a cup?</legend>
+            <div class="option-grid option-grid-2" data-options="style"></div>
+          </fieldset>
+
+          <fieldset class="option-group">
+            <legend><span class="legend-num">3</span>How many bags per delivery?</legend>
+            <div class="option-grid option-grid-3" data-options="bags"></div>
+          </fieldset>
+
+          <fieldset class="option-group">
+            <legend><span class="legend-num">4</span>How often?</legend>
+            <div class="option-grid option-grid-2" data-options="frequency"></div>
+          </fieldset>
+        </form>
+
+        <aside class="plan-summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Your plan</h2>
+          <dl class="summary-list" data-summary></dl>
+          <p class="summary-price"><span data-price>$18</span> <small>per delivery</small></p>
+          <p class="summary-note" data-note></p>
+          <button type="button" class="btn btn-copper btn-block" data-subscribe>Continue to checkout</button>
+          <p class="summary-fine">Free shipping on every delivery. First box ships within 3 days. <a href="account.html">Already subscribed?</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <h2 id="faq-title" class="h-display">Questions</h2>
+        <div class="faq">
+          <details>
+            <summary>What will I get?</summary>
+            <p>A different coffee most deliveries, picked by our head roaster from what's on the roasting schedule that week. If you choose a style, we'll stick to coffees that fit it.</p>
+          </details>
+          <details>
+            <summary>How fresh is it?</summary>
+            <p>We roast on Tuesdays and Fridays and ship the next day, so your coffee is two to four days off roast when it arrives. That's right when it starts tasting its best.</p>
+          </details>
+          <details>
+            <summary>Can I pause or skip a delivery?</summary>
+            <p>Yes. In your account you can skip the next delivery, pause for one to three months, change your plan or update your address. Changes made before the shipping day apply to the next box.</p>
+          </details>
+          <details>
+            <summary>How do I cancel?</summary>
+            <p>From your account, any time. There's no minimum term and no cancellation fee.</p>
+          </details>
+          <details>
+            <summary>Can I send it as a gift?</summary>
+            <p>Gift subscriptions are coming soon. For now, you can start a plan with the recipient's shipping address and cancel it whenever you like.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/subscribe.js" defer></script>
+</body>
+</html>

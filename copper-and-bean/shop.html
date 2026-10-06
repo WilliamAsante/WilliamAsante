@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shop coffee, mugs and brewing gear | Copper &amp; Bean</title>
+  <meta name="description" content="Fresh-roasted single origins and blends, hand-thrown mugs and the brewing gear we use at the bar.">
+  <meta name="theme-color" content="#15100D">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="shop">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-site-header></div>
+
+  <main id="main">
+    <section class="page-hero grid-bg" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="eyebrow">[ Roasted Tuesday &amp; Friday ]</p>
+        <h1 id="page-title" class="stretch-title">The shop</h1>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-label="Products">
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="chip-row" role="group" aria-label="Category" data-categories></div>
+          <div class="toolbar-end">
+            <label class="select-inline" data-roast-wrap hidden>
+              <span>Roast</span>
+              <select data-roast>
+                <option value="">Any</option>
+                <option>Light</option>
+                <option>Medium</option>
+                <option>Dark</option>
+              </select>
+            </label>
+            <label class="select-inline">
+              <span>Sort</span>
+              <select data-sort>
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price, low to high</option>
+                <option value="price-desc">Price, high to low</option>
+                <option value="name">Name</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <p class="result-count" data-count role="status"></p>
+        <ul class="product-grid" data-products></ul>
+      </div>
+    </section>
+
+    <section class="section section-tight" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2 id="cta-title" class="h-display">Can't choose?</h2>
+            <p>Let our roaster pick for you. Roaster's Choice sends the coffee we're most excited about, every 2 or 4 weeks.</p>
+          </div>
+          <a class="btn btn-copper" href="subscribe.html">Build your plan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/shop.js" defer></script>
+</body>
+</html>
