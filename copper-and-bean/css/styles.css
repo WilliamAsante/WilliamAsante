@@ -19,8 +19,8 @@
   --ink: #15100D;
   --error: #F08A6E;
 
-  --display: "Anton", "Arial Narrow", "Roboto Condensed", sans-serif;
-  --headline: "Shrikhand", "Cooper Black", Georgia, serif; /* big headlines only */
+  --headline: "Playfair Display", Georgia, "Times New Roman", serif;
+  --display: var(--headline);
   --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --header-h: 72px;
@@ -199,20 +199,18 @@ button {
 /* Type ----------------------------------------------------------------- */
 
 .h-display {
-  font-family: var(--display);
-  font-weight: 400;
+  font-family: var(--headline);
+  font-weight: 600;
   font-size: clamp(2.6rem, 6.4vw, 5rem);
   line-height: 0.98;
-  text-transform: uppercase;
-  letter-spacing: 0.005em;
+  letter-spacing: -0.01em;
 }
 
 .stretch-title {
-  font-family: var(--display);
-  font-weight: 400;
+  font-family: var(--headline);
+  font-weight: 600;
   font-size: clamp(4.6rem, 17vw, 15rem);
   line-height: 0.9;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   transform: scaleY(1.12);
   transform-origin: bottom left;
@@ -658,9 +656,9 @@ fieldset {
   border-radius: 50%;
   background: var(--copper);
   color: var(--ink);
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   vertical-align: 0.15em;
 }
 
@@ -706,12 +704,11 @@ fieldset {
 }
 
 .logo {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
@@ -818,11 +815,10 @@ fieldset {
 .mobile-menu a {
   display: inline-block;
   padding-block: 4px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.6rem, 13vw, 4.5rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
-  text-transform: uppercase;
   text-decoration: none;
 }
 
@@ -906,12 +902,11 @@ fieldset {
 }
 
 .hero-title {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(3.4rem, 8.6vw, 9.4rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.94;
-  letter-spacing: -0.005em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
 .hero-title .line {
@@ -1042,12 +1037,11 @@ fieldset {
   padding: 0;
   border: 0;
   background: none;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.45rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.05;
   text-align: left;
-  text-transform: uppercase;
 }
 
 .pc-body h3 button:hover {
@@ -1141,12 +1135,11 @@ fieldset {
 
 .readout-value {
   display: block;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(1.8rem, 3.4vw, 2.8rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  text-transform: uppercase;
 }
 
 .readout-value[data-readout-temp] {
@@ -1255,20 +1248,19 @@ fieldset {
 }
 
 .step-time {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--copper);
 }
 
 .roast-step h3 {
   margin-block: 6px 12px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.95;
-  text-transform: uppercase;
   opacity: 0.4;
   transition: opacity 0.4s;
 }
@@ -1358,11 +1350,10 @@ fieldset {
 }
 
 .pillar-title {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2rem, 3.2vw, 2.9rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.92;
-  text-transform: uppercase;
 }
 
 .pillar-text {
@@ -1436,19 +1427,17 @@ fieldset {
 }
 
 .origin-disc span {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.4rem, 4vw, 3.4rem);
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--text);
 }
 
 .origin-country {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.1;
-  text-transform: uppercase;
 }
 
 .origin-region {
@@ -1502,11 +1491,10 @@ fieldset {
 }
 
 .sub-media-text {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.6rem, 6vw, 5.4rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.88;
-  text-transform: uppercase;
 }
 
 .sub-body {
@@ -1582,19 +1570,18 @@ fieldset {
 
 .session-date strong {
   margin-block: 2px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 2.6rem;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--text);
 }
 
 .session-main h3,
 .booking-item h3 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.7rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.05;
-  text-transform: uppercase;
 }
 
 .session-main p,
@@ -1608,9 +1595,9 @@ fieldset {
 }
 
 .session-price {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 /* Reviews --------------------------------------------------------------- */
@@ -1640,9 +1627,9 @@ fieldset {
   content: "“";
   display: block;
   height: 0.5em;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   color: var(--copper);
 }
@@ -1790,19 +1777,18 @@ fieldset {
   content: "0" counter(how);
   display: block;
   margin-bottom: 8px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--copper);
 }
 
 .how-steps strong {
   display: block;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.1;
-  text-transform: uppercase;
   color: var(--text);
 }
 
@@ -1923,11 +1909,10 @@ dialog::backdrop {
 
 .pd-body h2 {
   padding-right: 48px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.92;
-  text-transform: uppercase;
 }
 
 .pd-facts {
@@ -2022,10 +2007,9 @@ dialog::backdrop {
 }
 
 .drawer-head h2 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 2rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .ship-meter {
@@ -2084,11 +2068,10 @@ dialog::backdrop {
 }
 
 .thumb-label {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--copper);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -2145,10 +2128,9 @@ dialog::backdrop {
 .drawer-total {
   display: flex;
   justify-content: space-between;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.7rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .drawer-note {
@@ -2166,10 +2148,9 @@ dialog::backdrop {
 }
 
 .drawer-empty p {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.8rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* Toast ----------------------------------------------------------------- */
@@ -2233,11 +2214,10 @@ dialog::backdrop {
 .option-group legend,
 .co-step legend {
   margin-bottom: 18px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.1;
-  text-transform: uppercase;
 }
 
 .option-grid {
@@ -2276,11 +2256,10 @@ dialog::backdrop {
 }
 
 .option-card strong {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.05;
-  text-transform: uppercase;
 }
 
 .option-card span {
@@ -2310,10 +2289,9 @@ dialog::backdrop {
 }
 
 .plan-summary h2 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 2rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .summary-list {
@@ -2338,9 +2316,9 @@ dialog::backdrop {
 }
 
 .summary-price {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 3.6rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
   color: var(--copper);
 }
@@ -2378,11 +2356,10 @@ dialog::backdrop {
   justify-content: space-between;
   gap: 16px;
   padding-block: 22px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.1;
-  text-transform: uppercase;
   list-style: none;
   cursor: pointer;
 }
@@ -2446,11 +2423,10 @@ dialog::backdrop {
 }
 
 .workshop-body h3 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.9rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.95;
-  text-transform: uppercase;
 }
 
 .workshop-body > p {
@@ -2482,9 +2458,9 @@ dialog::backdrop {
 }
 
 .workshop-price {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.9rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .workshop-price small {
@@ -2522,10 +2498,9 @@ dialog::backdrop {
 }
 
 .cal-head h3 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.8rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .cal-grid {
@@ -2556,9 +2531,9 @@ dialog::backdrop {
   margin-inline: auto;
   border: 1px solid transparent;
   border-radius: 12px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.3rem;
-  font-weight: 400;
+  font-weight: 600;
   color: rgb(239 230 218 / 0.3);
 }
 
@@ -2633,11 +2608,10 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 .day-title {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .slot-list {
@@ -2648,7 +2622,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 
 .slot {
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr) auto;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   width: 100%;
@@ -2676,9 +2650,9 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 .slot-time {
-  font-family: var(--display);
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-family: var(--headline);
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--copper);
 }
 
@@ -2713,11 +2687,10 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 .book-name {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.05;
-  text-transform: uppercase;
 }
 
 .book-when,
@@ -2855,10 +2828,9 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.6rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
   list-style: none;
   cursor: pointer;
 }
@@ -2896,10 +2868,9 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   margin-top: 6px;
   padding-top: 12px;
   border-top: 1px solid var(--line);
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.6rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .totals-total dt {
@@ -2954,10 +2925,9 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 .empty-state > p {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 1.8rem;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .empty-state .actions {
@@ -3057,11 +3027,10 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .sub-card h2,
 .edit-card h2,
 .edit-card h3 {
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .status {
@@ -3279,11 +3248,10 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   display: flex;
   flex-wrap: wrap;
   gap: 0 0.45em;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(2.4rem, 5.4vw, 4.6rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.98;
-  text-transform: uppercase;
 }
 
 .footer-news-title span:last-child {
@@ -3413,13 +3381,12 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 
 .footer-wordmark {
   margin: 0 -0.02em -0.2em;
-  font-family: var(--display);
+  font-family: var(--headline);
   font-size: clamp(3.8rem, 16.4vw, 20rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 0.82;
   letter-spacing: -0.01em;
   text-align: center;
-  text-transform: uppercase;
   white-space: nowrap;
   user-select: none;
 }
@@ -3477,8 +3444,8 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 /* Headline font ---------------------------------------------------------
-   Shrikhand's swashy curves for the big statements; Anton stays for prices,
-   product names, dates and small labels where legibility matters most. */
+   Playfair Display for headlines and names; Instrument Sans for numbers
+   (prices, dates, times) so they line up and stay crisp at small sizes. */
 
 .logo,
 .hero-title,
@@ -3496,17 +3463,48 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 .empty-state > p,
 .drawer-empty p {
   font-family: var(--headline);
-  font-weight: 400;
-  letter-spacing: 0;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   text-transform: none;
 }
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
+}
+
+.hero-title .line-copper {
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Numbers in the body font: prices, dates, times and readouts. */
+.readout-value,
+.session-date strong,
+.session-price,
+.slot-time,
+.workshop-price,
+.summary-price,
+.step-time,
+.legend-num,
+.how-steps li::before,
+.cal-day,
+.drawer-total,
+.totals-total,
+.thumb-label {
+  font-family: var(--body);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.thumb-label,
+.step-time {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .hero-title {
-  font-size: clamp(2.9rem, 6.1vw, 6.6rem);
+  font-size: clamp(3rem, 7.2vw, 7.8rem);
   line-height: 1.02;
 }
 
@@ -3543,7 +3541,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 }
 
 .footer-wordmark {
-  font-size: clamp(2.6rem, 11.3vw, 14rem);
+  font-size: clamp(2.2rem, 12.9vw, 16rem);
   line-height: 0.95;
   margin-bottom: -0.16em;
 }
@@ -3835,11 +3833,11 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   }
 
   .slot {
-    grid-template-columns: 82px minmax(0, 1fr);
+    grid-template-columns: 88px minmax(0, 1fr);
   }
 
   .slot-time {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     white-space: nowrap;
   }
 
@@ -3916,7 +3914,7 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 370px) {
   /* Account is in the menu, so drop it from the header on very narrow phones. */
   .tool-account {
     display: none;
