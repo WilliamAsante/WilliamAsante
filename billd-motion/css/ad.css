@@ -1,0 +1,162 @@
+/* BILLD motion ad. Brand: fire red, signal orange, white, warm ink. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "DM Mono";
+  src: url("../fonts/dm-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: block;
+}
+
+:root {
+  --red: #E8261C;
+  --orange: #FF7A1A;
+  --white: #FFFFFF;
+  --ink: #170D0A;
+  --cream: #FFF4EE;
+  --wire: #EFE4DE;
+  --display: "Archivo", "Arial Black", sans-serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #0B0605;
+  color: var(--white);
+  font-family: var(--display);
+}
+
+/* Preview layout: the stage is scaled to fit the window. */
+.viewport {
+  position: fixed;
+  inset: 0 0 64px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  transform-origin: center;
+  flex: none;
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  padding: 0 16px;
+  background: #160C09;
+  font: 500 14px/1 var(--mono);
+}
+
+.controls button,
+.controls select {
+  padding: 8px 14px;
+  border: 1px solid #5A3A30;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  font: inherit;
+  cursor: pointer;
+}
+
+.controls button:first-child {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.controls input {
+  flex: 1;
+  accent-color: var(--orange);
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #C9AFA5;
+}
+
+/* Render mode: stage pinned top-left at native size, no UI. */
+.is-render .viewport {
+  position: static;
+  display: block;
+}
+
+.is-render .controls {
+  display: none;
+}
+
+.is-render .stage {
+  transform: none !important;
+}
+
+/* Scenes and text ----------------------------------------------------- */
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+  line-height: 0.84;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.word,
+.ch {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.abs {
+  position: absolute;
+}
+
+.bar {
+  position: absolute;
+  background: currentColor;
+}

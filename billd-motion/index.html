@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BILLD | Motion ad</title>
+  <link rel="icon" href="logo/billd-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/ad.css">
+</head>
+<body>
+  <!--
+    BILLD motion ad. Open this page to preview with music.
+    Formats: ?f=9x16 (Reels/TikTok), ?f=4x5 (feed), ?f=16x9 (pitch/YouTube).
+    render/render.js loads it with &render=1 and captures it frame by frame.
+  -->
+  <div class="viewport">
+    <div class="stage" id="stage" aria-label="BILLD advertisement animation"></div>
+  </div>
+
+  <div class="controls" id="controls">
+    <button type="button" id="play">Play</button>
+    <button type="button" id="restart">Restart</button>
+    <input type="range" id="scrub" min="0" max="56" step="0.01" value="0" aria-label="Timeline">
+    <output id="clock">0.00s</output>
+    <label>Format
+      <select id="format">
+        <option value="9x16">9:16 Reels / TikTok</option>
+        <option value="4x5">4:5 Feed</option>
+        <option value="16x9">16:9 Pitch / YouTube</option>
+      </select>
+    </label>
+  </div>
+
+  <audio id="track" src="audio/billd-track.wav" preload="auto"></audio>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="js/ad.js"></script>
+</body>
+</html>
