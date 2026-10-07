@@ -4173,6 +4173,8 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   }
 }
 
+/* Reduced motion: keep gentle fades, drop movement (sliding, zooming,
+   spinning, parallax). Animations jump straight to their end state. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -4181,7 +4183,23 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   *,
   *::before,
   *::after {
-    animation: none !important;
-    transition: none !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .motion .reveal,
+  .footer-wordmark.is-split .wm-ch {
+    transform: none !important;
+    transition: opacity 0.7s ease var(--reveal-delay, 0ms) !important;
+  }
+
+  .footer-wordmark.is-split .wm-ch {
+    transition-delay: calc(var(--i) * 30ms) !important;
+  }
+
+  .product-card:hover .product-art,
+  .pillar:hover img {
+    transform: none;
   }
 }

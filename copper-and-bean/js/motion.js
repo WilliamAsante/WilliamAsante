@@ -1,12 +1,13 @@
 /* Copper & Bean: motion.
    Scroll reveals, parallax, a hide-on-scroll header and the footer wordmark.
-   Everything is visible without this file, and none of it runs for visitors
-   who ask for reduced motion. */
+   Everything is visible without this file. Visitors who ask for reduced
+   motion still get gentle fades (see the CSS), but no parallax, spinning,
+   sliding or hiding header. */
 
 (() => {
   "use strict";
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const { $, $$ } = CB;
   const root = document.documentElement;
 
@@ -76,7 +77,7 @@
     [".sub-media img", 0.12],
     [".pillar img", 0.08],
     [".gallery li", -0.06],
-  ].flatMap(([sel, k]) => $$(sel).map((el) => ({ el, k })));
+  ].flatMap(([sel, k]) => (reduced ? [] : $$(sel).map((el) => ({ el, k }))));
 
   let ticking = false;
   const update = () => {
@@ -98,7 +99,7 @@
   const headerWatch = () => {
     const y = scrollY;
     const busy = document.body.classList.contains("menu-open") || root.classList.contains("is-locked");
-    if (header && !busy) header.classList.toggle("is-hidden", y > 320 && y > lastY + 2);
+    if (header && !busy && !reduced) header.classList.toggle("is-hidden", y > 320 && y > lastY + 2);
     if (y < lastY - 2 || y < 320) header?.classList.remove("is-hidden");
     lastY = y;
   };
