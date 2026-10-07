@@ -11,6 +11,25 @@
   const { $, $$ } = CB;
   const root = document.documentElement;
 
+  /* Diagnostics: add #motion-check to the URL to see why motion may be off. */
+  if (location.hash === "#motion-check") {
+    const ua = navigator.userAgent;
+    const engine = /iPhone|iPad|iPod/.test(ua) ? "WebKit (iOS)" : /Firefox\//.test(ua) ? "Gecko" : /AppleWebKit/.test(ua) && !/Chrome/.test(ua) ? "WebKit" : "Chromium";
+    const rows = [
+      ["JavaScript", "Running"],
+      ["Reduce motion setting", reduced ? "ON (fades only)" : "Off (full motion)"],
+      ["Smooth-scroll library", window.Lenis ? "Loaded" : "Not loaded (blocked or offline)"],
+      ["Scroll reveals", "IntersectionObserver" in window ? "Supported" : "Not supported"],
+      ["Browser engine", engine],
+    ];
+    const panel = document.createElement("div");
+    panel.className = "motion-check";
+    panel.setAttribute("role", "status");
+    panel.innerHTML = `<strong>Motion check</strong>${rows.map(([k, v]) => `<span>${k}</span><b>${v}</b>`).join("")}<button type="button">Close</button>`;
+    panel.querySelector("button").addEventListener("click", () => panel.remove());
+    document.body.append(panel);
+  }
+
   /* Scroll reveals --------------------------------------------------------- */
 
   // Groups whose children cascade in one after another.

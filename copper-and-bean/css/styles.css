@@ -3804,6 +3804,42 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   opacity: 1;
 }
 
+/* #motion-check diagnostics panel */
+.motion-check {
+  position: fixed;
+  left: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 120;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 6px 16px;
+  max-width: calc(100vw - 32px);
+  padding: 16px 18px;
+  border: 1px solid var(--copper);
+  border-radius: 14px;
+  background: var(--bg-2);
+  font-size: 0.85rem;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.5);
+}
+
+.motion-check strong,
+.motion-check button {
+  grid-column: 1 / -1;
+}
+
+.motion-check span {
+  color: var(--text-dim);
+}
+
+.motion-check button {
+  justify-self: start;
+  margin-top: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: none;
+}
+
 /* Responsive -------------------------------------------------------------- */
 
 @media (max-width: 1100px) {
