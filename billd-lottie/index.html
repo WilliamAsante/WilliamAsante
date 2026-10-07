@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BILLD Lottie kit</title>
+  <link rel="icon" href="../billd-motion/logo/billd-logo-on-dark.svg" type="image/svg+xml">
+  <style>
+    @font-face { font-family: "Archivo"; src: url("../billd-motion/fonts/archivo-var.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+    @font-face { font-family: "DM Mono"; src: url("../billd-motion/fonts/dm-mono-500.woff2") format("woff2"); font-weight: 500; }
+    html, body { margin: 0; background: #170D0A; color: #fff; font-family: "Archivo", system-ui, sans-serif; }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 16px; display: grid; gap: 48px; }
+    h1 { font-weight: 900; font-size: 40px; margin: 0; }
+    p, code { color: #C9AFA5; }
+    .card { display: grid; gap: 16px; }
+    .player { background: #23140F; border-radius: 20px; display: grid; place-items: center; padding: 24px; }
+    .player > div { width: min(100%, 520px); }
+    #loader { width: 160px !important; }
+    button { justify-self: start; padding: 10px 18px; border-radius: 999px; border: 0; background: #E9261D; color: #fff; font: 700 15px "Archivo"; cursor: pointer; }
+    .mono { font-family: "DM Mono", monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #E9261D; }
+    /* Render mode: one animation, fixed size, nothing else */
+    .is-render main { display: none; }
+    .is-render #stage { display: grid; }
+    #stage { display: none; position: fixed; inset: 0; place-items: center; background: #170D0A; }
+    #stage .tag { position: absolute; left: 0; right: 0; text-align: center; font-weight: 800; opacity: 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>BILLD Lottie kit</h1>
+    <section class="card">
+      <p class="mono">billd-logo-reveal.json · plays once · 2.5 s</p>
+      <div class="player"><div id="reveal"></div></div>
+      <button type="button" id="replay">Replay</button>
+    </section>
+    <section class="card">
+      <p class="mono">billd-loader.json · loops · 1 s</p>
+      <div class="player"><div id="loader"></div></div>
+    </section>
+  </main>
+  <div id="stage"><div id="sting"></div><div class="tag" id="tag">Fast. Affordable. <span style="color:#E9261D">Built to sell.</span></div></div>
+
+  <script src="vendor/lottie.min.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.has("render")) {
+      // Sting for video: logo reveal + tagline, seekable frame by frame (window.__seek).
+      document.documentElement.classList.add("is-render");
+      const [W, H] = (params.get("size") || "1080x1080").split("x").map(Number);
+      const stage = document.getElementById("stage");
+      const box = document.getElementById("sting");
+      const tag = document.getElementById("tag");
+      const lw = Math.min(W * 0.8, 900);
+      box.style.width = `${lw}px`;
+      box.style.height = `${lw * 0.9}px`;
+      box.style.transform = `translateY(${-lw * 0.12}px)`;
+      tag.style.fontSize = `${lw * 0.075}px`;
+      tag.style.top = `${H / 2 + lw * 0.13}px`;
+      document.fonts.load('800 40px "Archivo"').then(() => {
+        const a = lottie.loadAnimation({ container: box, renderer: "svg", loop: false, autoplay: false, path: "billd-logo-reveal.json" });
+        a.addEventListener("DOMLoaded", () => {
+          window.__duration = 3.5;
+          window.__seek = (t) => {
+            a.goToAndStop(Math.min(t * 60, a.totalFrames - 1), true);
+            const k = Math.min(1, Math.max(0, (t - 1.25) / 0.4));
+            tag.style.opacity = k;
+            tag.style.transform = `translateY(${(1 - k) * 20}px)`;
+          };
+          window.__seek(0);
+          window.__ready = true;
+        });
+      });
+    } else {
+      const reveal = lottie.loadAnimation({ container: document.getElementById("reveal"), renderer: "svg", loop: false, autoplay: true, path: "billd-logo-reveal.json" });
+      lottie.loadAnimation({ container: document.getElementById("loader"), renderer: "svg", loop: true, autoplay: true, path: "billd-loader.json" });
+      document.getElementById("replay").addEventListener("click", () => reveal.goToAndPlay(0, true));
+    }
+  </script>
+</body>
+</html>
