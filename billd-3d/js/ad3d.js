@@ -243,7 +243,7 @@ const domRipple = (at, x, y, color = C.orange) => {
   tl.fromTo(br.scale, { x: 0.5, y: 0.5, z: 0.5 }, { x: 1, y: 1, z: 1, duration: 0.7, ease: "back.out(2)" }, 0);
 
   const coins = Array.from({ length: 18 }, (_, i) => {
-    const c = P.coin(i % 4 === 3 ? C.white : C.orange);
+    const c = P.coin(i % 4 === 3 ? C.ink : C.white, i % 4 === 3 ? C.white : C.red);
     c.scale.setScalar(0.75);
     g.add(c);
     return c;
@@ -678,8 +678,8 @@ const domRipple = (at, x, y, color = C.orange) => {
     [-0.85, 0.2, 0.95, 0.14, C.white],
     [-0.98, -0.02, 0.7, 0.16, C.ink],
     [-0.97, -0.58, 0.9, 0.5, C.ink],
-    [0, -0.58, 0.9, 0.5, C.orange],
-    [0.97, -0.58, 0.9, 0.5, C.red],
+    [0, -0.58, 0.9, 0.5, C.red],
+    [0.97, -0.58, 0.9, 0.5, C.white],
   ];
   const drops = [26.5, 27.0, 27.5, 27.75, 28.0, 28.5, 28.75, 29.0];
   const blocks = spec.map(([x, y, w, h, final], i) => {
@@ -863,6 +863,10 @@ const domRipple = (at, x, y, color = C.orange) => {
   P.ICONS.forEach(([name, build], i) => {
     const at = 42.25 + i * 0.25;
     const ic = P.icon(build);
+    const accent = new THREE.Color(C.orange);
+    ic.traverse((o) => {
+      if (o.isMesh && o.material?.color?.equals?.(accent) && !o.material.uniforms) o.material = toon(C.ink, { mat: { side: o.material.side } });
+    });
     const g = group(at, at + 0.25);
     g.add(ic);
     tl.fromTo(ic.scale, { x: 1.35, y: 1.35, z: 1.35 }, { x: 1, y: 1, z: 1, duration: 0.2, ease: "power3.out", immediateRender: false }, at);

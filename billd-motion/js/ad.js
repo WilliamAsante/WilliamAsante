@@ -16,7 +16,7 @@
   const U = Math.min(W, H) / 100; // 1 unit = 1% of the short side
   const DUR = 56;
   const RENDER = params.has("render");
-  const C = { red: "#E8261C", orange: "#FF7A1A", white: "#FFFFFF", ink: "#170D0A", cream: "#FFF4EE", wire: "#EFE4DE" };
+  const C = { red: "#E9261D", orange: "#E9261D", white: "#FFFFFF", ink: "#170D0A", cream: "#FFF4EE", wire: "#EFE4DE" };
 
   if (RENDER) document.documentElement.classList.add("is-render");
   const stage = document.getElementById("stage");
@@ -426,7 +426,7 @@
       overlay(h1, C.red, `<span style="font-weight:900;color:#fff;font-size:${U * 3.6}px;line-height:1;white-space:nowrap">Your business,</span>`, { justifyContent: "flex-start", background: "transparent" }),
       overlay(h2, C.red, `<span style="font-weight:900;color:#fff;font-size:${U * 3.6}px;line-height:1;white-space:nowrap">online.</span>`, { justifyContent: "flex-start", background: "transparent" }),
       overlay(btn, C.ink, `<span style="font-weight:800;color:#fff;font-size:${U * 2.4}px">Book now</span>`),
-      ...cards.map((c, i) => overlay(c, [C.ink, C.red, C.orange][i])),
+      ...cards.map((c, i) => overlay(c, [C.ink, C.red, C.ink][i])),
     ];
     tl.to(fills, { opacity: 1, duration: 0.35, ease: "power2.out", stagger: 0.12 }, 29.6);
     tl.to([h1, h2], { backgroundColor: "rgba(0,0,0,0)", duration: 0.3 }, 29.72);

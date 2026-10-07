@@ -278,12 +278,12 @@ export const priceTag = (labelTex) => {
   return pin;
 };
 
-export const coin = (color = C.orange) => {
+export const coin = (color = C.orange, ringColor = C.white) => {
   const g = new THREE.Group();
   const c = cyl(0.36, 0.36, 0.1, color, 36);
   c.rotation.x = Math.PI / 2;
   g.add(c);
-  const ring = torus(0.26, 0.025, C.white, { outline: 0 });
+  const ring = torus(0.26, 0.025, ringColor, { outline: 0 });
   ring.position.z = 0.055;
   g.add(ring);
   return g;

@@ -84,14 +84,14 @@ body {
 }
 
 .controls button:first-child {
-  border-color: #FF7A1A;
-  background: #FF7A1A;
+  border-color: #E9261D;
+  background: #E9261D;
   color: #170D0A;
 }
 
 .controls input {
   flex: 1;
-  accent-color: #FF7A1A;
+  accent-color: #E9261D;
 }
 
 .controls label {

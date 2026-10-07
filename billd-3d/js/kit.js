@@ -10,8 +10,8 @@ import { mergeVertices } from "three/addons/BufferGeometryUtils.js";
 export { THREE };
 
 export const C = {
-  red: "#E8261C",
-  orange: "#FF7A1A",
+  red: "#E9261D",
+  orange: "#E9261D",
   white: "#FFFFFF",
   ink: "#170D0A",
   cream: "#FFF4EE",
