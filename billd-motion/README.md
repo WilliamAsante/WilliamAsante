@@ -26,7 +26,7 @@ Rendered videos are in `out/`:
 
 ## Brand
 
-- **Logo:** `logo/billd-logo.svg` (dark) and `logo/billd-logo-white.svg`. The double L is two rising bars, orange then red, like a results chart.
+- **Logo:** two colours only, on dark backgrounds. `logo/billd-logo.svg` is white letters with orange LL bars (used in the videos); `logo/billd-logo-alt.svg` is the reverse (orange letters, white LL). The `-on-dark` files include the dark background. The double L is two rising bars, like a results chart.
 - **Colors:** red `#E8261C`, orange `#FF7A1A`, white `#FFFFFF`, ink `#170D0A`.
 - **Type:** Archivo (variable width and weight) and DM Mono, both open-source and stored in `fonts/`.
 

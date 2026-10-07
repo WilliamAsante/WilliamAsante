@@ -112,7 +112,7 @@
     return x - Math.floor(x);
   };
 
-  /* Logo (same shapes as logo/billd-logo.svg) ----------------------------- */
+  /* Logo (same shapes as logo/billd-logo.svg): white letters, orange LL --- */
 
   const PATHS = {
     B: "M0 0H46C64 0 74 10 74 24C74 34 69 41 61 45C72 49 80 58 80 72C80 89 68 100 48 100H0ZM26 20H44C50 20 54 23 54 28C54 33 50 37 44 37H26ZM26 57H47C54 57 58 61 58 68C58 75 54 80 47 80H26Z",
@@ -127,7 +127,7 @@
       <path data-l="B" fill="${ink}" fill-rule="evenodd" d="${PATHS.B}"/>
       <path data-l="I" fill="${ink}" d="${PATHS.I}"/>
       <path data-l="L1" fill="${C.orange}" d="${PATHS.L1}"/>
-      <path data-l="L2" fill="${C.red}" d="${PATHS.L2}"/>
+      <path data-l="L2" fill="${C.orange}" d="${PATHS.L2}"/>
       <path data-l="D" fill="${ink}" fill-rule="evenodd" d="${PATHS.D}"/></svg>`;
     const q = (k) => wrap.querySelector(`[data-l="${k}"]`);
     return { wrap, B: q("B"), I: q("I"), L1: q("L1"), L2: q("L2"), D: q("D") };
@@ -244,14 +244,14 @@
     const diag = Math.hypot(W, H);
     const flood = (col) => el("div", "abs", sc, { width: `${diag}px`, height: `${diag}px`, borderRadius: "50%", background: col, transform: "scale(0)" });
     const o = flood(C.orange);
-    const w = flood(C.white);
+    const w = flood(C.ink);
     tl.to(o, { scale: 1, duration: 0.4 }, 10.0);
     tl.to(w, { scale: 1, duration: 0.5 }, 10.18);
     const col = el("div", "stack", sc, { position: "relative", gap: `${U * 3}px` });
-    const meet = mono(col, "Meet", U * 3.4, C.ink);
-    const L = logo(col, pick(W * 0.78, W * 0.66, W * 0.44), C.ink);
-    const tag = el("div", "", col, { display: "flex", flexDirection: PORTRAIT ? "column" : "row", alignItems: "center", gap: `${PORTRAIT ? U * 0.6 : U * 2.4}px`, fontWeight: 800, fontSize: `${pick(U * 8, U * 6.4, U * 6)}px`, color: C.ink, lineHeight: 1 });
-    const tags = ["Fast.", "Affordable.", "Built to sell."].map((t, i) => el("span", "word", tag, { color: i === 2 ? C.red : C.ink }, t));
+    const meet = mono(col, "Meet", U * 3.4, C.white);
+    const L = logo(col, pick(W * 0.78, W * 0.66, W * 0.44), C.white);
+    const tag = el("div", "", col, { display: "flex", flexDirection: PORTRAIT ? "column" : "row", alignItems: "center", gap: `${PORTRAIT ? U * 0.6 : U * 2.4}px`, fontWeight: 800, fontSize: `${pick(U * 8, U * 6.4, U * 6)}px`, color: C.white, lineHeight: 1 });
+    const tags = ["Fast.", "Affordable.", "Built to sell."].map((t, i) => el("span", "word", tag, { color: i === 2 ? C.orange : C.white }, t));
     const by = mono(col, "Websites by Bill", U * 2.8, C.orange);
     gsap.set([meet, by, ...tags], { opacity: 0, y: U * 3 });
     gsap.set([L.B, L.I, L.D], { opacity: 0, y: -U * 30 });

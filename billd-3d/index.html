@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BILLD 3D | Motion ad</title>
+  <link rel="icon" href="../billd-motion/logo/billd-logo-on-dark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/ad3d.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
+  </script>
+</head>
+<body>
+  <!--
+    BILLD 3D motion ad: illustrated 3D (toon shading, ink outlines) plus kinetic type.
+    Formats: ?f=9x16 (Reels/TikTok), ?f=4x5 (feed), ?f=16x9 (pitch/YouTube).
+    render/render.js loads it with &render=1 and captures it frame by frame.
+  -->
+  <div class="viewport">
+    <div class="stage" id="stage" aria-label="BILLD 3D advertisement animation">
+      <div class="bg" id="bg"></div>
+      <div class="gl" id="gl"></div>
+      <div class="overlay" id="overlay"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button type="button" id="play">Play</button>
+    <button type="button" id="restart">Restart</button>
+    <input type="range" id="scrub" min="0" max="56" step="0.01" value="0" aria-label="Timeline">
+    <output id="clock">0.00s</output>
+    <label>Format
+      <select id="format">
+        <option value="9x16">9:16 Reels / TikTok</option>
+        <option value="4x5">4:5 Feed</option>
+        <option value="16x9">16:9 Pitch / YouTube</option>
+      </select>
+    </label>
+  </div>
+
+  <audio id="track" src="../billd-motion/audio/billd-track.wav" preload="auto"></audio>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script type="module" src="js/ad3d.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+/* BILLD 3D motion ad */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("../../billd-motion/fonts/archivo-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "DM Mono";
+  src: url("../../billd-motion/fonts/dm-mono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #0B0605;
+  color: #fff;
+  font-family: "Archivo", "Arial Black", sans-serif;
+}
+
+.viewport {
+  position: fixed;
+  inset: 0 0 64px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.bg,
+.gl,
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.gl canvas {
+  display: block;
+}
+
+.overlay {
+  pointer-events: none;
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  padding: 0 16px;
+  background: #160C09;
+  font: 500 14px/1 "DM Mono", monospace;
+}
+
+.controls button,
+.controls select {
+  padding: 8px 14px;
+  border: 1px solid #5A3A30;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.controls button:first-child {
+  border-color: #FF7A1A;
+  background: #FF7A1A;
+  color: #170D0A;
+}
+
+.controls input {
+  flex: 1;
+  accent-color: #FF7A1A;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #C9AFA5;
+}
+
+.is-render .viewport {
+  position: static;
+  display: block;
+}
+
+.is-render .controls {
+  display: none;
+}
+
+.is-render .stage {
+  transform: none !important;
+}
+
+/* Overlay text */
+
+.area {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  visibility: hidden;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+  line-height: 0.84;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.word,
+.ch {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.mono {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.abs {
+  position: absolute;
+}
