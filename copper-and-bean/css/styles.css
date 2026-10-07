@@ -3618,6 +3618,192 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
   font-size: 1.6rem;
 }
 
+/* Motion ------------------------------------------------------------------
+   Driven by js/motion.js. Content is fully visible without it, and the
+   reduced-motion rule at the end of this file switches all of it off. */
+
+/* Scroll reveals (only when motion.js has run) */
+.motion .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--ease) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease) var(--reveal-delay, 0ms);
+}
+
+.motion .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero: the photo settles in, then drifts with the scroll (translate set in JS) */
+.hero-photo {
+  animation: settle 2.4s var(--ease) both;
+  will-change: translate;
+}
+
+@keyframes settle {
+  from {
+    scale: 1.12;
+    opacity: 0;
+  }
+}
+
+.hero-inner .eyebrow,
+.hero-foot {
+  animation: rise 0.9s var(--ease) both;
+}
+
+.hero-inner .eyebrow {
+  animation-delay: 0.05s;
+}
+
+.hero-foot {
+  animation-delay: 0.32s;
+}
+
+/* Rotating stamp in the hero corner */
+.hero-stamp {
+  position: absolute !important;
+  top: calc(var(--header-h) + clamp(24px, 6vw, 72px));
+  right: var(--gutter);
+  z-index: 2;
+  width: clamp(104px, 13vw, 168px);
+  height: auto;
+  overflow: visible;
+  animation: rise 1s var(--ease) 0.5s both;
+}
+
+.hero-stamp text {
+  fill: var(--text);
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-stamp text,
+.hero-stamp .stamp-edge {
+  transform-origin: 100px 100px;
+  animation: spin 28s linear infinite;
+}
+
+.hero-stamp .stamp-edge {
+  fill: rgb(21 16 13 / 0.35);
+  stroke: var(--line-strong);
+  stroke-dasharray: 2 6;
+}
+
+.stamp-bean ellipse {
+  fill: var(--copper);
+}
+
+.stamp-bean path {
+  fill: none;
+  stroke: var(--bg);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Inner page titles rise in on load */
+.page-hero .eyebrow,
+.page-hero .stretch-title,
+.page-lede,
+.how-steps {
+  animation: rise 0.9s var(--ease) both;
+}
+
+.page-hero .stretch-title {
+  animation-delay: 0.08s;
+}
+
+.page-lede,
+.how-steps {
+  animation-delay: 0.22s;
+}
+
+.page-hero-photo {
+  animation: settle 2.4s var(--ease) both;
+}
+
+/* Origin circles turn slowly, like beans in the drum */
+.origin-disc img {
+  animation: spin 70s linear infinite;
+}
+
+.origin:nth-child(even) .origin-disc img,
+.origin-list li:nth-child(even) .origin-disc img {
+  animation-direction: reverse;
+}
+
+/* Header tucks away on the way down */
+.site-header {
+  transition: background-color 0.3s, border-color 0.3s, transform 0.4s var(--ease);
+}
+
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* Cart count bump and quick-add feedback */
+.cart-count {
+  display: inline-block;
+}
+
+.cart-count.is-bumped {
+  animation: bump 0.5s var(--ease);
+}
+
+@keyframes bump {
+  40% {
+    transform: scale(1.5);
+    color: var(--text);
+  }
+}
+
+.pc-add.is-added {
+  background: var(--sage);
+}
+
+.pc-add.is-added svg {
+  rotate: 45deg;
+  transition: rotate 0.3s var(--ease);
+}
+
+/* Roast curve: the dot breathes */
+.curve-dot {
+  animation: glow 2.4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  50% {
+    filter: drop-shadow(0 0 18px rgb(199 119 63 / 1));
+  }
+}
+
+/* Footer wordmark rises letter by letter */
+.footer-wordmark.is-split .wm-ch {
+  display: inline-block;
+  font-style: normal;
+  transform: translateY(70%);
+  opacity: 0;
+  transition:
+    transform 1s var(--ease) calc(var(--i) * 45ms),
+    opacity 0.6s var(--ease) calc(var(--i) * 45ms);
+}
+
+.footer-wordmark.is-split.is-in .wm-ch {
+  transform: none;
+  opacity: 1;
+}
+
 /* Responsive -------------------------------------------------------------- */
 
 @media (max-width: 1100px) {
@@ -3962,6 +4148,13 @@ button.cal-day[aria-pressed="true"] .cal-dots i {
 
   .pd-facts {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-stamp {
+    top: calc(var(--header-h) + 20px);
+    width: 96px;
   }
 }
 

@@ -21,6 +21,12 @@
     <!-- Hero -->
     <section class="hero grid-bg" aria-labelledby="hero-title">
       <img class="hero-photo" data-photo="beans" data-w="2000" alt="" fetchpriority="high">
+      <svg class="hero-stamp" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="stamp-ring" d="M100 100 m-74 0 a74 74 0 1 1 148 0 a74 74 0 1 1 -148 0"/></defs>
+        <circle cx="100" cy="100" r="96" class="stamp-edge"/>
+        <text><textPath href="#stamp-ring" textLength="462">Roasted Tuesday &amp; Friday · Small batch · Copper &amp; Bean ·</textPath></text>
+        <g class="stamp-bean"><ellipse cx="100" cy="100" rx="17" ry="25" transform="rotate(28 100 100)"/><path d="M92 79c9 9 3 22 14 42" /></g>
+      </svg>
       <div class="wrap hero-inner">
         <p class="eyebrow">[ Roastery &amp; cafe, <span data-city>Your City</span> ]</p>
         <h1 class="hero-title" id="hero-title">
@@ -282,5 +288,6 @@
   <script src="js/data.js" defer></script>
   <script src="js/app.js" defer></script>
   <script src="js/home.js" defer></script>
+  <script src="js/motion.js" defer></script>
 </body>
 </html>

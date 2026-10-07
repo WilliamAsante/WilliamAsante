@@ -578,8 +578,19 @@
     }
   });
 
+  let lastCount = null;
   const updateCount = () => {
-    CB.$$("[data-cart-count]").forEach((el) => (el.textContent = `(${CB.cart.count()})`));
+    const count = CB.cart.count();
+    CB.$$("[data-cart-count]").forEach((el) => {
+      el.textContent = `(${count})`;
+      // Little bump when something is added.
+      if (lastCount !== null && count > lastCount) {
+        el.classList.remove("is-bumped");
+        void el.offsetWidth;
+        el.classList.add("is-bumped");
+      }
+    });
+    lastCount = count;
     if (drawer.open) renderDrawer();
   };
   document.addEventListener("cart:change", updateCount);
@@ -684,7 +695,17 @@
       const p = CB.product(add.dataset.quickAdd);
       // Coffee needs a grind choice, so quick-add opens the product instead.
       if (p.category === "coffee") CB.openProduct(p.id);
-      else CB.cart.addProduct(p.id);
+      else {
+        CB.cart.addProduct(p.id);
+        const label = add.querySelector("span");
+        add.classList.add("is-added");
+        if (label) label.textContent = "Added";
+        clearTimeout(add._addedTimer);
+        add._addedTimer = setTimeout(() => {
+          add.classList.remove("is-added");
+          if (label) label.textContent = "Add";
+        }, 1400);
+      }
     }
   });
 
