@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banket Reef Mining | Gold, one bench at a time</title>
+  <meta name="description" content="Banket Reef Mining: Ghanaian-led open-pit gold mining on the Tarkwaian reefs of Tarkwa, Western Region. Operations, people, production, rehabilitation and careers.">
+  <meta name="theme-color" content="#151619">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar" data-bar>
+    <a class="logo" href="#top" aria-label="Banket Reef Mining: home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M2 8h36l-5 7H7zM9 17h22l-5 7H14zM16 26h8l-4 7z"/></svg>
+      <span>Banket<em>Reef</em></span>
+    </a>
+    <p class="rl" aria-live="off"><span>RL</span><b data-rl>310</b><i data-bench>Surface</i></p>
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="#who">Who we are</a>
+      <a href="#operations">Operations</a>
+      <a href="#people">People</a>
+      <a href="#floor">Production</a>
+      <a href="#rehab">Rehabilitation</a>
+      <a href="#careers">Careers</a>
+      <a class="menu-cta" href="#contact">Contact</a>
+    </nav>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu"><span class="sr-only">Menu</span><i></i></button>
+  </header>
+
+  <main id="main">
+    <!-- the haul road and the truck that drives it, drawn by js over the pit walls -->
+    <svg class="road" data-road aria-hidden="true"><path class="road-line"/><g class="truck" data-truck><g><rect x="-8" y="-15" width="16" height="30" rx="3"/><rect class="load" x="-5.5" y="-4" width="11" height="16" rx="2"/><rect class="cab" x="-6.5" y="-14" width="13" height="7" rx="2"/></g></g></svg>
+
+    <!-- SURFACE ============================================================ -->
+    <section class="hero" id="top" data-rl="310" data-bench="Surface">
+      <div class="hero-media" aria-hidden="true">
+        <canvas class="hero-topo" data-topo="hero"></canvas>
+        <video class="hero-video" muted loop playsinline preload="metadata" data-video>
+          <source src="assets/media/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-grid">
+        <p class="hero-place"><span>Tarkwa</span><span>Western Region</span><span>Ghana</span></p>
+        <h1 class="hero-title">
+          <span>Gold,</span>
+          <span>one bench</span>
+          <span>at a time.</span>
+        </h1>
+        <div class="hero-foot">
+          <p>Banket Reef Mining is a Ghanaian-led open-pit gold producer on the Tarkwaian reefs. We dig carefully, we hire locally, and we put the land back when we're done.</p>
+          <a class="dive" href="#who"><span>Into the pit</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v17m-7-7 7 7 7-7"/></svg></a>
+        </div>
+        <dl class="hero-ticker" aria-label="At a glance">
+          <div><dt>Produced 2025</dt><dd>212 koz</dd></div>
+          <div><dt>People on site</dt><dd>1,860</dd></div>
+          <div><dt>Ghanaian staff</dt><dd>94%</dd></div>
+          <div><dt>Land rehabilitated</dt><dd>1,240 ha</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- BENCH 01 · RL 290 ===================================================== -->
+    <section class="bench down" id="who" style="--step:1" data-rl="290" data-bench="Bench 01">
+      <div class="shelf shelf-light">
+        <p class="tag"><b>Bench 01</b><span>RL 290</span><span>Who we are</span></p>
+        <div class="who">
+          <h2 class="big">We started with one pit and a borrowed drill rig.</h2>
+          <figure class="shot shot-tall" data-shot>
+            <img data-src="assets/media/people-1.jpg" alt="A young miner in a yellow hard hat looking into the camera">
+            <canvas data-topo></canvas>
+            <figcaption>Shift supervisor, Ridge Pit</figcaption>
+          </figure>
+          <div class="who-text">
+            <p class="lead">That was 2011. Today Banket Reef runs two open pits and a 4.8 million-tonne-a-year mill west of Tarkwa town, with a team of more than 1,800 people. Most of them grew up within an hour of the site.</p>
+            <p>We are a mid-tier producer, and we like it that way: big enough to invest in safety, training and closure; small enough that the general manager knows the drill crews by name.</p>
+            <ul class="chips">
+              <li>Founded 2011</li><li>Two open pits</li><li>4.8 Mt/yr mill</li><li>11-year reserve life</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCH 02 · RL 270 ===================================================== -->
+    <section class="bench down" id="operations" style="--step:2" data-rl="270" data-bench="Bench 02">
+      <div class="shelf shelf-dark">
+        <p class="tag"><b>Bench 02</b><span>RL 270</span><span>Operations</span></p>
+        <h2 class="big">Rock in at dawn. <em>Doré out by the next evening.</em></h2>
+        <figure class="shot shot-wide" data-shot>
+          <img data-src="assets/media/haul-truck.jpg" alt="A heavy haul truck parked on a pit bench at sunset">
+          <canvas data-topo></canvas>
+          <figcaption>Haul fleet, 40 trucks</figcaption>
+        </figure>
+
+        <div class="ops">
+          <div class="pits">
+            <article class="pit">
+              <h3>Ridge Pit</h3>
+              <p>Our first and deepest pit, on the Main Reef along a 2.6 km strike.</p>
+              <dl><div><dt>Depth</dt><dd>186 m</dd></div><div><dt>Benches</dt><dd>10 m</dd></div><div><dt>Strip ratio</dt><dd>5.2:1</dd></div></dl>
+            </article>
+            <article class="pit">
+              <h3>Valley Pit</h3>
+              <p>Opened 2021 on the West Reef, with a closure plan written before the first blast.</p>
+              <dl><div><dt>Depth</dt><dd>94 m</dd></div><div><dt>Benches</dt><dd>10 m</dd></div><div><dt>Strip ratio</dt><dd>4.1:1</dd></div></dl>
+            </article>
+          </div>
+
+          <div class="board" data-board>
+            <div class="board-head"><span>Shift board</span><span>From rock to bar</span></div>
+            <ol>
+              <li><span class="t" data-flap>T+00H</span><span class="s" data-flap>BLAST</span><span class="d">Grade-control drilling maps the reef on every 10 m bench.</span></li>
+              <li><span class="t" data-flap>T+02H</span><span class="s" data-flap>HAUL</span><span class="d">Ore to the stockpile pad, waste to shaped dumps.</span></li>
+              <li><span class="t" data-flap>T+05H</span><span class="s" data-flap>CRUSH</span><span class="d">Jaw and cone crushers take it below 12 mm.</span></li>
+              <li><span class="t" data-flap>T+08H</span><span class="s" data-flap>GRIND</span><span class="d">Ball mills make a slurry, 80% passing 75 µm.</span></li>
+              <li><span class="t" data-flap>T+20H</span><span class="s" data-flap>LEACH</span><span class="d">Carbon-in-leach tanks capture the dissolved gold.</span></li>
+              <li><span class="t" data-flap>T+30H</span><span class="s" data-flap>SMELT</span><span class="d">Elution, electrowinning, then the furnace at 1,200 °C.</span></li>
+              <li class="gold"><span class="t" data-flap>T+36H</span><span class="s" data-flap>DORÉ</span><span class="d">Bars sealed, weighed and escorted to the refinery.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENCH 03 · RL 250 ===================================================== -->
+    <section class="bench down" id="people" style="--step:3" data-rl="250" data-bench="Bench 03">
+      <div class="shelf shelf-light">
+        <p class="tag"><b>Bench 03</b><span>RL 250</span><span>People &amp; safety</span></p>
+        <div class="people">
+          <h2 class="big">1,860 people. <em>Everyone goes home.</em></h2>
+          <div class="faces">
+            <figure class="shot" data-shot>
+              <img data-src="assets/media/people-2.jpg" alt="A woman engineer in a hard hat on site">
+              <canvas data-topo></canvas>
+              <figcaption>Mine planning</figcaption>
+            </figure>
+            <figure class="shot" data-shot>
+              <img data-src="assets/media/people-3.jpg" alt="A young man in a hard hat standing with arms crossed">
+              <canvas data-topo></canvas>
+              <figcaption>Heavy equipment</figcaption>
+            </figure>
+          </div>
+          <blockquote class="quote">
+            <p>“On this site, an apprentice can stop the general manager's job if it looks unsafe. Nobody argues. That's the rule.”</p>
+            <cite>Head of Safety, Banket Reef</cite>
+          </blockquote>
+          <ul class="meters">
+            <li style="--v:.94"><span>Ghanaian nationals</span><b>94%</b><i></i></li>
+            <li style="--v:.62"><span>From our host districts</span><b>62%</b><i></i></li>
+            <li style="--v:.21"><span>Women in operations and engineering</span><b>21%</b><i></i></li>
+            <li style="--v:.64"><span>Apprentices trained since 2015</span><b>640</b><i></i></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIT FLOOR · RL 230 ===================================================== -->
+    <section class="bench down floor" id="floor" style="--step:4" data-rl="230" data-bench="Pit floor">
+      <div class="shelf shelf-gold">
+        <p class="tag"><b>Pit floor</b><span>RL 230</span><span>Production</span></p>
+        <h2 class="huge"><span>212,000</span> ounces of gold in 2025.</h2>
+        <div class="gold-shots">
+          <figure class="shot" data-shot>
+            <img data-src="assets/media/pour.jpg" alt="Molten metal being poured from a crucible">
+            <canvas data-topo></canvas>
+            <figcaption>The gold room, 1,200 °C</figcaption>
+          </figure>
+          <figure class="shot" data-shot>
+            <img data-src="assets/media/gold-bars.jpg" alt="A stack of gold bars">
+            <canvas data-topo></canvas>
+            <figcaption>Doré, ready to ship</figcaption>
+          </figure>
+        </div>
+        <dl class="ledger">
+          <div><dt>Measured &amp; indicated resource</dt><dd data-count="4.1" data-dec="1">4.1</dd><span>Moz</span></div>
+          <div><dt>Head grade</dt><dd data-count="1.38" data-dec="2">1.38</dd><span>g/t</span></div>
+          <div><dt>Recovery</dt><dd data-count="93.4" data-dec="1">93.4</dd><span>%</span></div>
+          <div><dt>All-in sustaining cost</dt><dd data-count="1180" data-pre="$">$1,180</dd><span>/oz</span></div>
+        </dl>
+        <a class="btn" href="#contact" data-topic="Investors">Investor enquiries <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- CLIMB OUT · RL 260 → 300 ============================================== -->
+    <section class="bench up" id="rehab" style="--step:2" data-rl="270" data-bench="Climbing out">
+      <div class="shelf shelf-green">
+        <p class="tag"><b>Climbing out</b><span>RL 270 → 300</span><span>Rehabilitation</span></p>
+        <h2 class="big">Every pit we open, <em>we plan to close.</em></h2>
+        <div class="rehab">
+          <figure class="shot shot-wide" data-shot>
+            <img data-src="assets/media/rehab.jpg" alt="A team planting tree seedlings in a forest">
+            <canvas data-topo></canvas>
+            <figcaption>Native seedlings, from our own nursery</figcaption>
+          </figure>
+          <ol class="phases">
+            <li><b>Strip &amp; store</b><span>Topsoil is lifted before mining and kept alive for the day it goes back.</span></li>
+            <li><b>Shape</b><span>Waste dumps are contoured to match the hills around them.</span></li>
+            <li><b>Replant</b><span>Native trees, cocoa and food crops chosen with the farmers who will use the land.</span></li>
+            <li><b>Hand back</b><span>Land is monitored for five years, then returned to its community.</span></li>
+          </ol>
+          <ul class="green-stats">
+            <li><b>1,240 ha</b><span>rehabilitated and handed back</span></li>
+            <li><b>380,000</b><span>seedlings raised</span></li>
+            <li><b>100%</b><span>process water recycled</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="bench up" id="community" style="--step:1" data-rl="300" data-bench="Bench 01">
+      <div class="shelf shelf-light">
+        <p class="tag"><b>Bench 01</b><span>RL 300</span><span>Community</span></p>
+        <div class="community">
+          <figure class="shot shot-tall" data-shot>
+            <img data-src="assets/media/water.jpg" alt="Children gathered around a water tap in a village">
+            <canvas data-topo></canvas>
+            <figcaption>Borehole, host community</figcaption>
+          </figure>
+          <div>
+            <h2 class="big">The town above the reef <em>comes first.</em></h2>
+            <ul class="pledges">
+              <li><b>38</b><span>mechanised boreholes in 21 communities, run by local water committees</span></li>
+              <li><b>$2</b><span>from every ounce we produce goes into the community development fund</span></li>
+              <li><b>410</b><span>scholarships awarded, from senior high school to engineering degrees</span></li>
+              <li><b>1,100</b><span>young people trained in farming, welding, tailoring and trade, a future that doesn't poison the rivers</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURFACE AGAIN =========================================================== -->
+    <section class="surface" id="careers" data-rl="310" data-bench="Surface">
+      <div class="careers">
+        <p class="tag"><b>Surface</b><span>RL 310</span><span>Careers</span></p>
+        <h2 class="big">Work that pays. <em>Training that lasts.</em></h2>
+        <ul class="jobs">
+          <li><a href="#contact" data-topic="Careers" data-role="Mine Planning Engineer"><span>Engineering</span><b>Mine Planning Engineer</b><i>Ridge Pit · Full time</i></a></li>
+          <li><a href="#contact" data-topic="Careers" data-role="Heavy Equipment Operator (Apprentice)"><span>Mining</span><b>Equipment Operator Apprentice</b><i>18 months · Paid</i></a></li>
+          <li><a href="#contact" data-topic="Careers" data-role="Environmental Officer"><span>Environment</span><b>Environmental Officer</b><i>Tarkwa · Full time</i></a></li>
+          <li><a href="#contact" data-topic="Careers" data-role="Metallurgical Technician"><span>Processing</span><b>Metallurgical Technician</b><i>Mill · Shifts</i></a></li>
+        </ul>
+      </div>
+
+      <div class="contact" id="contact">
+        <h2 class="big">Talk to us.</h2>
+        <form class="form" data-form novalidate>
+          <fieldset class="topics">
+            <legend>I'm getting in touch about</legend>
+            <label><input type="radio" name="topic" value="Investors" checked><span>Investing</span></label>
+            <label><input type="radio" name="topic" value="Careers"><span>A job</span></label>
+            <label><input type="radio" name="topic" value="Community"><span>My community</span></label>
+            <label><input type="radio" name="topic" value="Suppliers"><span>Supplying</span></label>
+          </fieldset>
+          <label class="field"><span>Name</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+          <label class="field field-wide"><span>Message</span><textarea name="message" rows="4" required></textarea></label>
+          <p class="form-error" data-error aria-live="polite"></p>
+          <button class="btn" type="submit">Send <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="hotline">Community grievance line, free, 24 hours: <a href="tel:+233000000000">0800 000 000</a></p>
+      </div>
+
+      <footer class="foot">
+        <p><b>Banket Reef Mining Ltd</b> · Tarkwa, Western Region, Ghana</p>
+        <p class="foot-note">Concept site for a fictional company. All figures are illustrative.</p>
+        <p>Website by <b class="billd">BILLD</b></p>
+      </footer>
+    </section>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
