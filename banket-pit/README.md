@@ -31,6 +31,10 @@ Download these with an Envato Elements subscription, rename them, and drop them 
 | `rehab.jpg` | [Environmentalists planting a tree](https://elements.envato.com/environmentalists-team-planting-a-tree-in-the-fore-36GLYJL) | Rehabilitation |
 | `water.jpg` | [Children around a water tap, rural setting](https://elements.envato.com/a-moment-of-daily-life-as-children-gather-around-a-9PH8CAS) | Community |
 
-These were chosen from search results by their titles; the previews couldn't be viewed from the build environment. Check each one before downloading. Real photos from a client's own site would beat stock every time.
+### Free fallback photos (live now)
+
+Until the Envato files are added, these spots use free Unsplash photos (free for commercial use): hero aerial of a mining area (Curioso Photography), bare rocky ground from the air (Patrick Hendry), front loader (Marek Novotný), worker in a hard hat (unknown, Unsplash ID eCfCIwtKdsg), furnace plant pipework (Aranka Sinnema) and a seedling in soil (Markus Spiske). The *Mine planning*, gold bars and borehole spots stay as contour maps until real photos are added; the free library had nothing suitable.
+
+The Envato items above were chosen from search results by their titles; the previews couldn't be viewed from the build environment. Check each one before downloading. Real photos from a client's own site would beat stock every time.
 
 Fonts: Unbounded (headlines), Manrope (text) and JetBrains Mono (labels), from Google Fonts.

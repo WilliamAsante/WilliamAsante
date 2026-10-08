@@ -101,6 +101,9 @@ main { position: relative; }
 .hero-media { position: absolute; inset: 0; z-index: -1; }
 .hero-topo, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero-video { opacity: 0; transition: opacity 1.2s ease; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; filter: saturate(0.85) contrast(1.05); }
+.hero.has-img .hero-img { opacity: 1; }
+.hero.has-img .hero-topo { mix-blend-mode: screen; opacity: 0.55; }
 .hero.has-video .hero-video { opacity: 1; }
 .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15, 16, 18, 0.55), rgba(15, 16, 18, 0.15) 40%, rgba(15, 16, 18, 0.88) 100%), radial-gradient(ellipse at 20% 60%, rgba(15, 16, 18, 0.6), transparent 60%); }
 .hero-grid { display: grid; align-content: end; gap: 28px; padding: 110px var(--pad-x) 28px; }

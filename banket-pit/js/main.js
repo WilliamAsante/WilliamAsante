@@ -52,8 +52,7 @@
     if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
     const ctx = canvas.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, w, h);
+    if (bg) { ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h); } else ctx.clearRect(0, 0, w, h);
     const nf = noise || makeNoise(seed);
     const cols = Math.ceil(w / cell) + 1, rows = Math.ceil(h / cell) + 1;
     const v = new Float32Array(cols * rows);
@@ -95,11 +94,25 @@
     if (fig.classList.contains("is-loaded")) return;
     drawTopo($("canvas", fig), { seed: 11 + i * 5, scale: 0.006, cell: 7, levels: 16 });
   });
+  // Try the downloaded file first, then the free fallback photo, else keep the contour map.
+  const loadFirst = (urls, done) => {
+    const next = (i) => {
+      if (i >= urls.length) return;
+      const probe = new Image();
+      probe.onload = () => done(probe.src, i);
+      probe.onerror = () => next(i + 1);
+      probe.src = urls[i];
+    };
+    next(0);
+  };
   shots.forEach((fig) => {
     const img = $("img", fig);
-    const probe = new Image();
-    probe.onload = () => { img.src = probe.src; fig.classList.add("is-loaded"); };
-    probe.src = img.dataset.src;
+    loadFirst([img.dataset.src, img.dataset.fallback].filter(Boolean), (src, i) => {
+      img.src = src;
+      if (i === 1 && img.dataset.fallbackAlt) img.alt = img.dataset.fallbackAlt;
+      if (i === 1 && img.dataset.fallbackCaption) $("figcaption", fig).textContent = img.dataset.fallbackCaption;
+      fig.classList.add("is-loaded");
+    });
   });
 
   /* Hero: Envato aerial video if present, otherwise a living contour map ----- */
@@ -127,6 +140,15 @@
       if (heroVisible && !reduced) heroRAF = requestAnimationFrame(heroLoop);
     }).observe(hero);
   }
+  const heroImg = $(".hero-img");
+  loadFirst([heroImg.dataset.src, heroImg.dataset.fallback], (src) => {
+    heroImg.src = src;
+    hero.classList.add("has-img");
+    heroOpts.bg = null;
+    heroOpts.line = "rgba(236,230,218,0.18)";
+    heroOpts.index = "rgba(255,179,0,0.6)";
+    paintHero();
+  });
   const paintHero = () => drawTopo(heroCanvas, { ...heroOpts, t: heroT }, heroNoise);
 
   /* Header: solid bar, menu, current section ---------------------------------- */
