@@ -7,380 +7,349 @@
 <meta name="description" content="Calder Ridge Resources mines iron ore, gold and lithium in Western Australia's Pilbara, Goldfields and South West.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..900&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bone:#ece6dc;
   --paper:#f6f2eb;
   --ink:#0d1440;
-  --ink-2:#4b5170;
+  --ink-2:#454b6a;
   --rule:rgba(13,20,64,.2);
   --rule-d:rgba(246,242,235,.24);
-  --fe:#9b2f1f;  --fe-d:#7a2416;
-  --au:#b5821c;  --au-d:#7a560f;
-  --sp:#7f9a8c;  --sp-d:#4c6559;
+  --fe:#9b2f1f; --fe-t:#9b2f1f;   /* Mount Ferrell, hematite */
+  --au:#b5821c; --au-t:#86600f;   /* Ridgeback, gold */
+  --sp:#7f9a8c; --sp-t:#4c6559;   /* Karri Creek, spodumene */
   --hivis:#f2e530;
+  --focus:#2f6fdb;
   --head:'Archivo','Arial Narrow',sans-serif;
   --body:'Instrument Sans',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --pad:clamp(20px,4vw,64px);
-  --sec:clamp(96px,10vw,150px);
+  --s1:clamp(96px,10vw,144px);   /* between sections */
+  --s2:clamp(48px,5vw,72px);     /* inside a section */
+  --s3:clamp(24px,2.4vw,32px);   /* between parts */
   --navh:66px;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box;margin:0}
-.tA,.tB,.cond,.cell b,.chap .one b,.lock b,.lock span,.stage .clock,.clock,.cmp thead th,.logo{font-stretch:62% !important}
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--bone);color:var(--ink);font:17px/1.55 var(--body)}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--sp-d);outline-offset:3px}
-.pad{padding-inline:var(--pad)}
-.sidx{display:block;font-size:13px;margin-bottom:16px;opacity:.7}
-.sidx::after{content:"";display:inline-block;width:40px;height:1px;background:currentColor;vertical-align:middle;margin-left:12px}
-.sec-head .sidx{grid-column:1/-1;margin-bottom:0}
-.cl-grid .sidx{grid-column:1/-1;margin-bottom:-40px}
-.data{font:400 13px/1.4 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.small{font:500 14px/1.45 var(--body)}
-/* type tiers: A = hero and mine names; B = section openers; body below */
-.tA,.tB{font-family:var(--head);font-weight:900;text-wrap:balance}
-.tA{text-transform:uppercase}
-.tA,.tB,.tl h3,.clock,.news-lead h3,.roles{word-spacing:-.02em;letter-spacing:-.006em}
-.closure .tA{text-transform:none}
-.tA{font-size:clamp(56px,11.4vw,196px);line-height:.88;letter-spacing:.004em}
-.tB{font-size:clamp(44px,5.4vw,88px);line-height:.94;letter-spacing:.008em}
-h3{font:600 21px/1.28 var(--body);letter-spacing:-.01em;text-wrap:balance}
 p{text-wrap:pretty}
-.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:12px 24px;align-items:end;margin-bottom:clamp(36px,4vw,60px)}
-.kick{grid-column:1/-1;font:400 13px var(--mono);color:var(--ink-2)}
-[data-dark] .kick{color:rgba(246,242,235,.7)}
-.sec-head .tB{grid-column:1/8}
-.sec-head p{grid-column:8/13;color:var(--ink);font-size:18px;line-height:1.45}
-.sec-head p.right{text-align:right}
-
-@media(max-width:900px){.sec-head .tB,.sec-head p{grid-column:1/-1}}
-
-.im{position:relative;overflow:hidden;background:#d9d1c4}
-.im>canvas,.im>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .7s}
-.im>canvas.ok,.im>img.ok{opacity:1}
-.im.ph{background:#d8d0c3;background-image:linear-gradient(135deg,transparent 49.6%,rgba(13,20,64,.07) 50%,transparent 50.4%),linear-gradient(45deg,transparent 49.6%,rgba(13,20,64,.07) 50%,transparent 50.4%)}
-.ph-label{position:absolute;left:16px;bottom:14px;right:16px;font:500 13px/1.4 var(--body);color:var(--ink-2)}
-.ph-label::before{content:"Photo: ";color:var(--ink)}
-[data-dark] .im.ph{background-color:rgba(0,0,0,.18);background-image:linear-gradient(135deg,transparent 49.6%,rgba(246,242,235,.1) 50%,transparent 50.4%),linear-gradient(45deg,transparent 49.6%,rgba(246,242,235,.1) 50%,transparent 50.4%)}
-[data-dark] .ph-label{color:rgba(246,242,235,.7)}
-.stage .ph-label{left:var(--pad);bottom:16px}[data-dark] .ph-label::before{color:var(--paper)}
 figure{margin:0}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wrap{padding-inline:var(--pad)}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.data{font:400 13px/1.4 var(--mono);font-variant-numeric:tabular-nums}
+.small{font:500 14px/1.45 var(--body)}
+.lead{font-size:19px;line-height:1.45;max-width:38ch}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;font:600 15px var(--body);padding:15px 26px;border-radius:2px;text-decoration:none;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);transition:background .2s,color .2s,border-color .2s}
+/* display: one condensed cut, three sizes; caps only for the hero */
+.d1,.d2,.d3,.fig-n,.clock,.cell b,.cmp thead th,.logo{font-family:var(--head);font-stretch:62%;font-variation-settings:'wdth' 62;word-spacing:.06em}
+.d1{font-weight:900;text-transform:uppercase;font-size:clamp(60px,11.6vw,200px);line-height:.88}
+.d2{font-weight:900;font-size:clamp(44px,5.6vw,88px);line-height:.94;text-wrap:balance}
+.d3{font-weight:800;font-size:clamp(28px,2.8vw,42px);line-height:1;text-wrap:balance}
+
+/* survey marks in the left margin */
+section,article{position:relative}
+.mark{position:absolute;z-index:3;left:0;top:var(--s1);width:var(--pad);display:flex;justify-content:center;pointer-events:none}
+.mark span{writing-mode:vertical-rl;transform:rotate(180deg);font:400 12px var(--mono);white-space:nowrap;color:var(--ink-2)}
+.mark b{font-weight:500;color:var(--ink);padding-bottom:12px}
+[data-dark] .mark span{color:rgba(246,242,235,.7)}[data-dark] .mark b{color:var(--paper)}
+@media(max-width:900px){.mark{position:static;width:auto;padding:0 var(--pad) 18px;justify-content:flex-start}.mark span{writing-mode:horizontal-tb;transform:none}.mark b{padding:0 10px 0 0}}
+
+/* image slots */
+.im{position:relative;overflow:hidden}
+.im>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s}
+.im>img.ok{opacity:1}
+.im.ph{background-color:#d8d0c3;background-image:linear-gradient(135deg,transparent 49.7%,rgba(13,20,64,.08) 50%,transparent 50.3%),linear-gradient(45deg,transparent 49.7%,rgba(13,20,64,.08) 50%,transparent 50.3%)}
+.dk.ph,[data-dark] .im.ph{background-color:#262c52;background-image:linear-gradient(135deg,transparent 49.7%,rgba(246,242,235,.1) 50%,transparent 50.3%),linear-gradient(45deg,transparent 49.7%,rgba(246,242,235,.1) 50%,transparent 50.3%)}
+.ph-label{position:absolute;left:16px;right:16px;bottom:14px;font:500 13px/1.4 var(--body);color:var(--ink-2)}
+.ph-label::before{content:"Photo: ";color:var(--ink)}
+.dk .ph-label,[data-dark] .ph-label{color:rgba(246,242,235,.72)}.dk .ph-label::before,[data-dark] .ph-label::before{color:var(--paper)}
+.hero .ph-label,.frames .ph-label,.news .ph-label,.ba .ph-label,.acks .ph-label{display:none}
+
+/* buttons and links */
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 15px var(--body);padding:14px 24px;border-radius:2px;text-decoration:none;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);transition:background .2s,color .2s}
 .btn:hover{background:transparent;color:var(--ink)}
-.btn.hv{background:var(--hivis);border-color:var(--hivis);color:var(--ink)}
-.btn.hv:hover{background:transparent;color:inherit;border-color:currentColor}
 .btn.light{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .btn.light:hover{background:transparent;color:var(--paper)}
+.btn.hv{background:var(--hivis);border-color:var(--hivis);color:var(--ink)}
+.btn.hv:hover{background:transparent;color:inherit;border-color:currentColor}
 .tlink{font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;white-space:nowrap}
 .tlink:hover{text-decoration-thickness:3px}
 
 /* ---------- nav ---------- */
-.nav{position:sticky;top:0;z-index:50;height:var(--navh);display:flex;align-items:center;gap:30px;padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--rule);transition:background-color .3s,color .3s,border-color .3s}
+.nav{position:sticky;top:0;z-index:50;height:var(--navh);display:flex;align-items:center;gap:32px;padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--rule);transition:background-color .3s,color .3s,border-color .3s}
 .nav.dark{background:var(--ink);color:var(--paper);border-bottom-color:var(--rule-d)}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font:900 24px/1 var(--head);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;margin-right:auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:900;font-size:24px;line-height:1;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;margin-right:auto}
 .logo svg{width:34px;height:22px;flex:none}
 .logo svg path{stroke:currentColor}
 .nav ul{display:flex;gap:28px;list-style:none;padding:0}
-.nav ul a{text-decoration:none;font-weight:500;font-size:15px;padding-block:6px;border-bottom:2px solid transparent;transition:border-color .2s}
-.nav ul a:hover,.nav ul a.cur{border-bottom-color:currentColor}
+.nav ul a{text-decoration:none;font-weight:500;font-size:15px;text-underline-offset:10px;text-decoration-thickness:2px}
+.nav ul a:hover,.nav ul a.cur{text-decoration-line:underline}
 .nav .btn{padding:10px 18px;font-size:14px}
-.nav.dark .menu{background:var(--paper);border-color:var(--paper);color:var(--ink)}
 .menu{display:none;background:var(--ink);border:1.5px solid var(--ink);border-radius:2px;color:var(--paper);font:600 14px var(--body);padding:9px 14px;cursor:pointer}
-@media(max-width:1060px){.menu{display:block}.nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:inherit;padding:8px var(--pad) 20px;border-bottom:1px solid var(--rule)}.nav.open ul{display:flex}.nav ul a{display:block;padding:12px 0;font-size:18px}}
-@media(max-width:700px){.hero h1{font-size:15.6vw}}
-.mcareers{display:none}
-@media(max-width:520px){.nav>.btn{display:none}.mcareers{display:block}.logo{font-size:21px}.nav{gap:16px}}
-/* in-page anchors first, then pages */
-.nav ul li.pg{margin-left:14px;padding-left:28px;border-left:1px solid var(--rule)}.nav.dark ul li.pg{border-left-color:var(--rule-d)}
-@media(max-width:1060px){.nav ul li.pg{margin:0;padding:0;border:0}}
+.nav.dark .menu{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.nav ul .mc{display:none}
+@media(max-width:1060px){
+  .menu{display:block}
+  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:inherit;padding:8px var(--pad) 20px;border-bottom:1px solid var(--rule)}
+  .nav.open ul{display:flex}.nav ul a{display:block;padding:12px 0;font-size:18px}
+}
+@media(max-width:520px){.nav>.btn{display:none}.nav ul .mc{display:block}.logo{font-size:21px}.nav{gap:16px}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;height:calc(100svh - var(--navh));min-height:620px;max-height:860px;color:var(--paper);background:var(--ink);overflow:hidden;display:flex;flex-direction:column;padding:clamp(28px,4.5vh,56px) var(--pad) 0}
+.hero{height:calc(100svh - var(--navh));min-height:640px;max-height:900px;background:var(--ink);color:var(--paper);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) 40px}
 .hero-img{position:absolute;inset:0}
-.hero .im.ph{background-color:#262c52}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,64,.55),rgba(13,20,64,0) 45%,rgba(13,20,64,0) 60%,rgba(13,20,64,.7));pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,20,64,.35),rgba(13,20,64,0) 40%,rgba(13,20,64,.72));pointer-events:none}
 .hero>*:not(.hero-img){position:relative;z-index:2}
 .hero h1 span{display:block}
-.hero h1{font-stretch:62% !important;font-variation-settings:'wdth' 62}
-.tA,.tB{font-variation-settings:'wdth' 62}
-.hero h1{font-size:clamp(60px,11.6vw,200px)}
-.hero .ph-label{display:none}
-@media(max-width:700px){.hero .ph-label{display:none}}
-.hero-in{margin-top:auto;padding-bottom:32px}
-.hero-row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;margin-top:18px}
-.hero-row{align-items:start}
-.hero-row p{grid-column:1/6;margin-bottom:16px;font:500 clamp(18px,1.5vw,22px)/1.38 var(--body)}
-.hero-row .acts{grid-column:1/6;grid-row:2;display:flex;justify-content:flex-start;align-items:center;gap:20px 28px;flex-wrap:wrap}
-.tblock{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(246,242,235,.45);margin:0 0 20px}
-.tblock>div{padding:12px 16px 4px;border-left:1px solid rgba(246,242,235,.25)}
-.tblock>div:first-child{border-left:0;padding-left:0}
-.tblock dt{font:500 12px var(--body);color:rgba(246,242,235,.65);margin-bottom:2px}
-.tblock dd{margin:0}
-.tblock .data{font-size:15px}
-@media(max-width:800px){.hero-row p,.hero-row .acts{grid-column:1/-1;justify-content:flex-start}.tblock{grid-template-columns:1fr 1fr;row-gap:10px}}
-@media(max-width:700px){.hero{height:auto;min-height:calc(100svh - var(--navh))}}
+.hero-foot{align-items:end;margin-top:28px}
+.hero-copy{grid-column:1/7}
+.hero-copy p{font-size:clamp(18px,1.5vw,22px);line-height:1.38;font-weight:500;max-width:34ch;margin-bottom:22px}
+.acts{display:flex;align-items:center;gap:18px 28px;flex-wrap:wrap}
+.tblock{grid-column:9/13;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(246,242,235,.5)}
+.tblock div{padding:10px 14px 12px;border-right:1px solid rgba(246,242,235,.3);border-bottom:1px solid rgba(246,242,235,.3)}
+.tblock div:nth-child(2n){border-right:0}.tblock div:nth-child(n+3){border-bottom:0}
+.tblock dt{font:500 12px var(--body);opacity:.7}
+.tblock dd{margin:3px 0 0;font:400 14px/1.35 var(--mono)}
+@media(max-width:900px){.hero{height:auto;min-height:calc(100svh - var(--navh));padding-top:120px}.hero-copy,.tblock{grid-column:1/-1}.tblock{margin-top:28px}}
 
-/* ---------- survey sheet of results ---------- */
-.sheet{padding-block:var(--sec) 0}
+/* ---------- results ---------- */
+.sheet{padding-top:var(--s2)}
 .sheet-top{display:flex;justify-content:space-between;gap:16px;color:var(--ink-2);margin-bottom:14px}
 .sheet-grid{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--ink)}
-.cell{padding:24px 24px 28px;border-left:1px solid var(--rule)}
+.cell{padding:24px 24px 26px;border-left:1px solid var(--rule)}
 .cell:first-child{border-left:0;padding-left:0}
 .cell .v{display:flex;align-items:baseline;gap:10px}
-.cell b{font:800 clamp(72px,8.6vw,144px)/.82 var(--head);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.cell b{font-weight:800;font-size:clamp(72px,8.6vw,140px);line-height:.82;font-variant-numeric:tabular-nums}
 .cell em{font:500 clamp(14px,1.2vw,18px)/1 var(--mono);font-style:normal;color:var(--ink-2)}
 .cell p{margin-top:14px;max-width:19ch;min-height:2.9em;color:var(--ink-2);font-size:15px}
 @media(max-width:900px){.sheet-top{flex-direction:column;gap:2px}.sheet-grid{grid-template-columns:1fr 1fr}.cell:nth-child(3){border-left:0;padding-left:0}.cell:nth-child(n+3){border-top:1px solid var(--rule)}}
 
 /* ---------- operations ---------- */
-.ops-intro{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding-block:var(--sec) 64px;align-items:start}
-.ops-intro{align-items:center}
-.opsh{grid-column:1/7;display:block;margin:0}
-.opsh .tB{margin:12px 0 24px}
-.opsh p{max-width:42ch}
-.ops-intro .copy{grid-column:1/6}
-.maphint{margin-top:28px;color:var(--ink-2)}
-.ops-intro .copy p{margin-top:24px;max-width:42ch;color:var(--ink-2)}
-.legend{list-style:none;padding:0;margin-top:36px;border-top:1px solid var(--ink)}
-.legend a{display:grid;grid-template-columns:22px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule);text-decoration:none}
-.legend i{width:22px;height:14px;background:var(--c)}
-.legend b{font-weight:600}
-.legend span{color:var(--ink-2)}
-.legend a:hover b{text-decoration:underline;text-underline-offset:4px}
-.map{grid-column:7/13;width:100%;height:auto;max-height:min(72vh,620px)}
-.map a text{text-decoration:underline;text-decoration-thickness:1.5px}.map a:hover rect{stroke:var(--ink)}
-.map .land{fill:#e3dbcd;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
-.map .grat{stroke:var(--rule);stroke-width:1;fill:none}
-.map text{font:500 19px var(--body);fill:var(--ink)}
-.map .dim{fill:var(--ink-2);font:400 17px var(--mono)}
-@media(max-width:900px){.ops-intro .copy,.map{grid-column:1/-1}.map{width:100%;margin:0}}
+.ops{padding-block:var(--s1)}
+.ops-intro{align-items:start}
+.ops-copy{grid-column:1/7}
+.ops-copy .d2{margin-bottom:24px}
+.ops-copy .lead{margin-bottom:var(--s2)}
+.mapfig{grid-column:8/13}
+.mapfig svg{display:block;width:100%;height:auto}
+.mapfig .land{fill:#e3dbcd;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.mapfig text{font:500 19px var(--body);fill:var(--ink)}
+.mapfig .dim{fill:var(--ink-2);font:400 17px var(--mono)}
+.mapfig a text{text-decoration:underline;text-decoration-thickness:1.5px}
+figcaption.data,.fig-h .data,.cmp caption{color:var(--ink-2)}
+.mapfig figcaption{margin-top:12px}
+.cmp{width:100%;border-collapse:collapse;table-layout:fixed}
+.cmp caption{caption-side:top;text-align:left;padding-bottom:12px;font:400 13px var(--mono)}
+.cmp col.k{width:30%}
+.cmp thead th{text-align:left;font-weight:800;font-size:clamp(20px,1.9vw,28px);line-height:1;padding:0 12px 10px 0;border-bottom:2px solid var(--ink);vertical-align:bottom}
+.cmp thead th i{display:block;height:6px;background:var(--c);margin:0 -12px 10px 0}
+.cmp thead th:last-child,.cmp td:last-child{padding-right:0}
+.cmp thead th:last-child i{margin-right:0}
+.cmp tbody th{font:400 14px var(--body);color:var(--ink-2);text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule)}
+.cmp td{padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.cmp tr.m td{font:400 14px var(--mono);font-variant-numeric:tabular-nums}
+@media(max-width:900px){.ops-copy,.mapfig{grid-column:1/-1}.mapfig{max-width:440px;margin-top:var(--s2)}}
 
-.chap{position:relative;padding:clamp(72px,7vw,110px) var(--pad) 0}
-.chap .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:stretch}
-.chap .txt{grid-column:1/6;display:flex;flex-direction:column}
-.chap .chip{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--ink-2)}
-.chap .chip i{width:44px;height:14px;background:var(--cd)}
-.chap .tB{margin-bottom:22px}
-.chap .lead{max-width:34ch;font-size:19px;line-height:1.45}
-.chap .one{margin-top:auto;padding-top:32px}
-.chap .one b{display:block;font:800 clamp(56px,5.4vw,88px)/.88 var(--head);font-variant-numeric:tabular-nums;color:var(--cd)}
-.chap .one span{display:block;margin-top:10px;color:var(--ink-2);font-size:15px;max-width:30ch}
-.chap .plate{grid-column:6/13;aspect-ratio:16/10;margin-right:calc(-1 * var(--pad))}
-.chap .plate.ph{background-color:color-mix(in srgb,var(--cd) 22%,#e3dbcd)}
-/* the survey scale: same line, hatch and labels throughout */
-.scale{position:relative;height:84px;margin-top:40px}
-.scale::before{content:"";position:absolute;left:0;right:0;top:34px;height:2px;background:var(--ink)}
-.scale .fill{position:absolute;left:0;top:29px;height:12px;width:var(--w);background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 14px)}
-.scale .fill::after{content:"";position:absolute;left:0;right:0;top:5px;height:4px;background:var(--cd)}
-.scale span{position:absolute;top:28px;padding-top:20px;transform:translateX(-50%);font:400 12.5px var(--mono);color:var(--ink-2);white-space:nowrap}
-.scale span::before{content:"";position:absolute;left:50%;top:0;width:2px;height:14px;background:var(--ink);margin-left:-1px}
-.scale span:first-of-type{transform:none}.scale span:first-of-type::before{left:0;margin:0}
-.scale span.end{transform:translateX(-100%)}.scale span.end::before{left:auto;right:0;margin:0}
-.scale em{position:absolute;top:0;transform:translateX(-50%);font:600 13.5px var(--body);font-style:normal;white-space:nowrap}
-.scale em.l{transform:none}.scale em.r{transform:translateX(-100%)}
-/* Mount Ferrell: the railway leads the section */
-.rail-top{margin:0 0 clamp(48px,5vw,72px)}
-/* Ridgeback: picture on the left, depth down the page edge */
-#ridgeback .plate{grid-column:1/8;margin:0 0 0 calc(-1 * var(--pad))}
-#ridgeback .txt{grid-column:8/13;padding-left:24px}
-.depth{position:absolute;top:clamp(72px,7vw,110px);bottom:0;right:calc(var(--pad) / 2 - 1px);width:2px;background:var(--ink)}
-.depth .fill{position:absolute;left:-1px;top:0;width:4px;height:91.2%;background:var(--cd)}
-.depth span{position:absolute;right:12px;transform:translateY(-50%);font:400 12px var(--mono);color:var(--ink-2);white-space:nowrap}
-.depth span::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:2px;background:var(--ink)}
-.depth .deep{color:var(--ink);font-weight:500}.depth .deep::after{width:16px;right:-16px}
-
-/* Karri Creek: power as a field of modules */
-.mods{margin-top:auto;padding-top:36px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:end}
-.field{display:grid;grid-template-columns:repeat(10,12px);gap:3px}
-.field i{width:12px;height:12px;background:var(--cd)}
-.field i.off{background:transparent;box-shadow:inset 0 0 0 1px var(--rule)}
-.mods .one{padding:0;margin:0}
-@media(max-width:900px){#ridgeback .plate,#ridgeback .txt{grid-column:1/-1;margin:0;padding:0}.depth{display:none}#ridgeback{padding-right:var(--pad)}}
-.compare{padding-block:clamp(96px,9vw,140px) clamp(64px,6vw,96px)}
-.cmp{table-layout:fixed}
-.cmp{width:100%;border-collapse:collapse}
-.cmp th,.cmp td{text-align:left;padding:14px 16px 14px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
-.cmp thead th{border-bottom:2px solid var(--ink);font:900 clamp(26px,2.6vw,40px)/1 var(--head)}
-.cmp thead th i{display:block;width:calc(100% + 16px);height:8px;background:var(--c);margin-bottom:12px}
-.cmp th:last-child i{width:100%}
-.cmp th:last-child,.cmp td:last-child{padding-right:0}
-.cmp tbody th{font:400 15px var(--body);color:var(--ink-2)}
-.cmp td{font:500 16px var(--body);font-variant-numeric:tabular-nums}
-.cmp tr.m td{font:400 15px var(--mono)}
-@media(max-width:700px){.cmp tbody th{width:auto}.cmp td{font-size:13px}}
+/* mines: one drawing language (2px ink, mono labels, solid pigment), shaped to each place */
+.mine{padding-top:var(--s1)}
+.mine::before{content:"";display:block;height:1px;background:var(--ink);margin:0 var(--pad) var(--s3)}
+.chip{display:flex;align-items:center;gap:12px;color:var(--ink-2);margin-bottom:16px}
+.chip i{width:40px;height:12px;background:var(--c);flex:none}
+.mine .d2{margin-bottom:20px}
+.fig-h{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:16px}
+.fig-n{font-weight:800;font-size:clamp(40px,4vw,64px);line-height:.9;font-variant-numeric:tabular-nums;color:var(--ct)}
+/* Mount Ferrell: horizontal, the railway under a panorama */
+.fe-head{align-items:end}
+.fe-head .nm{grid-column:1/7}
+.fe-head .lead{grid-column:8/13}
+.pano{margin-top:var(--s2);aspect-ratio:21/8}
+.rail{padding-top:var(--s3)}
+.track{position:relative;height:116px}
+.track::before{content:"";position:absolute;left:0;right:0;top:52px;height:12px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 16px)}
+.track::after{content:"";position:absolute;left:0;right:0;top:57px;height:2px;background:var(--ink)}
+.st{position:absolute;top:0;z-index:1;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;white-space:nowrap}
+.st b{font:600 14px/20px var(--body)}
+.st em{width:2px;height:24px;background:var(--ink);margin-top:3px}
+.st u{width:16px;height:16px;border:2px solid var(--ink);background:var(--bone)}
+.st i{font:400 13px var(--mono);font-style:normal;color:var(--ink-2);margin-top:10px}
+.st.a{transform:none;align-items:flex-start}.st.z{transform:translateX(-100%);align-items:flex-end}
+.st.a u,.st.z u{background:var(--c)}
+/* Ridgeback: vertical, the long section beside a portrait */
+.rb{align-items:stretch}
+.rb .portrait{grid-column:1/6;aspect-ratio:4/5;align-self:start}
+.dsec{grid-column:6/9;display:flex;flex-direction:column;padding-left:8px}
+.dsec .fig-h{flex-direction:column;align-items:flex-start;gap:8px}
+.dsec .sv{flex:1;position:relative;min-height:0}
+.dsec svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dsec svg .k{stroke:var(--ink);stroke-width:2;fill:none;vector-effect:non-scaling-stroke}
+.dsec svg text{font-family:var(--mono);font-size:12px;fill:var(--ink-2)}
+.dsec svg .lab{fill:var(--ink);font-weight:500}
+.rb-text{grid-column:9/13;display:flex;flex-direction:column}
+.mfacts{margin-top:auto;border-top:1px solid var(--ink)}
+.mfacts div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.mfacts dt{color:var(--ink-2)}.mfacts dd{margin:0;font:500 14px var(--mono)}
+@media(max-width:900px){.mfacts{margin-top:var(--s3)}}
+/* Karri Creek: square, the power split as a block */
+.kc{align-items:stretch}
+.kc-text{grid-column:1/6;display:flex;flex-direction:column}
+.kc-text .fig{margin-top:auto;padding-top:var(--s2)}
+.kc .square{grid-column:7/13;aspect-ratio:1;align-self:start}
+.split{display:grid;grid-template-columns:70fr 30fr;height:clamp(96px,9vw,128px);border:2px solid var(--ink)}
+.split i{background:var(--c);border-right:2px solid var(--ink)}
+.split-l{display:grid;grid-template-columns:70fr 30fr;margin-top:10px}
+@media(max-width:900px){
+  .fe-head .nm,.fe-head .lead,.rb .portrait,.dsec,.rb-text,.kc-text,.kc .square{grid-column:1/-1}
+  .fe-head .lead{margin-top:8px}.st:not(.a):not(.z){display:none}
+  .dsec{height:520px;margin-top:var(--s3);padding:0}.rb-text{order:-1;margin-bottom:var(--s3)}
+  .kc .square{order:-1;margin-bottom:var(--s3)}
+}
 
 /* ---------- a day on site ---------- */
-.day{height:220vh;background:var(--ink);color:var(--paper);position:relative}
-.day-stick{position:sticky;top:var(--navh);height:calc(100vh - var(--navh));display:flex;align-items:stretch;padding-inline:var(--pad);overflow:hidden}
-.day-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;width:100%;align-items:center}
-.stage{grid-column:1/8;position:relative;height:100%;margin-left:calc(-1 * var(--pad))}
-.day-grid{height:100%}
-.stage .im{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.day{height:270vh;background:var(--ink);color:var(--paper)}
+.day-stick{position:sticky;top:var(--navh);height:calc(100vh - var(--navh));display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding-right:var(--pad);overflow:hidden}
+.day .mark{top:24px}
+.stage{grid-column:1/8;position:relative}
+.stage .im{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
 .stage .im.on{opacity:1}
-.clock{display:block;margin-top:8px;font:900 clamp(72px,8vw,136px)/.82 var(--head);font-variant-numeric:tabular-nums}
-.day-grid{align-items:start}
-.day-side{grid-column:8/13;padding-left:clamp(24px,4vw,64px);display:flex;flex-direction:column;justify-content:center;height:100%}
-.dayrule{height:2px;background:var(--rule-d);margin-top:28px}.dayrule i{display:block;height:2px;width:0;background:var(--paper)}
-.dlabel{opacity:.75}
-.hours{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule-d);margin-top:14px}
-.hours li{font:400 13px var(--mono);padding-top:10px;opacity:.55;position:relative;transition:opacity .4s}
-.hours li::before{content:"";position:absolute;left:0;top:-1px;width:100%;height:3px;background:var(--hivis);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.hours li.on{opacity:1}.hours li.on::before{transform:none}
-.tl{list-style:none;padding:0;margin-top:32px;position:relative;min-height:220px}
+.stage .ph-label{left:var(--pad)}
+.day-side{grid-column:8/13;padding:40px 0 40px clamp(24px,3vw,48px);display:flex;flex-direction:column;justify-content:center}
+.day-side .dl{opacity:.72;margin-bottom:14px}
+.clock{font-weight:300;font-size:clamp(96px,11vw,190px);line-height:.8;font-variant-numeric:tabular-nums}
+.tl{list-style:none;padding:0;margin-top:32px;min-height:200px}
 .tl li{display:none}
-.tl li.on{display:block;animation:beat .6s var(--ease)}
-@keyframes beat{from{opacity:0;transform:translateY(12px)}}
-.tl h3{font:900 clamp(40px,4vw,64px)/.95 var(--head);font-stretch:62%;margin-bottom:16px;text-wrap:balance}
-.tl p{font-size:18px;max-width:34ch;color:rgba(246,242,235,.88)}
-@media(max-width:900px){.stage,.day-side{grid-column:1/-1}.stage{height:36vh;margin:0}.day-side{height:auto}.clock{font-size:72px}.tl h3{font-size:30px}.tl p{font-size:16px}.day-grid{gap:16px}}
+.tl li.on{display:block;animation:beat .5s var(--ease)}
+@keyframes beat{from{opacity:0;transform:translateY(10px)}}
+.tl h3{margin-bottom:12px}
+.tl p{font-size:17px;max-width:36ch;color:rgba(246,242,235,.88)}
+.hours{position:relative;height:40px;margin-top:24px;border-top:1px solid rgba(246,242,235,.5)}
+.hours span{position:absolute;top:0;transform:translateX(-50%);padding-top:12px;font:400 12px var(--mono);opacity:.6;transition:opacity .3s}
+.hours span::before{content:"";position:absolute;left:50%;top:-1px;width:1px;height:8px;background:currentColor}
+.hours span.on{opacity:1}
+.hours i{position:absolute;top:-5px;left:var(--x,5%);width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--paper);transition:left .6s var(--ease)}
+@media(max-width:900px){.day{height:auto}.day-stick{position:static;height:auto;display:block;padding:0}.stage{height:44vh}.day-side{padding:32px var(--pad) var(--s2)}.clock{font-size:88px}}
 
 /* ---------- field notes ---------- */
-.notes{padding-block:var(--sec)}
-.chap+.chap{padding-top:clamp(96px,9vw,140px)}
-.frames{display:grid;grid-template-columns:repeat(12,1fr);gap:36px 20px}
-.frames figure{cursor:zoom-in;display:flex;flex-direction:column}
-.frames .im{flex:1;min-height:0;outline:1px solid var(--rule)}
-.frames figure:hover .im{outline:2px solid var(--ink)}
-.frames figure:focus-visible{outline:3px solid var(--sp-d);outline-offset:6px}
-.frames figcaption{display:flex;justify-content:space-between;gap:16px;margin-top:12px;font:500 14px/1.4 var(--body)}
-
-.nh{margin-bottom:clamp(32px,3.5vw,52px)}
-.frames figure{height:auto!important}
-.frames .im{flex:none;outline:0}
-.frames{grid-template-columns:repeat(12,1fr)}
-.frames figure{grid-column:span 4}
-.g1 .im,.g2 .im,.g3 .im{aspect-ratio:3/2;height:auto}.g4 .im,.g5 .im,.g6 .im{aspect-ratio:4/5;height:auto}
-.g2,.g3,.g5,.g6{align-self:start}
-.frames .fn{font-size:clamp(28px,2.4vw,38px)!important;color:var(--c)!important;font-weight:500;line-height:1;letter-spacing:-.02em}
-.frames figure:hover .im{outline:0;filter:brightness(.96)}
-.frames{gap:36px 24px!important}
-.frames figcaption{display:grid;grid-template-columns:auto 1fr;gap:0 14px;align-items:center;min-height:3em}
-.frames .fn{grid-row:span 2;font-size:14px;color:var(--ink)}
-.frames .ft{font-weight:600}
-.frames .fm{color:var(--ink-2);font-size:12px}
-.frames .ph-label,.nlist .ph-label,.news-lead .ph-label{display:none}
-@media(max-width:800px){.frames figure{grid-column:1/-1!important}}
-.lb{position:fixed;inset:0;z-index:100;background:rgba(13,20,64,.97);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vw}
+.notes{padding-top:var(--s1)}
+.shead{align-items:end;margin-bottom:var(--s2)}
+.shead .d2{grid-column:1/8}
+.shead p{grid-column:8/13;font-size:17px}
+.frames{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}
+.frames figure{cursor:zoom-in}
+.frames .im{aspect-ratio:4/3;transition:filter .2s}
+.frames figure:hover .im{filter:brightness(.95)}
+.frames figure:focus-visible{outline-offset:6px}
+.frames figcaption{margin-top:12px}
+.fn{display:flex;align-items:center;gap:8px;font:500 13px var(--mono)}
+.fn i{width:10px;height:10px;background:var(--c)}
+.ft{display:block;font-weight:600;margin-top:4px}
+.fm{display:block;font:400 12px var(--mono);color:var(--ink-2);margin-top:2px}
+@media(max-width:900px){.shead .d2,.shead p{grid-column:1/-1}.shead p{margin-top:16px}.frames{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.frames{grid-template-columns:1fr}}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(13,20,64,.97);color:var(--paper);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vw}
 .lb.open{display:flex}
-.lb .im{width:min(1280px,100%);aspect-ratio:3/2;max-height:78vh}
-.lb figcaption{width:min(1280px,100%);color:var(--paper);display:flex;justify-content:space-between}
+.lb .im{width:min(1200px,100%);aspect-ratio:3/2;max-height:78vh}
+.lb figcaption{width:min(1200px,100%)}
+.lb .fm{color:rgba(246,242,235,.7)}
 .lb button{position:absolute;top:18px;right:var(--pad);background:none;color:var(--paper);border:1.5px solid currentColor;border-radius:2px;padding:9px 16px;font:600 14px var(--body);cursor:pointer}
 
 /* ---------- closure ---------- */
-.closure{padding:var(--sec) var(--pad) clamp(64px,6vw,96px)}
-.ba .im.ph{background-color:#2d3150;background-image:linear-gradient(135deg,transparent 49.6%,rgba(246,242,235,.1) 50%,transparent 50.4%),linear-gradient(45deg,transparent 49.6%,rgba(246,242,235,.1) 50%,transparent 50.4%)}
-.ba .ph-label{display:none}
-.closure .tA{grid-column:1/8;font-size:clamp(48px,5.6vw,96px)}
-.closure .sec-head{margin-bottom:clamp(36px,4vw,56px)}
-.cl-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,5vw,72px) 24px;align-items:start}
+.closure{padding-top:var(--s1)}
+.cl-h{max-width:15ch;margin-bottom:var(--s2)}
+.cl{align-items:stretch}
 .ba-wrap{grid-column:1/9}
-.ba{position:relative;aspect-ratio:16/10;user-select:none;overflow:hidden}
+.ba{position:relative;aspect-ratio:16/10;overflow:hidden;user-select:none}
 .ba .im{position:absolute;inset:0}
-.ba .after .ph-label{left:auto;right:14px;text-align:right}
 .ba .after{clip-path:inset(0 0 0 var(--p,50%));transition:clip-path .6s var(--ease)}
-.ba.drag .after{transition:none}
+.ba.drag .after,.ba.drag .knob{transition:none}
+.ba .tag{position:absolute;top:16px;z-index:3;padding:6px 10px;background:var(--paper);color:var(--ink);font:500 13px var(--mono)}
+.ba .tag.l{left:16px}.ba .tag.r{right:16px}
 .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;margin:0}
 .knob{position:absolute;top:0;bottom:0;left:var(--p,50%);z-index:3;pointer-events:none;transition:left .6s var(--ease)}
-.ba.drag .knob{transition:none}
 .knob::before{content:"";position:absolute;top:0;bottom:0;left:-1px;width:2px;background:var(--paper)}
-.knob i{position:absolute;top:12px;transform:translateX(-50%);background:var(--paper);color:var(--ink);display:flex;font:500 12px var(--mono);white-space:nowrap}
-.knob u{position:absolute;top:50%;left:0;width:40px;height:40px;transform:translate(-50%,-50%);background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px}
+.knob u{position:absolute;top:50%;left:0;width:42px;height:42px;transform:translate(-50%,-50%);background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px}
 .knob u::before,.knob u::after{content:"";width:6px;height:6px;border:solid var(--ink);border-width:0 0 2px 2px;transform:rotate(45deg)}
 .knob u::after{transform:rotate(-135deg)}
-.knob i b{font-weight:500;padding:9px 12px;font-size:14px}
-.knob i b+b{background:var(--ink);color:var(--paper)}
-.ba input:focus-visible~.knob i{outline:3px solid var(--hivis);outline-offset:3px}
-.years{display:grid;grid-template-columns:repeat(4,1fr);margin-top:0;border-top:1px solid var(--ink)}
-.years button{background:none;border:0;border-right:1px solid var(--rule);color:var(--ink);text-align:left;padding:14px 16px 16px;cursor:pointer;font:inherit;position:relative}
-.years button:last-child{border-right:0}
-.years button::before{content:"";position:absolute;left:0;right:0;top:-1px;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
-.years button[aria-pressed="true"]::before{transform:none}
-.years b{display:block;font:500 13px var(--mono);margin-bottom:4px}
-.years span{font-size:14px;opacity:.85}
-.years button:hover span{opacity:1;text-decoration:underline;text-underline-offset:3px}
-.cl-copy{grid-column:9/13}
-.cl-copy>p{margin-bottom:28px;color:var(--ink-2)}
+.ba input:focus-visible~.knob u{outline:3px solid var(--focus);outline-offset:3px}
+.cl-side{grid-column:9/13;display:flex;flex-direction:column}
+.cl-side .lead{font-size:17px;margin-bottom:24px}
 .facts{border-top:1px solid var(--ink)}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:15px}
 .facts b{font:500 14px var(--mono);font-variant-numeric:tabular-nums}
-.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px}
-@media(max-width:900px){.cl-copy,.ba-wrap{grid-column:1/-1}.years{grid-template-columns:1fr 1fr}.years button:nth-child(2){border-right:0}}
+.years{margin-top:auto;padding-top:var(--s3);display:grid;grid-template-columns:1fr 1fr}
+.years button{background:none;border:0;border-top:1px solid var(--rule);text-align:left;padding:12px 12px 14px 0;cursor:pointer;font:inherit;color:inherit;position:relative}
+.years button::before{content:"";position:absolute;left:0;right:12px;top:-1px;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.years button[aria-pressed="true"]::before{transform:none}
+.years b{display:block;font:500 13px var(--mono);margin-bottom:2px}
+.years span{font-size:14px;color:var(--ink-2)}
+.years button:hover span{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.ba-wrap,.cl-side{grid-column:1/-1}.cl-side{margin-top:var(--s3)}}
 
 /* ---------- news ---------- */
-.news{padding-block:var(--sec) clamp(64px,6vw,96px)}
-.nlist{list-style:none;padding:0;border-top:1px solid var(--ink)}
-.news-lead{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;text-decoration:none;margin-bottom:clamp(40px,4vw,64px);align-items:end}
-.news-lead .im{grid-column:1/8;aspect-ratio:16/9}
-.news-lead .txt{grid-column:8/13}
-.news-lead h3{font:900 clamp(34px,3.4vw,52px)/.95 var(--head);font-stretch:62%;margin:14px 0 14px;text-wrap:balance}
+.news{padding-block:var(--s1)}
+.news-lead{align-items:end;text-decoration:none;margin-bottom:var(--s2)}
+.news-lead .im{grid-column:1/9;aspect-ratio:16/9}
+.news-lead .txt{grid-column:9/13}
+.news-lead h3{margin:14px 0 12px}
 .news-lead .deck{color:var(--ink-2)}
 .news-lead:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
-.nlist .code{text-align:right}
-@media(max-width:900px){.news-lead .im,.news-lead .txt{grid-column:1/-1}}
-.nlist a{display:grid;grid-template-columns:120px 150px 1fr 168px;gap:24px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none}
-.nlist .meta{color:var(--ink-2)}
-.nlist h3{font-size:clamp(19px,1.6vw,23px);max-width:44ch}
+.meta{color:var(--ink-2)}
+.sw{display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px;vertical-align:0}
+.nlist{list-style:none;padding:0;border-top:1px solid var(--ink)}
+.nlist a{display:grid;grid-template-columns:130px 160px minmax(0,1fr) 140px;gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.nlist h3{font-size:clamp(18px,1.5vw,21px);line-height:1.3;font-weight:600}
 .nlist .deck{color:var(--ink-2);font-size:15px;margin-top:3px}
-.nlist .im{aspect-ratio:3/2}
-.nlist a:hover h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px}
-.sw{display:inline-block;width:12px;height:8px;background:var(--c);margin-right:8px;vertical-align:1px}
-.news .more{margin-top:28px;display:block}
-@media(max-width:900px){.nlist a{grid-template-columns:1fr 1fr;gap:6px 16px}.nlist .txt{grid-column:1/-1}.nlist .im{grid-column:1/-1;grid-row:1}}
+.nlist .code{text-align:right}
+.nlist a:hover h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.news .more{margin-top:24px;text-align:right}
+@media(max-width:900px){.news-lead .im,.news-lead .txt{grid-column:1/-1}.nlist a{grid-template-columns:1fr 1fr;gap:6px 16px}.nlist .txt{grid-column:1/-1}.nlist .code{display:none}}
 
-/* ---------- careers: crew roster ---------- */
-.careers{padding:var(--sec) var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
-.careers .head{grid-column:1/7}
-.roles{font-size:clamp(52px,6vw,104px);margin:12px 0 28px;white-space:nowrap}
-.roles b{background:var(--hivis);font-weight:900;padding:0 .08em;margin-right:.04em}
-.lock b{font:900 clamp(140px,17vw,290px)/.78 var(--head);color:var(--hivis);font-variant-numeric:tabular-nums;margin-left:-.04em}
-.lock span{font:900 clamp(44px,5.4vw,88px)/.9 var(--head);text-transform:uppercase;color:var(--paper)}
-.careers .head p{max-width:40ch;color:var(--ink);font-size:18px;line-height:1.45;margin-bottom:28px}
-.roster{grid-column:8/13;border-top:1px solid var(--ink);width:100%;border-collapse:collapse}
-.roster caption{text-align:left;font:600 15px var(--body);padding-bottom:12px;caption-side:top}
-.roster th{text-align:left;font:500 13px var(--body);color:var(--ink-2);padding:10px 0;border-bottom:1px solid var(--rule)}
-.roster td{padding:13px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+/* ---------- careers: the one yellow moment ---------- */
+.careers{background:var(--hivis);padding-block:var(--s1)}
+.careers .mark span,.careers .mark b{color:var(--ink)}
+.c-head{grid-column:1/7}
+.c-head .d2{margin-bottom:24px}
+.c-head p{max-width:38ch;margin-bottom:28px}
+.roster{grid-column:8/13;width:100%;border-collapse:collapse;border-top:2px solid var(--ink)}
+.roster caption{caption-side:top;text-align:left;font:400 13px var(--mono);padding-bottom:12px}
+.roster th{text-align:left;font:500 13px var(--body);padding:10px 0;border-bottom:1px solid rgba(13,20,64,.35)}
+.roster td{padding:12px 0;border-bottom:1px solid rgba(13,20,64,.35)}
 .roster td:first-child{font-weight:600;padding-right:16px}
 .roster td:last-child,.roster th:last-child{text-align:right}
-@media(max-width:900px){.careers .head,.roster{grid-column:1/-1}.roster th:nth-child(3),.roster td:nth-child(3){display:none}}
+@media(max-width:900px){.c-head,.roster{grid-column:1/-1}.roster{margin-top:var(--s2)}.roster th:nth-child(3),.roster td:nth-child(3){display:none}}
 
 /* ---------- acknowledgement ---------- */
-.acks{padding:clamp(80px,8vw,120px) var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
-.acks figure{grid-column:1/5}
-.acks .im{aspect-ratio:4/5}
-.acks figcaption{margin-top:12px;color:var(--ink-2);max-width:34ch}
-.acks p{grid-column:6/12;font:400 clamp(24px,2.3vw,34px)/1.35 var(--body);letter-spacing:-.01em;text-wrap:balance}
-.acks .ph-label{display:none}
-@media(max-width:800px){.acks figure,.acks p{grid-column:1/-1}}
+.acks{padding-block:var(--s1)}
+.art{aspect-ratio:5/1;margin-bottom:var(--s2)}
+.ack-row{align-items:end}
+.ack-row p{grid-column:1/10;font:400 clamp(26px,2.6vw,38px)/1.3 var(--body);letter-spacing:-.015em;max-width:42ch;text-wrap:balance}
+.ack-row .small{grid-column:10/13;color:var(--ink-2)}
+@media(max-width:900px){.ack-row p,.ack-row .small{grid-column:1/-1}.ack-row .small{margin-top:20px}.art{aspect-ratio:3/1}}
+
 /* ---------- footer ---------- */
-footer{background:var(--ink);color:var(--paper);padding:clamp(80px,8vw,120px) var(--pad) 30px;border-top:1px solid var(--rule-d)}
+footer{background:var(--ink);color:var(--paper);padding:var(--s2) var(--pad) 28px}
 .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
 footer h4{font:600 14px var(--body);color:rgba(246,242,235,.6);margin-bottom:14px}
 footer ul{list-style:none;padding:0;display:grid;gap:8px}
 footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-underline-offset:4px}
 .addr{margin-top:18px;color:rgba(246,242,235,.72)}
 .addr span{white-space:nowrap}
-.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:56px;padding-top:20px;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.55)}
+.coords{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-top:var(--s2);padding-top:20px;border-top:1px solid var(--rule-d);font:300 clamp(34px,7.6vw,128px)/1 var(--mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.coords small{font:400 13px var(--mono);letter-spacing:0;color:rgba(246,242,235,.6);align-self:flex-start}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.6)}
 .legal nav{display:flex;gap:28px}
-.fsurvey{display:flex;align-items:flex-end;gap:32px;margin-top:64px}
-.fsurvey svg{width:120px;height:auto}
-.fsurvey svg path{fill:none;stroke:rgba(246,242,235,.6);stroke-width:4}
-.fsurvey svg rect{fill:var(--paper)}
-.fsurvey p{font-size:clamp(28px,4vw,60px);font-weight:300;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.fsurvey p span{font-size:14px;letter-spacing:0;opacity:.6}
-.sign{font:900 clamp(80px,17.4vw,300px)/.8 var(--head);font-stretch:62%;text-transform:uppercase;letter-spacing:-.01em;margin:clamp(64px,7vw,110px) 0 0;color:rgba(246,242,235,.09);white-space:nowrap;overflow:hidden}
-.legal{margin-top:20px!important}
-@media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr}.coords{flex-wrap:wrap}}
 
 .rv{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease)}
 .rv.in{clip-path:inset(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{clip-path:none;transition:none}
-  .stage .im,.im>canvas,.im>img,.tl p,.tl li::before,.nav,.knob,.ba .after{transition:none}
+  .stage .im,.im>img,.nav,.knob,.ba .after,.hours i,.years button::before{transition:none}
+  .tl li.on{animation:none}
 }
 </style>
 </head>
@@ -388,7 +357,7 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
 
 <header class="nav" id="nav">
   <a class="logo" href="#top" aria-label="Calder Ridge home">
-    <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 3H7V8H12V13H22V8H27V3H33" fill="none" stroke-width="3"/><rect x="14" y="16" width="6" height="4" fill="#b4472a"/></svg>
+    <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 3H7V8H12V13H22V8H27V3H33" fill="none" stroke-width="3"/><rect x="14" y="16" width="6" height="4" fill="#9b2f1f"/></svg>
     Calder Ridge
   </a>
   <nav aria-label="Primary"><ul id="navlist">
@@ -396,9 +365,9 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
     <li><a href="#day">A day on site</a></li>
     <li><a href="#notes">Field notes</a></li>
     <li><a href="#land">Closure</a></li>
-    <li class="pg"><a href="#news">News</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#">Investors</a></li>
-    <li class="mcareers"><a href="#careers">Careers</a></li>
+    <li class="mc"><a href="#careers">Careers</a></li>
   </ul></nav>
   <button class="menu" id="menu" aria-expanded="false" aria-controls="navlist">Menu</button>
   <a class="btn hv" href="#careers">Careers</a>
@@ -407,22 +376,22 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
 <main id="top">
 <section class="hero" data-dark>
   <div class="im hero-img" data-eager data-alt="Aerial of the Ridgeback open pit at sunrise"></div>
-  <div class="hero-in">
-    <h1 class="tA"><span>Dug here.</span><span>Built everywhere.</span></h1>
-    <div class="hero-row">
+  <h1 class="d1"><span>Dug here.</span><span>Built everywhere.</span></h1>
+  <div class="g12 hero-foot">
+    <div class="hero-copy">
       <p>We mine iron ore, gold and lithium in Western Australia for steelmakers, refiners and battery makers around the world.</p>
       <div class="acts"><a class="btn light" href="#operations">See our mines</a><a class="tlink" href="#land">How we close a mine</a></div>
     </div>
+    <dl class="tblock">
+      <div><dt>Pictured</dt><dd>Ridgeback pit</dd></div>
+      <div><dt>Position</dt><dd>30.92° S<br>121.61° E</dd></div>
+      <div><dt>Listed</dt><dd>ASX: CDR</dd></div>
+      <div><dt>Founded</dt><dd>Perth, 1994</dd></div>
+    </dl>
   </div>
-  <dl class="tblock">
-    <div><dt>Pictured</dt><dd class="data">Ridgeback pit</dd></div>
-    <div><dt>Position</dt><dd class="data">30.92° S 121.61° E</dd></div>
-    <div><dt>Listed</dt><dd class="data">ASX: CDR</dd></div>
-    <div><dt>Founded</dt><dd class="data">Perth, 1994</dd></div>
-  </dl>
 </section>
 
-<section class="sheet pad" aria-label="Group performance">
+<section class="sheet wrap" aria-label="Group performance">
   <div class="sheet-top small"><span>Group performance, year to 30 June 2026</span><span>Audited. Full results in the FY26 annual report</span></div>
   <div class="sheet-grid">
     <div class="cell"><div class="v"><b>38.4</b><em>Mt</em></div><p>Iron ore shipped from Mount Ferrell</p></div>
@@ -432,185 +401,227 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
   </div>
 </section>
 
-<section id="operations">
-  <div class="ops-intro pad">
-    <div class="sec-head opsh"><span class="kick">Operations</span><h2 class="tB">Three mines, three geologies</h2><p>Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, on three different Countries up to 1,400 km apart. We run all three to one standard: plan the closure first, protect heritage first, send everyone home.</p></div>
-    <svg class="map" id="wamap" viewBox="0 0 700 900" role="img" aria-label="Map of Western Australia showing Mount Ferrell in the Pilbara, Ridgeback near Kalgoorlie and Karri Creek in the South West"></svg>
+<section class="ops" id="operations">
+  <p class="mark"><span><b>01</b>Operations</span></p>
+  <div class="wrap g12 ops-intro">
+    <div class="ops-copy">
+      <h2 class="d2">Three mines, three geologies</h2>
+      <p class="lead">Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, on three Countries up to 1,400 km apart. We run all three to one standard: plan the closure first, protect heritage first, send everyone home.</p>
+      <table class="cmp">
+        <caption>Table 1. The three operations, FY26</caption>
+        <colgroup><col class="k"><col><col><col></colgroup>
+        <thead><tr><th scope="col"><span class="small" style="font-family:var(--body);font-weight:500;color:var(--ink-2)">Site</span></th><th scope="col" style="--c:var(--fe)"><i></i>Mount Ferrell</th><th scope="col" style="--c:var(--au)"><i></i>Ridgeback</th><th scope="col" style="--c:var(--sp)"><i></i>Karri Creek</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Commodity</th><td>Iron ore</td><td>Gold</td><td>Lithium</td></tr>
+          <tr class="m"><th scope="row">Average grade</th><td>61.8% Fe</td><td>2.9 g/t Au</td><td>1.4% Li₂O</td></tr>
+          <tr class="m"><th scope="row">Reserve life</th><td>22 years</td><td>14 years</td><td>19 years</td></tr>
+          <tr class="m"><th scope="row">People on site</th><td>1,240</td><td>860</td><td>540</td></tr>
+          <tr><th scope="row">Traditional Owners</th><td>Banjima</td><td>Ngadju</td><td>Noongar</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="mapfig">
+      <svg id="wamap" viewBox="0 0 700 900" role="img" aria-label="Map of Western Australia showing Mount Ferrell in the Pilbara, Ridgeback near Kalgoorlie and Karri Creek in the South West"></svg>
+      <figcaption class="data">Fig. 1. Western Australia, operations and export ports</figcaption>
+    </figure>
   </div>
 
-  <article class="chap" id="ferrell" style="--cd:var(--fe)">
-    <div class="scale rail-top" style="--w:100%" aria-hidden="true"><i class="fill"></i><em class="l" style="left:0">Mount Ferrell</em><em class="mid" style="left:30%">Turner Siding</em><em class="mid" style="left:65%">Coondie Junction</em><em class="r" style="left:100%">Port Hedland</em><span style="left:0">0 km</span><span class="mid" style="left:30%">64</span><span class="mid" style="left:65%">138</span><span class="end" style="left:100%">212 km</span></div>
-    <div class="grid">
-      <div class="txt">
-        <span class="chip small"><i></i>Iron ore, Pilbara, Banjima Country</span>
-        <h3 class="tB">Mount Ferrell</h3>
-        <p class="lead">Hematite ore from the Brockman Iron Formation, mined from three pits and railed to our own berth at Port Hedland on a fully autonomous network.</p>
-        <div class="one"><b>212 km</b><span>of our own railway from mine to port</span></div>
-      </div>
-      <div class="im plate rv" data-alt="Ore train leaving Mount Ferrell, Pilbara"></div>
+  <article class="mine" id="ferrell" style="--c:var(--fe);--ct:var(--fe-t)">
+    <div class="wrap g12 fe-head">
+      <div class="nm"><span class="chip small"><i></i>Iron ore, Pilbara, Banjima Country</span><h3 class="d2">Mount Ferrell</h3></div>
+      <p class="lead">Hematite ore from the Brockman Iron Formation, mined from three pits and railed to our own berth at Port Hedland on a fully autonomous network.</p>
     </div>
+    <div class="im pano rv" data-alt="Ore train crossing the Pilbara below Mount Ferrell"></div>
+    <figure class="wrap rail">
+      <div class="fig-h"><span class="data">Fig. 2. Rail, mine to port. Driverless since 2021</span><span class="fig-n">212 km</span></div>
+      <div class="track" role="img" aria-label="Rail line from Mount Ferrell to Port Hedland, 212 km, via Turner Siding at 64 km and Coondie Junction at 138 km">
+        <span class="st a" style="left:0"><b>Mount Ferrell</b><em></em><u></u><i>0 km</i></span>
+        <span class="st" style="left:30.2%"><b>Turner Siding</b><em></em><u></u><i>64</i></span>
+        <span class="st" style="left:65.1%"><b>Coondie Junction</b><em></em><u></u><i>138</i></span>
+        <span class="st z" style="left:100%"><b>Port Hedland berth</b><em></em><u></u><i>212 km</i></span>
+      </div>
+    </figure>
   </article>
 
-  <article class="chap" id="ridgeback" style="--cd:var(--au)">
-    <div class="scale rail-top" style="--w:95%" aria-hidden="true"><i class="fill"></i><em class="l" style="left:0">Surface</em><em class="mid" style="left:16.7%">Pit floor</em><em class="r" style="left:95%">Deepest level</em><span style="left:0">0 m</span><span class="mid" style="left:33.3%">400</span><span class="mid" style="left:66.7%">800</span><span class="end" style="left:100%">1,200 m</span></div>
-    <div class="grid">
-      <div class="im plate rv" data-alt="Ridgeback headframe and decline portal"></div>
-      <div class="txt">
+  <article class="mine" id="ridgeback" style="--c:var(--au);--ct:var(--au-t)">
+    <div class="wrap g12 rb">
+      <div class="im portrait rv" data-alt="Ridgeback headframe and decline portal"></div>
+      <figure class="dsec">
+        <div class="fig-h"><span class="data">Fig. 3. Long section</span><span class="fig-n">1,140 m</span></div>
+        <div class="sv"><svg viewBox="0 0 260 600" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Long section of Ridgeback: open pit to 210 metres, then a decline beside the ore body down to the deepest level at 1,140 metres">
+          <g class="ticks"></g>
+          <path class="k" d="M52 24V552"/>
+          <path class="k" d="M52 24H256"/>
+          <path d="M80 24L104 116.4H148L172 24Z" fill="rgba(13,20,64,.07)"/>
+          <path class="k" d="M80 24L104 116.4H148L172 24"/>
+          <path d="M138 128L150 128L180 520L166 520Z" fill="var(--au)"/>
+          <path class="k" id="decline" d=""/>
+          <path class="k" d="M52 525.6H256"/>
+          <text class="lab" x="178" y="104">Pit floor</text><text x="178" y="120">210 m</text>
+          <path class="k" d="M168 330H186"/><text class="lab" x="190" y="334">Ore body</text>
+          <text class="lab" x="256" y="546" text-anchor="end">Deepest level</text>
+        </svg></div>
+      </figure>
+      <div class="rb-text">
         <span class="chip small"><i></i>Gold, Goldfields, Ngadju Country</span>
-        <h3 class="tB">Ridgeback</h3>
-        <p class="lead">An open pit that became an underground mine. A decline spirals down beside the ore body, 40 km south-east of Kalgoorlie, and has done for thirty years.</p>
-        <div class="one"><b>1,140 m</b><span>below surface at the deepest level, and drilling says it keeps going</span></div>
+        <h3 class="d2">Ridgeback</h3>
+        <p class="lead">An open pit that became an underground mine. A decline runs down beside the ore body, 40 km south-east of Kalgoorlie, and drilling says it keeps going.</p>
+        <dl class="mfacts"><div><dt>Decline length</dt><dd>9.6 km</dd></div><div><dt>Working levels</dt><dd>17</dd></div><div><dt>Drilled in FY26</dt><dd>84,000 m</dd></div></dl>
       </div>
     </div>
   </article>
 
-  <article class="chap" id="karri" style="--cd:var(--sp)">
-    <div class="scale rail-top" style="--w:70%" aria-hidden="true"><i class="fill"></i><em class="l" style="left:0">Our solar farm and battery</em><em class="r" style="left:100%">Grid</em><span style="left:0">0%</span><span class="mid" style="left:70%">70%</span><span class="end" style="left:100%">100%</span></div>
-    <div class="grid">
-      <div class="txt">
+  <article class="mine" id="karri" style="--c:var(--sp);--ct:var(--sp-t)">
+    <div class="wrap g12 kc">
+      <div class="kc-text">
         <span class="chip small"><i></i>Lithium, South West, Noongar Country</span>
-        <h3 class="tB">Karri Creek</h3>
+        <h3 class="d2">Karri Creek</h3>
         <p class="lead">Spodumene, the lithium-bearing crystal, concentrated on site for battery makers on our own solar and battery power.</p>
-        <div class="one"><b>70%</b><span>of site power from our own solar farm and battery; the rest from the grid</span></div>
+        <figure class="fig">
+          <div class="fig-h"><span class="data">Fig. 4. Site power, FY26</span><span class="fig-n">70%</span></div>
+          <div class="split" role="img" aria-label="Site power: 70% from our solar farm and battery, 30% from the grid"><i></i><span></span></div>
+          <div class="split-l data"><span>Solar farm and battery</span><span>Grid</span></div>
+        </figure>
       </div>
-      <div class="im plate rv" data-alt="Spodumene in Karri Creek drill core"></div>
+      <div class="im square rv" data-alt="Spodumene in Karri Creek drill core"></div>
     </div>
   </article>
+</section>
 
-  <div class="compare pad">
-    <table class="cmp">
-      <thead><tr><th scope="col"><span class="small" style="font-family:var(--body);text-transform:none;font-weight:500;color:var(--ink-2)">At a glance</span></th>
-        <th scope="col" style="--c:var(--fe)"><i></i>Mount Ferrell</th><th scope="col" style="--c:var(--au)"><i></i>Ridgeback</th><th scope="col" style="--c:var(--sp)"><i></i>Karri Creek</th></tr></thead>
+<section class="day" id="day" data-dark>
+  <div class="day-stick">
+    <p class="mark"><span><b>02</b>A day on site</span></p>
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="im on" data-eager data-alt="Ridgeback pit before dawn, plant lights on"></div>
+      <div class="im" data-eager data-alt="Drill rigs on the second bench, morning"></div>
+      <div class="im" data-eager data-alt="Water cart on the haul road, late morning"></div>
+      <div class="im" data-eager data-alt="Haul trucks on the ramp, midday"></div>
+      <div class="im" data-eager data-alt="Geotechnical team on the pit rim at dusk"></div>
+      <div class="im" data-eager data-alt="Night shift under the lighting towers"></div>
+    </div>
+    <div class="day-side">
+      <p class="data dl">A day at Ridgeback</p>
+      <span class="clock" id="clock">05:00</span>
+      <ol class="tl" id="tl">
+        <li class="on" data-t="05:00"><h3 class="d3">Handover under lights</h3><p>Day crews walk the plant with night shift, go through overnight faults and sign the safety brief before a machine moves.</p></li>
+        <li data-t="08:30"><h3 class="d3">Drill and blast</h3><p>168 holes on the second bench. Exclusion zones are cleared on foot, and nobody fires until every person on the lease is accounted for.</p></li>
+        <li data-t="11:00"><h3 class="d3">Water carts and dust</h3><p>Every haul road is wetted on a loop. Dust monitors on the lease boundary report to the control room every ten minutes.</p></li>
+        <li data-t="13:00"><h3 class="d3">Haul and crush</h3><p>Eight trucks on the ramp carry ore up to the crusher. Every load is weighed and logged.</p></li>
+        <li data-t="18:15"><h3 class="d3">Wall inspection</h3><p>Survey prisms around the rim are read as the light drops. Any movement is flagged and fenced before night shift.</p></li>
+        <li data-t="22:00"><h3 class="d3">Night shift</h3><p>Lighting towers go up on the active benches, and the operations centre in Perth takes over the driverless fleet.</p></li>
+      </ol>
+      <div class="hours" aria-hidden="true"><span style="left:5%">05:00</span><span style="left:22.5%">08:30</span><span style="left:35%">11:00</span><span style="left:47.5%">13:00</span><span style="left:71.25%">18:15</span><span style="left:90%">22:00</span><i id="hm"></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="notes" id="notes">
+  <p class="mark"><span><b>03</b>Field notes</span></p>
+  <div class="wrap">
+    <div class="g12 shead"><h2 class="d2">The country we work in</h2><p>Notes from our geologists, surveyors and rehabilitation crews, numbered as they come in. <a class="tlink" href="#">All 40 notes</a></p></div>
+    <div class="frames" id="frames">
+      <figure tabindex="0" style="--c:var(--fe)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-009</span><span class="ft">Hamersley Range above Mount Ferrell</span><span class="fm">Mount Ferrell, 14 Mar 2026</span></figcaption></figure>
+      <figure tabindex="0" style="--c:var(--au)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-012</span><span class="ft">Core trays from hole RB-041</span><span class="fm">Ridgeback, 2 Apr 2026</span></figcaption></figure>
+      <figure tabindex="0" style="--c:var(--au)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-015</span><span class="ft">Soil sampling on the east target</span><span class="fm">Ridgeback, 19 Apr 2026</span></figcaption></figure>
+      <figure tabindex="0" style="--c:var(--fe)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-024</span><span class="ft">Ore train at Coondie Junction</span><span class="fm">Mount Ferrell, 30 May 2026</span></figcaption></figure>
+      <figure tabindex="0" style="--c:var(--sp)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-031</span><span class="ft">Karri canopy beside the lease</span><span class="fm">Karri Creek, 11 Jun 2026</span></figcaption></figure>
+      <figure tabindex="0" style="--c:var(--au)"><div class="im rv"></div><figcaption><span class="fn"><i></i>FN-040</span><span class="ft">Seed collection for the north dump</span><span class="fm">Ridgeback, 3 Sep 2026</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="closure" id="land">
+  <p class="mark"><span><b>04</b>Closure</span></p>
+  <div class="wrap">
+    <h2 class="d2 cl-h">We plan how a mine closes before we open it</h2>
+    <div class="g12 cl">
+      <div class="ba-wrap">
+        <div class="ba rv" id="ba" style="--p:50%">
+          <div class="im dk" data-eager data-alt="North waste dump while operating, 2018"></div>
+          <div class="im dk after" data-eager data-alt="Same landform revegetated, 2026"></div>
+          <span class="tag l">2018, operating</span><span class="tag r">2026, revegetated</span>
+          <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the north waste dump in 2018 and 2026">
+          <div class="knob"><u></u></div>
+        </div>
+      </div>
+      <div class="cl-side">
+        <p class="lead">Topsoil goes back in the order it came out, and the seed comes from the lease itself. We monitor every landform for ten years, and Traditional Owners sign off before we hand any land back.</p>
+        <div class="facts">
+          <div><span>Land rehabilitated to date</span><b>6,100 ha</b></div>
+          <div><span>Native species in seed mix</span><b>84</b></div>
+          <div><span>Agreements with Traditional Owners</span><b>7</b></div>
+          <div><span>Landforms handed back</span><b>12</b></div>
+        </div>
+        <div class="years" role="group" aria-label="Show the landform at a monitoring year">
+          <button type="button" data-p="100" aria-pressed="false"><b>Year 0</b><span>Reshape and seed</span></button>
+          <button type="button" data-p="70" aria-pressed="false"><b>Year 3</b><span>Independent review</span></button>
+          <button type="button" data-p="20" aria-pressed="false"><b>Year 8</b><span>Today</span></button>
+          <button type="button" data-p="0" aria-pressed="false"><b>Year 10</b><span>Handback to Ngadju</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="news">
+  <p class="mark"><span><b>05</b>News</span></p>
+  <div class="wrap">
+    <a class="g12 news-lead" href="#"><div class="im rv" data-alt="Karri Creek solar farm"></div><div class="txt"><span class="meta small"><span class="sw" style="--c:var(--sp)"></span>Karri Creek, <span class="data">14 Oct 2026</span></span><h3 class="d3">Karri Creek now runs on 70% renewable power</h3><p class="deck">The second solar farm and a 40 MWh battery came online in September, cutting site diesel use by 31 million litres a year.</p></div></a>
+    <ul class="nlist">
+      <li><a href="#"><span class="meta data">29 Sep 2026</span><span class="meta small"><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><div class="txt"><h3>New heritage agreement signed with Banjima Traditional Owners</h3><p class="deck">It covers heritage surveys, contracting and joint decisions on closure.</p></div><span class="meta data code">Media release</span></a></li>
+      <li><a href="#"><span class="meta data">3 Sep 2026</span><span class="meta small"><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><div class="txt"><h3>Drilling extends Ridgeback's mine life to 2040</h3><p class="deck">Deeper drilling added 1.1 million ounces to the underground resource.</p></div><span class="meta data code">ASX: CDR 0927</span></a></li>
+      <li><a href="#"><span class="meta data">28 Aug 2026</span><span class="meta small"><span class="sw" style="--c:var(--ink)"></span>Group</span><div class="txt"><h3>Full-year results: record shipments and a final dividend of 42 cents</h3><p class="deck">Results, presentation and the FY26 annual report.</p></div><span class="meta data code">ASX: CDR 0911</span></a></li>
+    </ul>
+    <p class="more"><a class="tlink" href="#">All news and ASX releases</a></p>
+  </div>
+</section>
+
+<section class="careers" id="careers">
+  <p class="mark"><span><b>06</b>Careers</span></p>
+  <div class="wrap g12">
+    <div class="c-head">
+      <h2 class="d2">143 open roles</h2>
+      <p class="lead">On site across three mines and in our Perth office, with fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p>
+      <a class="btn" href="#">Search open roles</a>
+    </div>
+    <table class="roster">
+      <caption>Hiring now</caption>
+      <thead><tr><th>Role</th><th>Site</th><th>Roster</th><th>Openings</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Commodity</th><td>Iron ore</td><td>Gold</td><td>Lithium</td></tr>
-        <tr class="m"><th scope="row">Average grade</th><td>61.8% Fe</td><td>2.9 g/t Au</td><td>1.4% Li₂O</td></tr>
-        <tr class="m"><th scope="row">Reserve life</th><td>22 years</td><td>14 years</td><td>19 years</td></tr>
-        <tr class="m"><th scope="row">People on site</th><td>1,240</td><td>860</td><td>540</td></tr>
-        <tr><th scope="row">Traditional Owners</th><td>Banjima</td><td>Ngadju</td><td>Noongar</td></tr>
+        <tr><td>Haul truck operator</td><td><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</td><td>8 on, 6 off</td><td class="data">24</td></tr>
+        <tr><td>Underground electrician</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td>2 on, 1 off</td><td class="data">11</td></tr>
+        <tr><td>Process plant operator</td><td><span class="sw" style="--c:var(--sp)"></span>Karri Creek</td><td>Residential</td><td class="data">9</td></tr>
+        <tr><td>Geotechnical engineer</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td>8 on, 6 off</td><td class="data">3</td></tr>
+        <tr><td>Rail controller</td><td>Perth</td><td>Office</td><td class="data">6</td></tr>
+        <tr><td>Apprentice, 2027 intake</td><td>All sites</td><td>Varies</td><td class="data">40</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<section class="day" id="day" data-dark>
-  <div class="day-stick">
-    <div class="day-grid">
-      <div class="stage" id="stage" aria-hidden="true">
-        <div class="im on" data-plate="pitPlan" data-time="night" data-eager data-alt="Ridgeback pit before dawn, plant lights on"></div>
-        <div class="im" data-plate="pitPlan" data-time="dawn" data-eager data-alt="Drill rigs on the second bench, morning"></div>
-        <div class="im" data-eager data-alt="Water cart on the haul road, late morning"></div>
-        <div class="im" data-plate="pitPlan" data-time="noon" data-eager data-alt="Haul trucks on the ramp, midday"></div>
-        <div class="im" data-plate="pitPlan" data-time="dusk" data-eager data-alt="Geotechnical team on the pit rim at dusk"></div>
-        <div class="im" data-eager data-alt="Night shift under the lighting towers"></div>
-      </div>
-      <div class="day-side">
-        <span class="kick">A day at Ridgeback</span>
-        <span class="clock" id="clock">05:00</span>
-        <ol class="tl" id="tl">
-          <li class="on" data-t="05:00"><h3>Handover under lights</h3><p>Day crews walk the plant with night shift, go through overnight faults and sign the safety brief before a machine moves.</p></li>
-          <li data-t="08:30"><h3>Drill and blast</h3><p>168 holes on the second bench. Exclusion zones are cleared on foot, and nobody fires until every person on the lease is accounted for.</p></li>
-          <li data-t="11:00"><h3>Water carts and dust</h3><p>Every haul road is wetted on a loop. Dust monitors on the lease boundary report to the control room every ten minutes.</p></li>
-          <li data-t="13:00"><h3>Haul and crush</h3><p>Eight trucks on the ramp carry ore up to the crusher while water carts keep the dust down. Every load is weighed.</p></li>
-          <li data-t="18:15"><h3>Wall inspection</h3><p>Survey prisms around the rim are read as the light drops. Any movement is flagged and fenced before night shift.</p></li>
-          <li data-t="22:00"><h3>Night shift</h3><p>Lighting towers go up on the active benches, and the remote operations centre in Perth takes over the autonomous fleet.</p></li>
-        </ol>
-        <div class="dayrule" aria-hidden="true"><i id="dayp"></i></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="notes pad" id="notes">
-  <div class="sec-head"><span class="kick">Field notes</span><h2 class="tB">The country we work in</h2><p>Notes from our geologists, surveyors and rehabilitation crews, numbered as they come in. <a class="tlink" href="#">All 40 notes</a></p></div>
-  <div class="frames" id="frames">
-    <figure class="g1" style="--c:var(--fe)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-009</span><span class="ft">Hamersley Range above Mount Ferrell</span><span class="fm data">Mount Ferrell · 14 Mar 2026</span></figcaption></figure>
-    <figure class="g2" style="--c:var(--au)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-012</span><span class="ft">Core trays from hole RB-041</span><span class="fm data">Ridgeback · 2 Apr 2026</span></figcaption></figure>
-    <figure class="g3" style="--c:var(--au)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-015</span><span class="ft">Soil sampling on the east target</span><span class="fm data">Ridgeback · 19 Apr 2026</span></figcaption></figure>
-    <figure class="g4" style="--c:var(--au)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-021</span><span class="ft">Lake Cowan after rain</span><span class="fm data">Ridgeback · 8 Feb 2026</span></figcaption></figure>
-    <figure class="g5" style="--c:var(--fe)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-024</span><span class="ft">Ore train at Coondie Junction</span><span class="fm data">Mount Ferrell · 30 May 2026</span></figcaption></figure>
-    <figure class="g6" style="--c:var(--au)" tabindex="0"><div class="im rv"></div><figcaption><span class="fn data">FN-037</span><span class="ft">Ridgeback village at dusk</span><span class="fm data">Ridgeback · 22 Jul 2026</span></figcaption></figure>
-  </div>
-</section>
-
-<section class="closure" id="land">
-  <div class="sec-head"><span class="kick">Closure</span><h2 class="tA">We plan how a mine closes before we open it</h2><p>Topsoil goes back in the order it came out, and the seed comes from the lease itself. We monitor every landform for ten years, and Traditional Owners sign off before we hand any land back.</p></div>
-  <div class="cl-grid">
-    <div class="ba-wrap">
-      <div class="ba rv" id="ba" style="--p:20%">
-        <div class="im" data-plate="landform" data-eager data-alt="North waste dump while operating, 2018"></div>
-        <div class="im after" data-plate="landform" data-veg="1" data-eager data-alt="Same landform revegetated, 2026"></div>
-        <input type="range" min="0" max="100" value="20" aria-label="Drag to compare the north waste dump while operating and after rehabilitation">
-        <div class="knob"><i><b>2018</b><b>2026</b></i><u></u></div>
-      </div>
-      <div class="years" role="group" aria-label="Monitoring years">
-        <button type="button" data-p="100" aria-pressed="false"><b>Year 0</b><span>Reshape, topsoil, seed</span></button>
-        <button type="button" data-p="70" aria-pressed="false"><b>Year 3</b><span>Independent review</span></button>
-        <button type="button" data-p="20" aria-pressed="true"><b>Year 8</b><span>Today</span></button>
-        <button type="button" data-p="0" aria-pressed="false"><b>Year 10</b><span>Handback to Ngadju</span></button>
-      </div>
-    </div>
-    <div class="cl-copy">
-      <div class="facts">
-        <div><span>Land rehabilitated to date</span><b class="num">6,100 ha</b></div>
-        <div><span>Native species in seed mix</span><b class="num">84</b></div>
-        <div><span>Agreements with Traditional Owners</span><b class="num">7</b></div>
-        <div><span>Landforms handed back</span><b class="num">12</b></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="news pad" id="news">
-  <div class="sec-head"><span class="kick">News</span><h2 class="tB">Latest from our sites</h2><p class="right"><a class="tlink" href="#">All news and ASX releases</a></p></div>
-  <a class="news-lead" href="#"><div class="im rv" data-alt="Karri Creek solar farm"></div><div class="txt"><span class="meta small"><span class="sw" style="--c:var(--sp)"></span>Karri Creek &nbsp; <span class="data">14 Oct 2026</span></span><h3>Karri Creek now runs on 70% renewable power</h3><p class="deck">The second solar farm and a 40 MWh battery came online in September, cutting site diesel use by 31 million litres a year.</p></div></a>
-  <ul class="nlist">
-    <li><a href="#"><span class="meta data">29 Sep 2026</span><span class="meta small"><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><div class="txt"><h3>New heritage agreement signed with Banjima Traditional Owners</h3><p class="deck">It covers heritage surveys, contracting and joint decisions on closure.</p></div><span class="meta data code">Media release</span></a></li>
-    <li><a href="#"><span class="meta data">3 Sep 2026</span><span class="meta small"><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><div class="txt"><h3>Drilling extends Ridgeback's mine life to 2040</h3><p class="deck">Deeper drilling added 1.1 million ounces to the underground resource.</p></div><span class="meta data code">ASX: CDR 0927</span></a></li>
-    <li><a href="#"><span class="meta data">28 Aug 2026</span><span class="meta small"><span class="sw" style="--c:var(--ink)"></span>Group</span><div class="txt"><h3>Full-year results: record shipments and a final dividend of 42 cents</h3><p class="deck">Results, presentation and the FY26 annual report.</p></div><span class="meta data code">ASX: CDR 0911</span></a></li>
-  </ul>
-</section>
-
-<section class="careers" id="careers">
-  <div class="head">
-    <span class="kick">Careers</span>
-    <h2 class="tB roles"><b>143</b> open roles</h2>
-    <p>On site across three mines and in our Perth office, with fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p>
-    <a class="btn" href="#">Search open roles</a>
-  </div>
-  <table class="roster">
-    <caption>Hiring now</caption>
-    <thead><tr><th>Role</th><th>Site</th><th>Roster</th><th>Openings</th></tr></thead>
-    <tbody>
-      <tr><td>Haul truck operator</td><td><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</td><td>8 on, 6 off</td><td class="data">24</td></tr>
-      <tr><td>Underground electrician</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td>2 on, 1 off</td><td class="data">11</td></tr>
-      <tr><td>Process plant operator</td><td><span class="sw" style="--c:var(--sp)"></span>Karri Creek</td><td>Residential</td><td class="data">9</td></tr>
-      <tr><td>Geotechnical engineer</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td>8 on, 6 off</td><td class="data">3</td></tr>
-      <tr><td>Rail controller</td><td>Perth</td><td>Office</td><td class="data">6</td></tr>
-      <tr><td>Apprentice, 2027 intake</td><td>All sites</td><td>Varies</td><td class="data">40</td></tr>
-    </tbody>
-  </table>
-</section>
-
-
 <section class="acks" aria-label="Acknowledgement of Country">
-  <figure><div class="im" data-alt="Commissioned artwork by a Banjima, Ngadju or Noongar artist"></div><figcaption class="small">Artwork commission in progress with the Ngadju Conservation Aboriginal Corporation</figcaption></figure>
-  <p>We acknowledge the Banjima, Ngadju and Noongar peoples, Traditional Owners of the lands where we work, and pay our respects to Elders past and present.</p>
+  <div class="wrap">
+    <div class="im art" data-alt="Commissioned artwork by a Ngadju artist"></div>
+    <div class="g12 ack-row">
+      <p>We acknowledge the Banjima, Ngadju and Noongar peoples, Traditional Owners of the lands where we work, and pay our respects to Elders past and present.</p>
+      <span class="small">Artwork commission in progress with the Ngadju Conservation Aboriginal Corporation</span>
+    </div>
+  </div>
 </section>
 </main>
 
 <footer data-dark>
-  
   <div class="fgrid">
     <div>
-      <a class="logo" href="#top"><svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 3H7V8H12V13H22V8H27V3H33" fill="none" stroke-width="3"/><rect x="14" y="16" width="6" height="4" fill="#b4472a"/></svg>Calder Ridge</a>
+      <a class="logo" href="#top"><svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 3H7V8H12V13H22V8H27V3H33" fill="none" stroke-width="3"/><rect x="14" y="16" width="6" height="4" fill="#9b2f1f"/></svg>Calder Ridge</a>
       <p class="addr"><span>Level 24, 108 St Georges Terrace</span><br><span>Perth WA 6000</span><br><span>+61 8 5550 0142</span></p>
     </div>
     <div><h4>Company</h4><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#">Investors</a></li><li><a href="#">Suppliers</a></li></ul></div>
     <div><h4>Operations</h4><ul><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#">Exploration</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="#">Media enquiries</a></li><li><a href="#">Community line</a></li><li><a href="#">Report a concern</a></li><li><a href="#">LinkedIn</a></li></ul></div>
   </div>
-  <div class="fsurvey"><svg id="footmap" viewBox="0 0 700 900" aria-hidden="true"></svg><p class="data">31.95° S &nbsp;115.86° E<br><span>Head office, Perth</span></p></div>
-  <div class="legal small"><span>© 2026 Calder Ridge Resources Ltd &nbsp; ASX: CDR</span><nav aria-label="Legal"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></nav></div>
+  <p class="coords" aria-label="Head office, Perth: 31.95 degrees south, 115.86 degrees east"><span>31.95° S</span><small>Head office, Perth</small><span>115.86° E</span></p>
+  <div class="legal small"><span>© 2026 Calder Ridge Resources Ltd, ASX: CDR</span><nav aria-label="Legal"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></nav></div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button id="lbx">Close</button></div>
@@ -621,78 +632,82 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
 function paint(el){
   if(el.dataset.done)return;el.dataset.done=1;
   if(el.dataset.src){const img=new Image();img.alt=el.dataset.alt||'';img.src=el.dataset.src;img.onload=()=>img.classList.add('ok');el.prepend(img);return}
-  const fig=el.closest('figure'),cap=fig&&fig.querySelector('figcaption span');
+  const fig=el.closest('figure'),cap=fig&&fig.querySelector('.ft');
   const l=document.createElement('span');l.className='ph-label';l.textContent=el.dataset.alt||(cap&&cap.textContent)||'Photo';
   el.classList.add('ph');el.append(l);
 }
-const ims=[...document.querySelectorAll('.im')];
-ims.forEach(paint);
+document.querySelectorAll('.im').forEach(paint);
 
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const nav=document.getElementById('nav');
 const setNavH=()=>document.documentElement.style.setProperty('--navh',nav.offsetHeight+'px');setNavH();addEventListener('resize',setNavH);
 
-/* Western Australia: the operations key, and again with the acknowledgement */
+/* Western Australia for Fig. 1 */
 const WA=[[129,-14.88],[129,-31.69],[128.2,-31.72],[127.3,-32.27],[126.2,-32.29],[125,-32.7],[124.3,-32.95],[123.6,-33.9],[122.3,-33.95],[121.9,-33.86],[120.6,-33.9],[119.9,-33.95],[119.3,-34.45],[118.5,-34.75],[117.9,-35.08],[117.3,-35.02],[116.6,-35],[116,-34.84],[115.6,-34.42],[115.0,-34.26],[115.1,-33.6],[115.37,-33.6],[115.7,-33.27],[115.72,-32.6],[115.75,-31.95],[115.7,-31.6],[115.35,-30.9],[115.0,-30.3],[114.97,-29.5],[114.6,-28.78],[114.17,-28.1],[114.0,-27.2],[113.5,-26.6],[113.6,-26.1],[113.18,-26.15],[113.4,-25.3],[113.6,-24.8],[113.4,-24.0],[113.8,-23.5],[113.75,-22.7],[113.95,-21.8],[114.15,-22.4],[114.6,-21.8],[115.3,-21.5],[116.2,-20.95],[116.85,-20.6],[117.5,-20.7],[118.2,-20.35],[118.6,-20.3],[119.1,-19.95],[120.1,-19.9],[121.0,-19.5],[121.5,-18.9],[122.2,-18.0],[122.3,-17.3],[122.9,-16.4],[123.6,-16.3],[123.6,-17.2],[124.0,-16.6],[124.5,-15.9],[124.8,-15.3],[125.4,-14.6],[126.1,-14.2],[126.8,-13.9],[127.4,-14.1],[128.1,-14.8],[128.2,-15.5],[128.5,-14.9]];
 const P=([lon,lat])=>[(lon-112.4)*40.5,(-lat-13.4)*40.5];
-const SITES=[{n:'Mount Ferrell',c:'var(--fe)',ll:[118.4,-22.8],o:'Banjima'},{n:'Ridgeback',c:'var(--au)',ll:[121.9,-30.9],o:'Ngadju'},{n:'Karri Creek',c:'var(--sp)',ll:[116.1,-33.9],o:'Noongar'}];
-function drawWA(svg,full){
-  const d='M'+WA.map(p=>P(p).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';let s=`<path class="land" d="${d}"/>`;
-  for(let lat=-20;lat>=-35;lat-=5){const y=P([0,lat])[1];s+=`<path class="grat" d="M0 ${y}H700" stroke="rgba(13,20,64,.15)"/><text class="dim" x="6" y="${y-8}">${-lat}° S</text>`}
-  if(full){const ph=P([118.6,-20.3]),mf=P(SITES[0].ll),pe=P([115.86,-31.95]);
-    s+=`<path d="M${mf[0]} ${mf[1]}L${ph[0]} ${ph[1]}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="8 6"/><circle cx="${ph[0]}" cy="${ph[1]}" r="6" fill="var(--ink)"/><text x="${ph[0]-14}" y="${ph[1]-14}" class="dim" text-anchor="end">Port Hedland</text>`;
-    s+=`<circle cx="${pe[0]}" cy="${pe[1]}" r="6" fill="var(--ink)"/><text x="${pe[0]+14}" y="${pe[1]+6}" class="dim">Perth</text>`}
-  [[121.47,-30.75,'Kalgoorlie',-22],[115.64,-33.33,'Bunbury',6]].forEach(([lo,la,n,dy])=>{const [x,y]=P([lo,la]);s+=`<circle cx="${x}" cy="${y}" r="6" fill="var(--ink)"/><text x="${x-14}" y="${y+dy}" class="dim" text-anchor="end">${n}</text>`});
-  {const bx=P([129,-24])[0];s+=`<text class="dim" x="${bx+10}" y="${P([0,-21])[1]}">NT</text><text class="dim" x="${bx+10}" y="${P([0,-29])[1]}">SA</text>`;
-   s+=`<g transform="translate(40 ${P([0,-15.6])[1]})"><rect width="162" height="8" fill="none" stroke="var(--ink)" stroke-width="1.5"/><rect width="81" height="8" fill="var(--ink)"/><text class="dim" x="0" y="32">0</text><text class="dim" x="162" y="32" text-anchor="end">400 km</text></g>`;
-   s+=`<g transform="translate(70 ${P([0,-17.6])[1]})"><path d="M0 -26L10 8L0 0L-10 8Z" fill="var(--ink)"/><text class="dim" x="0" y="32" text-anchor="middle">N</text></g>`}
-  const rb=P(SITES[1].ll),kg=P([121.47,-30.75]),kc=P(SITES[2].ll),bb=P([115.64,-33.33]);
-  s+=`<path d="M${rb[0]} ${rb[1]}L${kg[0]} ${kg[1]}M${kc[0]} ${kc[1]}L${bb[0]} ${bb[1]}" stroke="var(--ink)" stroke-width="3" stroke-dasharray="8 6"/>`;
-  SITES.forEach((t,i)=>{const [x,y]=P(t.ll);s+=`<a href="#${['ferrell','ridgeback','karri'][i]}"><rect x="${x-13}" y="${y-13}" width="26" height="26" fill="${t.c}" stroke="#ece6dc" stroke-width="3"/><text x="${x+22}" y="${y+7}">${t.n}</text></a>`});
-  svg.innerHTML=s;
-}
-drawWA(document.getElementById('wamap'),true);
-{const d='M'+WA.map(p=>P(p).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z',pe=P([115.86,-31.95]);document.getElementById('footmap').innerHTML=`<path d="${d}"/><rect x="${pe[0]-14}" y="${pe[1]-14}" width="28" height="28"/>`}
+(()=>{
+  const sites=[['Mount Ferrell','var(--fe)',[118.4,-22.8],'ferrell'],['Ridgeback','var(--au)',[121.9,-30.9],'ridgeback'],['Karri Creek','var(--sp)',[116.1,-33.9],'karri']];
+  const d='M'+WA.map(p=>P(p).map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
+  let s=`<path class="land" d="${d}"/>`;
+  for(let lat=-20;lat>=-35;lat-=5){const y=P([0,lat])[1];s+=`<path d="M0 ${y}H700" stroke="rgba(13,20,64,.15)"/><text class="dim" x="6" y="${y-8}">${-lat}° S</text>`}
+  const bx=P([129,-24])[0];s+=`<text class="dim" x="${bx+10}" y="${P([0,-21])[1]}">NT</text><text class="dim" x="${bx+10}" y="${P([0,-29])[1]}">SA</text>`;
+  s+=`<g transform="translate(40 ${P([0,-15.6])[1]})"><rect width="162" height="8" fill="none" stroke="#0d1440" stroke-width="1.5"/><rect width="81" height="8" fill="#0d1440"/><text class="dim" x="0" y="32">0</text><text class="dim" x="162" y="32" text-anchor="end">400 km</text></g>`;
+  s+=`<g transform="translate(70 ${P([0,-17.6])[1]})"><path d="M0 -26L10 8L0 0L-10 8Z" fill="#0d1440"/><text class="dim" x="0" y="32" text-anchor="middle">N</text></g>`;
+  const link=(a,b)=>{const p=P(a),q=P(b);s+=`<path d="M${p[0]} ${p[1]}L${q[0]} ${q[1]}" stroke="#0d1440" stroke-width="3" stroke-dasharray="8 6"/>`};
+  link([118.4,-22.8],[118.6,-20.3]);link([121.9,-30.9],[121.47,-30.75]);link([116.1,-33.9],[115.64,-33.33]);
+  [[118.6,-20.3,'Port Hedland',-14,'end'],[115.86,-31.95,'Perth',6,'start'],[121.47,-30.75,'Kalgoorlie',-22,'end'],[115.64,-33.33,'Bunbury',6,'end']].forEach(([lo,la,n,dy,anc])=>{const [x,y]=P([lo,la]);s+=`<circle cx="${x}" cy="${y}" r="6" fill="#0d1440"/><text x="${anc==='end'?x-14:x+14}" y="${y+dy}" class="dim" text-anchor="${anc}">${n}</text>`});
+  sites.forEach(([n,c,ll,id])=>{const [x,y]=P(ll);s+=`<a href="#${id}"><rect x="${x-13}" y="${y-13}" width="26" height="26" fill="${c}" stroke="#ece6dc" stroke-width="3"/><text x="${x+22}" y="${y+7}">${n}</text></a>`});
+  document.getElementById('wamap').innerHTML=s;
+})();
+
+/* Fig. 3: depth ticks and the decline, drawn to scale (0.44 units per metre) */
+(()=>{const y=m=>24+m*.44;let t='';for(let m=0;m<=1200;m+=200)t+=`<path class="k" d="M44 ${y(m)}H52"/><text x="40" y="${y(m)+4}" text-anchor="end">${m.toLocaleString('en-AU')}</text>`;
+  document.querySelector('.dsec .ticks').innerHTML=t;
+  let d=`M126 ${y(210)}`,k=0;for(let m=270;m<=1140;m+=70){d+=`L${k%2?126:110} ${y(Math.min(m,1140))}`;k++}
+  document.getElementById('decline').setAttribute('d',d)})();
 
 const menu=document.getElementById('menu');menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
 nav.querySelectorAll('ul a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded',false)}));
-/* hero: the long line runs the full measure */
-(()=>{const h=document.querySelector('.hero h1'),l=h.lastElementChild;const fit=()=>{h.style.fontSize='';const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw>0&&innerWidth>700)h.style.fontSize=(fs*w/lw*.995)+'px'};l.style.display='inline-block';document.fonts.ready.then(fit);addEventListener('resize',fit)})();
-/* current section in the nav */
-const links=[...nav.querySelectorAll('ul a')].filter(a=>a.getAttribute('href').length>1);
-const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
-function navCur(){const y=innerHeight*.45;let hit=null;secs.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=y&&r.bottom>y)hit=i});links.forEach((a,i)=>a.classList.toggle('cur',i===hit))}
 
-/* hero: the plan rises in bench steps, once */
+/* hero: the long line runs the full measure */
+(()=>{const h=document.querySelector('.hero h1'),l=h.lastElementChild;l.style.display='inline-block';
+  const fit=()=>{h.style.fontSize='';if(innerWidth<=700)return;const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw>0)h.style.fontSize=(fs*w/lw*.995)+'px'};
+  document.fonts.ready.then(fit);addEventListener('resize',fit)})();
+/* hero: the picture rises in bench steps, once */
 (()=>{const p=document.querySelector('.hero-img');if(reduce)return;const n=7,t0=performance.now()+200,dur=1500;
   const f=now=>{const t=Math.min(1,Math.max(0,(now-t0)/dur));let pts=['0% 100%'];
     for(let i=0;i<n;i++){const local=Math.min(1,Math.max(0,t*1.6-i*.09)),y=Math.pow(1-local,3)*100;pts.push(`${(i/n*100).toFixed(2)}% ${y.toFixed(2)}%`,`${((i+1)/n*100).toFixed(2)}% ${y.toFixed(2)}%`)}
     pts.push('100% 100%');p.style.clipPath=`polygon(${pts.join(',')})`;if(t<1)requestAnimationFrame(f);else p.style.clipPath=''};
   requestAnimationFrame(f)})();
 
-/* plate wipes */
+/* picture wipes */
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>reduce?el.classList.add('in'):rio.observe(el));
 
-/* a day on site: scroll moves the clock; the plan's light and activity change with it */
-const day=document.getElementById('day'),pics=[...document.querySelectorAll('#stage .im')],items=[...document.querySelectorAll('#tl li')],clock=document.getElementById('clock');
+/* a day on site: scroll moves the clock along the hours */
+const day=document.getElementById('day'),pics=[...document.querySelectorAll('#stage .im')],items=[...document.querySelectorAll('#tl li')],clock=document.getElementById('clock'),hrs=[...document.querySelectorAll('.hours span')],hm=document.getElementById('hm');
 let cur=-1;
 function dayTick(){
-  const r=day.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(day.offsetHeight-innerHeight)));
-  const N=items.length,idx=Math.min(N-1,Math.floor(p*N));
-  document.getElementById('dayp').style.width=(p*100)+'%';
-  if(idx!==cur){cur=idx;items.forEach((li,k)=>li.classList.toggle('on',k===idx));pics.forEach((im,k)=>im.classList.toggle('on',k===idx));clock.textContent=items[idx].dataset.t}
+  if(innerWidth<=900)return;
+  const r=day.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(day.offsetHeight-innerHeight))),N=items.length,idx=Math.min(N-1,Math.floor(p*N));
+  if(idx!==cur){cur=idx;items.forEach((li,k)=>li.classList.toggle('on',k===idx));pics.forEach((im,k)=>im.classList.toggle('on',k===idx));hrs.forEach((h,k)=>h.classList.toggle('on',k===idx));clock.textContent=items[idx].dataset.t;hm.style.setProperty('--x',hrs[idx].style.left)}
 }
+hrs[0].classList.add('on');
+
+/* nav: dark over dark sections, current section underlined */
 const darks=[...document.querySelectorAll('[data-dark]')];
 function navTone(){const y=nav.offsetHeight+1;nav.classList.toggle('dark',darks.some(d=>{const r=d.getBoundingClientRect();return r.top<=y&&r.bottom>y}))}
+const links=[...nav.querySelectorAll('ul a')].filter(a=>a.getAttribute('href').length>1&&!a.closest('.mc'));
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+function navCur(){const y=innerHeight*.45;let hit=null;secs.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=y&&r.bottom>y)hit=i});links.forEach((a,i)=>a.classList.toggle('cur',i===hit))}
 let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{dayTick();navTone();navCur();ticking=false})},{passive:true});
 addEventListener('resize',dayTick);dayTick();navTone();navCur();
 
 /* field notes viewer */
 const lb=document.getElementById('lb');let last;
 const openLb=f=>{last=f;lb.querySelectorAll('.im,figcaption').forEach(n=>n.remove());
-  const src=f.querySelector('.im'),big=document.createElement('div');big.className='im';Object.assign(big.dataset,src.dataset);delete big.dataset.done;
-  lb.prepend(f.querySelector('figcaption').cloneNode(true));lb.prepend(big);lb.classList.add('open');paint(big);document.getElementById('lbx').focus()};
+  const src=f.querySelector('.im'),big=document.createElement('div');big.className='im dk';Object.assign(big.dataset,src.dataset);delete big.dataset.done;
+  lb.prepend(f.querySelector('figcaption').cloneNode(true));lb.prepend(big);paint(big);lb.classList.add('open');document.getElementById('lbx').focus()};
 document.querySelectorAll('.frames figure').forEach(f=>{f.addEventListener('click',()=>openLb(f));f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(f)}})});
 const closeLb=()=>{lb.classList.remove('open');last&&last.focus()};
 document.getElementById('lbx').onclick=closeLb;lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
