@@ -17,9 +17,9 @@
   --ink:#0d1440;
   --ink-2:#2b3050;
   --rule:rgba(13,20,64,.22);
-  --rule-d:rgba(246,242,235,.28);
+  --rule-d:rgba(246,242,235,.3);
   --fe:#9b2f1f;                   /* Mount Ferrell, hematite */
-  --au:#b5821c;                   /* Ridgeback, gold */
+  --au:#a8771a;                   /* Ridgeback, gold */
   --sp:#7f9a8c;                   /* Karri Creek, spodumene */
   --gr:#2f4239;                   /* closure: the spodumene sage, taken down to ground */
   --hv:#f6c40c;                   /* hi-vis: safety and the community line, nothing else */
@@ -28,9 +28,9 @@
   --body:'Instrument Sans',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --pad:clamp(20px,4vw,58px);
-  --s1:clamp(72px,8vw,112px);
-  --s2:clamp(32px,3.4vw,48px);
-  --s3:24px;
+  --s1:clamp(64px,7vw,96px);    /* between sections */
+  --s2:clamp(28px,3vw,44px);    /* inside a section */
+  --s3:20px;
   --navh:60px;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
@@ -44,29 +44,31 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .wrap{padding-inline:var(--pad)}
 
-/* one 12-column grid; columns 1–2 are the rail */
+/* one 12-column grid; columns 1–2 carry the section number and nothing else */
 .row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
-.m{grid-column:1/3}.c{grid-column:3/13}.c1{grid-column:3/8}.c2{grid-column:8/13}.full{grid-column:1/13}
+.m{grid-column:1/3}.c{grid-column:3/13}.c1{grid-column:3/8}.c2{grid-column:8/13}
 @media(max-width:900px){.m,.c,.c1,.c2{grid-column:1/-1}}
 
-/* type, six sizes: 150 title / 112 closure / 52 section / 26 lead / 17 text / 14 small; mono 12–13 for IDs, figures in tables, coordinates */
-.d1,.d2,.d3,.fig-n,.logo,.mark,.dno{font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118}
+/* type, five steps: 150 title (hero and closure) / 64 section / 28 sub-head / 17 text / 14 small.
+   The wide display cut only at 64 and above, and for figures. Mono only for IDs, coordinates and the ticker. */
+.d1,.d2,.fig-n,.logo,.mark{font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118}
 .d1{font-weight:700;font-size:clamp(48px,9.6vw,150px);line-height:1;letter-spacing:-.03em;margin-left:-.05em}
-.d2{font-weight:700;font-size:clamp(34px,3.6vw,52px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance;margin-left:-.03em}
-.d3{font-weight:700;font-size:clamp(24px,2vw,30px);line-height:1.1;letter-spacing:-.015em}
-.fig-n{font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums;line-height:.9}
-.fig-n small{font-size:.42em;letter-spacing:0;margin-left:.12em;font-weight:600}
+.d2{font-weight:700;font-size:clamp(40px,4.4vw,64px);line-height:1.02;letter-spacing:-.025em;text-wrap:balance;margin-left:-.035em}
+.h3{font:600 clamp(22px,2vw,28px)/1.2 var(--body);letter-spacing:-.01em}
+.fig-n{font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums;line-height:.9;white-space:nowrap}
+.fig-n small{font-size:.5em;letter-spacing:0;margin-left:.1em;font-weight:600}
 .lead{font-size:clamp(20px,1.8vw,26px);line-height:1.38;font-weight:500;letter-spacing:-.005em}
+.intro{font-size:19px;line-height:1.5;max-width:46ch}
 .small{font-size:14px;line-height:1.5;color:var(--ink-2)}
-.co,.mono{font-family:var(--mono);font-size:13px;letter-spacing:-.01em;white-space:nowrap}
-.lab{display:block;font:500 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.lab{display:block;font:600 14px/1.35 var(--body);color:var(--ink-2)}
+.mono,.co{font-family:var(--mono);font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+.tn{font-variant-numeric:tabular-nums}
 
-/* section markers: number and name in the rail, ruled above on paper; nothing repeated below */
+/* section heads: a rule, the number in the rail, one heading size */
 .sec{padding-top:var(--s1)}
-.mk{border-top:1px solid var(--ink);padding-top:12px;margin-bottom:var(--s2);align-items:baseline}
-.dark .mk,.mk.nr{border-top:0;padding-top:0}
-.mk .m{display:flex;gap:12px;align-items:baseline;font:600 15px var(--body)}
-.mk .m .mono{font-weight:500}
+.sh{border-top:1px solid var(--ink);padding-top:16px;margin-bottom:var(--s2);align-items:baseline}
+.dark .sh{border-top:0;padding-top:0}
+.sh .m{font:500 14px var(--mono)}
 
 /* image slots */
 .im{position:relative;overflow:hidden}
@@ -77,7 +79,7 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .ph-label{position:absolute;left:16px;right:16px;bottom:14px;font:500 13px/1.4 var(--body);color:var(--ink-2)}
 .ph-label::before{content:"Photo: ";color:var(--ink)}
 .dk .ph-label{color:rgba(246,242,235,.75)}.dk .ph-label::before{color:var(--paper)}
-.register .ph-label,.cards .ph-label,.stages .ph-label,.news .ph-label,.art .ph-label,.lb .ph-label{display:none}
+.notesgrid .ph-label,.cards .ph-label,.stages .ph-label,.news .ph-label,.art .ph-label,.lb .ph-label{display:none}
 
 /* figures */
 .fig svg{--k:1;display:block;width:100%;height:auto;overflow:visible}
@@ -89,65 +91,64 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .cap{font-size:15px;line-height:1.5;color:var(--ink-2)}
 .cap b{display:block;font-weight:600;color:var(--ink);margin-bottom:4px}
 
-/* links and the one button: arrows, and a ruled cell like the header's */
-.go{display:inline-flex;gap:8px;font-weight:600;font-size:16px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;white-space:nowrap}
-.go::before{content:"→";text-decoration:none;display:inline-block}
-.go:hover{text-decoration-thickness:2px}
-.btn{display:inline-flex;align-items:center;gap:14px;font:600 16px var(--body);padding:14px 20px;border:1px solid currentColor;text-decoration:none;transition:background .2s,color .2s}
-.btn::after{content:"→"}
-.btn:hover{background:var(--ink);color:var(--paper)}
+/* one link style: an arrow, then the words underlined */
+.go{display:inline-flex;gap:10px;align-items:baseline;font-weight:600;font-size:16px;text-decoration:none;white-space:nowrap}
+.go::before{content:"→"}
+.go span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.go:hover span{text-decoration-thickness:2px}
 
-/* ---------- header: the sheet index. Numbered like the page, the current section filled ---------- */
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:stretch;height:var(--navh);padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--ink);transition:background-color .3s,color .3s}
+/* ---------- header: the sheet's title strip; every rule on a column line ---------- */
+.nav{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;height:var(--navh);padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--ink);transition:background-color .3s,color .3s}
 .nav.dark{background:var(--nbg,var(--ink));color:var(--paper);border-bottom-color:var(--rule-d)}
-.logo{display:flex;align-items:center;gap:12px;padding-right:24px;text-decoration:none;font-weight:800;font-size:17px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.logo{grid-column:1/3;display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:17px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
 .logo svg,.mark svg{width:30px;height:20px;flex:none;fill:currentColor}
-.nav ul{display:flex;list-style:none;padding:0;height:100%}
-.nav .cell{display:flex;align-items:center;gap:8px;height:100%;border-left:1px solid var(--rule);padding:0 16px;text-decoration:none;white-space:nowrap;font-weight:500;font-size:15px;transition:background .2s,color .2s}
+.nav nav{grid-column:3/9}
+.nav ul{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:24px;list-style:none;padding:0;height:100%}
+.nav .cell{display:flex;align-items:center;height:100%;border-left:1px solid var(--rule);padding:0 0 0 12px;margin-right:-24px;text-decoration:none;white-space:nowrap;font-weight:500;font-size:15px;transition:background .2s,color .2s}
 .nav.dark .cell{border-left-color:var(--rule-d)}
-.nav .cell .mono{font-size:12px;opacity:.8}
 .nav ul .cell:hover{background:rgba(13,20,64,.06)}
 .nav.dark ul .cell:hover{background:rgba(246,242,235,.08)}
 .nav .cell.cur{background:var(--ink);color:var(--paper)}
 .nav.dark .cell.cur{background:var(--paper);color:var(--ink)}
-.nav .tick{margin-left:auto;border-right:1px solid var(--rule);font:500 13px var(--mono);gap:10px}
-.nav.dark .tick{border-right-color:var(--rule-d)}
-.menu{display:none;margin-left:auto;background:none;border:0;border-left:1px solid var(--rule);color:inherit;font:600 15px var(--body);padding:0 0 0 16px;cursor:pointer}
+.nav .tick{grid-column:9/13;margin-right:0;gap:14px;font:500 13px var(--mono)}
+.nav .tick .up{opacity:.9}
+.nav .tick .t{opacity:.7;margin-left:auto}
+.menu{display:none;background:none;border:0;border-left:1px solid var(--rule);color:inherit;font:600 15px var(--body);padding:0 0 0 16px;cursor:pointer}
 .nav.dark .menu{border-left-color:var(--rule-d)}
-@media(max-width:1180px){.nav .tick{display:none}}
+@media(max-width:1180px){.nav .tick .t{display:none}}
 @media(max-width:960px){
+  .nav{display:flex}.logo{flex:1;font-size:15px}
   .menu{display:flex;align-items:center}
+  .nav .tick{display:none}
   .nav nav{position:absolute;top:100%;left:0;right:0}
-  .nav ul{display:none;flex-direction:column;height:auto;background:var(--bone);border-bottom:1px solid var(--ink);padding:6px var(--pad) 14px}
+  .nav ul{display:none;grid-template-columns:1fr;height:auto;background:var(--bone);border-bottom:1px solid var(--ink);padding:6px var(--pad) 14px}
   .nav.dark ul{background:var(--nbg,var(--ink))}
-  .nav.open ul{display:flex}.nav ul .cell{border-left:0;padding:12px 0;font-size:18px}
+  .nav.open ul{display:grid}.nav ul .cell{border-left:0;padding:12px 0;margin:0;font-size:18px}
   .nav ul .cell.cur{background:none;color:inherit;text-decoration:underline;text-underline-offset:6px}
 }
-@media(max-width:400px){.logo span{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding-block:clamp(36px,5vw,64px) 0}
+.hero{padding-top:clamp(36px,5vw,64px)}
 .hero h1 span{display:block;white-space:nowrap}
 .hero h1 span:last-child{display:inline-block}
 .hlead{margin-top:var(--s2);align-items:end}
 .hlead .lead{max-width:44ch}
-.hlead .links{display:flex;gap:28px;flex-wrap:wrap;padding-bottom:6px}
-/* the title block: safety first, the year's production as a legend beside it */
+.hlead .links{display:flex;gap:12px 32px;flex-wrap:wrap;padding-bottom:6px}
+/* the title block: safety first and largest, the year's production beside it at figure scale */
 .tblock{margin-top:var(--s2);border-block:2px solid var(--ink)}
-.tblock>div{padding:14px 0 18px}
-.tblock .m{padding-right:16px}
-.tblock .m .lab{color:var(--ink-2)}
-.trifr{background:var(--hv);padding:14px 20px 18px!important;display:grid;grid-template-columns:auto 1fr;column-gap:24px;align-items:end}
-.trifr .lab{grid-column:1/-1;margin-bottom:6px}
-.trifr .fig-n{font-size:clamp(72px,7.4vw,112px)}
-.trifr p{font-size:16px;line-height:1.4;max-width:24ch;padding-bottom:6px}
-.prod{width:100%;border-collapse:collapse;align-self:center;font-variant-numeric:tabular-nums}
-.prod th,.prod td{text-align:left;padding:9px 0;border-bottom:1px solid var(--rule);font-size:16px}
-.prod tr:last-child th,.prod tr:last-child td{border-bottom:0}
-.prod th{font-weight:400;color:var(--ink-2)}
-.prod td{font-weight:600}
-.prod td:last-child{text-align:right;font:500 14px var(--mono);color:var(--ink)}
-@media(max-width:900px){.hlead .links{margin-top:20px}.tblock .m{padding-bottom:0}.trifr{margin-bottom:8px;grid-template-columns:1fr}.trifr p{max-width:none}.prod td:nth-child(2){display:none}.prod td{white-space:nowrap}}
+.trifr{grid-column:1/7;background:var(--hv);padding:16px 20px 20px;display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:end}
+.trifr .lab{grid-column:1/-1;color:var(--ink);margin-bottom:8px}
+.trifr .fig-n{font-size:clamp(76px,7.6vw,116px)}
+.trifr p{font-size:16px;line-height:1.4;max-width:26ch;padding-bottom:8px}
+.prod{grid-column:7/13;list-style:none;padding:0;align-self:center}
+.prod li{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.prod li:last-child{border-bottom:0}
+.prod .what{font-size:16px}
+.prod .what>span:not(.sw){display:block;font-size:14px;color:var(--ink-2);margin-left:18px}
+.prod .fig-n{font-size:clamp(30px,2.8vw,40px)}
+.hnote{margin-top:12px}
+@media(max-width:900px){.trifr,.prod{grid-column:1/-1}.trifr{grid-template-columns:1fr;margin-top:0}.hlead .links{margin-top:18px;flex-direction:column;gap:10px}}
+@media(max-width:600px){.hero .d1{font-stretch:75%;font-variation-settings:'wdth' 75;font-size:17vw!important}.hero h1 span{white-space:normal}}
 
 /* ---------- operations ---------- */
 .mapfig svg{display:block;width:100%}
@@ -162,7 +163,7 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .legend{list-style:none;padding:0;margin-top:18px;display:grid;gap:8px}
 .legend li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.35;color:var(--ink-2)}
 .legend i{height:14px;margin-top:2px;border:1px solid var(--ink);background:repeating-linear-gradient(-45deg,var(--c) 0 2px,transparent 2px 5px)}
-.ops .c2 .lead{margin-bottom:var(--s3)}
+.ops .c2 .intro{margin-bottom:var(--s3)}
 .ledger{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:16px;font-variant-numeric:tabular-nums}
 .ledger th,.ledger td{text-align:left;padding:10px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
 .ledger thead th{font-weight:600;font-size:15px}
@@ -171,37 +172,33 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .sw{display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px;box-shadow:inset 0 0 0 1px rgba(13,20,64,.35)}
 .sw.o{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
 .rules{list-style:none;padding:0;margin-top:var(--s2);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;border-top:1px solid var(--ink)}
-.rules li{padding:14px 0 0}
+.rules li{padding-top:12px}
 .rules b{display:block;font-weight:600;font-size:17px;margin-bottom:2px}
-.rules span{color:var(--ink-2);font-size:15px}
-/* three leases, side by side on the grid */
-.leases{margin-top:var(--s1);border-top:1px solid var(--ink);padding-top:12px}
-.leases .mk2{grid-column:1/13;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--s3);font:600 15px var(--body)}
-.lease{grid-column:span 4;display:flex;flex-direction:column}
-.lease h3{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
-.lease h3 i{width:12px;height:12px;background:var(--c);flex:none;margin-left:-24px;position:relative;top:-.1em}
+.rules span{display:block;color:var(--ink-2);font-size:15px;line-height:1.5}
+.leases{margin-top:var(--s1)}
+.lease{grid-column:span 4;display:flex;flex-direction:column;border-top:1px solid var(--ink);padding-top:14px}
+.lease h3{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.lease h3 i{width:12px;height:12px;background:var(--c);flex:none}
 .lease .where{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink-2);margin-bottom:14px}
 .lease .im{aspect-ratio:4/3;margin-bottom:16px}
-.lease p{font-size:16px;margin-bottom:16px}
-.lease .stat{margin-top:auto;border-top:1px solid var(--rule);padding-top:12px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
-.lease .stat .fig-n{font-size:clamp(30px,2.8vw,40px)}
-.lease .stat span{font-size:14px;color:var(--ink-2);text-align:right;max-width:20ch}
-@media(max-width:900px){.lease{grid-column:1/-1;margin-bottom:var(--s2)}.lease h3 i{margin-left:0}}
-/* one lease in depth */
+.lease p{font-size:16px;margin-bottom:18px}
+.lease .stat{margin-top:auto;border-top:1px solid var(--rule);padding-top:12px}
+.lease .stat .fig-n{display:block;font-size:clamp(34px,3vw,44px);margin-bottom:6px}
+.lease .stat span{font-size:15px;color:var(--ink-2)}
+@media(max-width:900px){.lease{grid-column:1/-1;margin-bottom:var(--s2)}}
 .deep{margin-top:var(--s1)}
-.deep .mk2{border-top:1px solid var(--ink);padding-top:12px;margin-bottom:var(--s3);align-items:baseline}
+.deep .dh{border-top:1px solid var(--ink);padding-top:16px;margin-bottom:var(--s3)}
 .deep .split{align-items:start}
 .deep .im{aspect-ratio:4/5}
 .deep .stick{position:sticky;top:calc(var(--navh) + 24px)}
-.deep .readout{display:block;margin-top:18px;font-size:clamp(34px,3vw,46px)}
+.deep .readout{display:block;margin-top:16px;font-size:clamp(34px,3vw,44px)}
 @media(max-width:900px){.deep .stick{position:static;margin-bottom:var(--s3)}.deep .fig{margin-top:var(--s3)}}
 
 /* ---------- site life ---------- */
-.day{background:var(--ink);color:var(--paper);padding-block:var(--s1);margin-top:var(--s1)}
-.day .cap,.day .lab{color:rgba(246,242,235,.82)}
+.day{background:var(--ink);color:var(--paper);padding-block:var(--s1) var(--s2);margin-top:var(--s1)}
+.day .cap{color:rgba(246,242,235,.82)}
 .dscroll{overflow-x:auto;padding-inline:var(--pad)}
 .track{position:relative;min-width:1100px}
-.dayaxis{align-items:center}
 .tax{position:relative;height:40px}
 .tax .line{position:absolute;left:0;right:0;top:22px;height:2px;background:var(--paper)}
 .tax .sun{position:absolute;left:0;right:0;top:25px;height:6px}
@@ -220,34 +217,31 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .cards .tm{font:500 13px var(--mono);display:block;margin-bottom:6px}
 .cards h3{font:600 18px/1.25 var(--body);margin-bottom:6px}
 .cards p{font-size:15px;line-height:1.5;color:rgba(246,242,235,.9)}
-.daynote{margin-top:12px}
+.day .sh .cap{margin-top:14px}
 
-/* ---------- field notes: straight into the register ---------- */
-.register{list-style:none;padding:0;border-top:2px solid var(--ink)}
-.register li{border-bottom:1px solid var(--rule)}
-.register figure{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start;padding:12px 0;cursor:zoom-in;outline-offset:4px}
-.register .im{grid-column:1/3;aspect-ratio:2/1;transition:filter .2s}
-.register figure:hover .im{filter:brightness(.95)}
-.register figure:hover .ft{text-decoration:underline;text-underline-offset:4px}
-.register .fn{grid-column:3/4;font:500 13px var(--mono);display:flex;align-items:center;gap:8px;padding-top:3px}
-.register .fn i{width:9px;height:9px;background:var(--c);flex:none}
-.register .fd{grid-column:4/6;font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.register .ft{grid-column:6/11;font-size:18px;font-weight:500;line-height:1.3}
-.register .ft small{display:block;font-size:15px;font-weight:400;color:var(--ink-2);margin-top:2px}
-.register .fs{grid-column:11/13;font-size:15px;color:var(--ink-2)}
-.notes .more{margin-top:18px;display:flex;justify-content:flex-end}
-@media(max-width:900px){.register figure{grid-template-columns:120px 1fr;row-gap:2px}.register .im{grid-column:1;grid-row:span 5}.register .fn,.register .fd,.register .ft,.register .fs{grid-column:2}}
+/* ---------- field notes: a specimen tray ---------- */
+.notesgrid{list-style:none;padding:0}
+.notesgrid li{grid-column:span 3;border-top:4px solid var(--c);padding-top:12px}
+.notesgrid figure{cursor:zoom-in;outline-offset:6px}
+.notesgrid .fn{display:block;font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118;font-weight:700;font-size:clamp(30px,2.8vw,40px);letter-spacing:-.02em;line-height:1;margin-bottom:14px}
+.notesgrid .im{aspect-ratio:4/3;margin-bottom:14px;transition:filter .2s}
+.notesgrid figure:hover .im{filter:brightness(.95)}
+.notesgrid figure:hover .ft{text-decoration:underline;text-underline-offset:4px}
+.notesgrid .ft{display:block;font-size:18px;font-weight:600;line-height:1.3;margin-bottom:6px}
+.notesgrid .fm{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.notes .more{margin-top:var(--s2);display:flex;justify-content:flex-end}
+@media(max-width:900px){.notesgrid li{grid-column:span 6;margin-bottom:var(--s2)}}
+@media(max-width:560px){.notesgrid li{grid-column:1/-1}}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(13,20,64,.97);color:var(--paper);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vw}
 .lb.open{display:flex}
 .lb .im{width:min(1200px,100%);aspect-ratio:3/2;max-height:76vh}
 .lb .lbc{width:min(1200px,100%);display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
-.lb .lbc i{display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px}
 .lb button{position:absolute;top:18px;right:var(--pad);background:none;color:var(--paper);border:1.5px solid currentColor;border-radius:2px;padding:9px 16px;font:600 14px var(--body);cursor:pointer}
 
 /* ---------- closure: the page's second title ---------- */
-.closure{background:var(--gr);color:var(--paper);padding-block:var(--s1);margin-top:var(--s1)}
-.closure .cap{color:rgba(246,242,235,.82)}.closure .cap b{color:var(--paper)}
-.closure h2{font-size:clamp(44px,7.4vw,112px);line-height:1;max-width:13ch;margin-bottom:var(--s2)}
+.closure{background:var(--gr);color:var(--paper);padding-block:var(--s1) var(--s2);margin-top:var(--s1)}
+.closure .cap{color:rgba(246,242,235,.84)}.closure .cap b{color:var(--paper)}
+.closure .d1{font-size:clamp(44px,7.6vw,116px);line-height:1;max-width:13ch;margin-bottom:var(--s2)}
 .stages{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px}
 .stages .fr{aspect-ratio:4/3}
 .stages .future{border:1.5px dashed rgba(246,242,235,.55);display:flex;align-items:flex-end;padding:14px;font-size:15px;line-height:1.4;color:rgba(246,242,235,.82)}
@@ -262,34 +256,35 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .stages span{display:block;font-size:15px;color:rgba(246,242,235,.86)}
 .tagx{display:inline-block;padding:1px 7px;border:1px solid currentColor;font:600 12px/1.5 var(--body)}
 .clfoot{margin-top:var(--s2);align-items:start}
-.facts{border-top:2px solid var(--paper);font-variant-numeric:tabular-nums}
-.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule-d);font-size:16px}
-.facts span{color:rgba(246,242,235,.86)}
-.facts b{font-weight:600}
+.facts{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:24px;border-top:2px solid var(--paper)}
+.facts li{padding:12px 0 14px;border-bottom:1px solid var(--rule-d)}
+.facts .fig-n{display:block;font-size:clamp(30px,2.8vw,40px);margin-bottom:6px}
+.facts span{font-size:15px;color:rgba(246,242,235,.86)}
 @media(max-width:900px){.stages{grid-template-columns:1fr 1fr;row-gap:28px}.stages li:nth-child(2) .node::before{right:0}.facts{margin-top:var(--s3)}}
 
-/* ---------- news: a tight list ---------- */
-.nlist{list-style:none;padding:0;border-top:2px solid var(--ink)}
-.nlist li{border-bottom:1px solid var(--rule)}
-.nlist a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start;padding:16px 0;text-decoration:none;font-variant-numeric:tabular-nums}
-.nlist .dt{grid-column:1/3;font-size:15px;color:var(--ink-2)}
-.nlist .site{grid-column:3/5;font-size:15px;color:var(--ink-2)}
-.nlist .txt{grid-column:5/11}
-.nlist h3{font-size:19px;line-height:1.3;font-weight:600}
-.nlist .d{color:var(--ink-2);font-size:16px;margin-top:2px}
-.nlist .code{grid-column:11/13;text-align:right;font-size:15px;color:var(--ink-2)}
-.nlist a:hover h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
-.nlist .lead-item .txt{grid-column:5/9}
-.nlist .lead-item h3{font-size:26px;line-height:1.2;letter-spacing:-.01em}
-.nlist .lead-item .im{grid-column:9/13;aspect-ratio:3/2}
-.invline{display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline;margin-top:18px;font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+/* ---------- news: a broadsheet ---------- */
+.nlead{text-decoration:none;align-items:start;margin-bottom:var(--s2)}
+.nlead .im{grid-column:1/8;aspect-ratio:16/9}
+.nlead .txt{grid-column:8/13;border-top:2px solid var(--ink);padding-top:12px}
+.nlead .meta{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:var(--ink-2);margin-bottom:18px;font-variant-numeric:tabular-nums}
+.nlead h3{font:600 clamp(28px,2.8vw,40px)/1.12 var(--body);letter-spacing:-.015em;margin-bottom:14px}
+.nlead p{color:var(--ink-2);margin-bottom:18px}
+.nlead:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.nthree{list-style:none;padding:0}
+.nthree li{grid-column:span 4;border-top:1px solid var(--ink);padding-top:12px}
+.nthree a{display:block;text-decoration:none}
+.nthree .meta{display:flex;justify-content:space-between;gap:12px;font-size:15px;color:var(--ink-2);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.nthree h3{font:600 21px/1.28 var(--body);margin-bottom:8px}
+.nthree p{font-size:16px;color:var(--ink-2)}
+.nthree a:hover h3{text-decoration:underline;text-underline-offset:4px}
+.invline{display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline;margin-top:var(--s2);padding-top:14px;border-top:1px solid var(--rule);font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .invline b{color:var(--ink);font-weight:600}
 .invline .go{margin-left:auto;color:var(--ink)}
-@media(max-width:900px){.nlist a{grid-template-columns:1fr 1fr;gap:4px 16px}.nlist .dt,.nlist .site,.nlist .txt,.nlist .lead-item .txt{grid-column:auto}.nlist .txt,.nlist .lead-item .txt,.nlist .lead-item .im{grid-column:1/-1}.nlist .code{display:none}}
+@media(max-width:900px){.nlead .im,.nlead .txt,.nthree li{grid-column:1/-1}.nlead .im{margin-bottom:16px}.nthree li{margin-bottom:var(--s3)}}
 
 /* ---------- careers ---------- */
 .careers{padding-bottom:var(--s1)}
-.careers .c2 .lead{margin-bottom:22px}
+.careers .c2 .intro{margin-bottom:18px}
 .roster{width:100%;border-collapse:collapse;border-top:2px solid var(--ink)}
 .roster th{text-align:left;padding:10px 0;border-bottom:1px solid var(--rule);font-weight:600;font-size:14px}
 .roster td{padding:13px 0;border-bottom:1px solid var(--rule);vertical-align:middle;font-size:16px;font-variant-numeric:tabular-nums}
@@ -301,34 +296,32 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .rs i.o{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
 @media(max-width:900px){.roster th:nth-child(2),.roster td:nth-child(2){display:none}.rs{display:none}}
 
-/* ---------- footer: the acknowledgement, then the drawing's title block, framed ---------- */
+/* ---------- footer: the acknowledgement, then the sheet's title block on the page grid ---------- */
 footer{background:var(--ink);color:var(--paper);padding-bottom:var(--pad)}
 .art{aspect-ratio:7/1}
 .ack{padding-block:var(--s2) var(--s1)}
-.ack .cap{color:rgba(246,242,235,.8)}.ack .cap b{color:var(--paper)}
+.ack .cap{color:rgba(246,242,235,.82)}.ack .cap b{color:var(--paper)}
 .ackp{font:500 clamp(26px,2.6vw,38px)/1.28 var(--body);letter-spacing:-.015em;max-width:38ch;text-wrap:balance}
-.tb{border:2px solid var(--paper)}
-.tb .row{column-gap:0}
+.tb{border:1px solid rgba(246,242,235,.5)}
 .tb .row+.row{border-top:1px solid var(--rule-d)}
-.tb .row>div{padding:14px 16px 18px;border-left:1px solid var(--rule-d);min-width:0}
+.tb .row>div{padding:16px 8px 20px 16px;border-left:1px solid var(--rule-d);min-width:0}
 .tb .row>div:first-child{border-left:0}
-.tb .lab{color:rgba(246,242,235,.72);margin-bottom:12px}
-.tb .x3{grid-column:span 3}.tb .x4{grid-column:span 4}.tb .x5{grid-column:span 5}.tb .x12{grid-column:span 12}
-.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:16px;line-height:1;text-transform:uppercase;white-space:nowrap}
-.orient{display:flex;align-items:flex-end;gap:18px;margin-top:22px}
-.orient svg{display:block}
-.tb .phone{display:flex;align-items:center;gap:14px;font:500 clamp(28px,2.6vw,38px)/1.1 var(--body);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.tb .lab{color:rgba(246,242,235,.75);margin-bottom:10px}
+.x2{grid-column:span 2}.x3{grid-column:span 3}.x5{grid-column:span 5}.x7{grid-column:span 7}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:15px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.tb .phone{display:flex;align-items:center;gap:14px;font:600 clamp(28px,2.6vw,38px)/1.1 var(--body);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .tb .phone i{width:14px;height:14px;background:var(--hv);flex:none}
 .tb p,.tb address{font-size:15px;line-height:1.5;color:rgba(246,242,235,.88);font-style:normal}
-.tb ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:15px}
+.tb ul{list-style:none;padding:0;display:grid;gap:5px;font-size:15px}
 footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underline-offset:4px}
-.tb .dno{font-weight:700;font-size:clamp(28px,2.6vw,38px);letter-spacing:-.02em;line-height:1;color:var(--paper)}
-.rev,.sig{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
-.rev th{text-align:left;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:rgba(246,242,235,.72);padding:0 10px 6px 0}
-.rev td,.sig td{padding:5px 10px 5px 0;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.9);white-space:nowrap}
-.sig td:first-child{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:rgba(246,242,235,.72);width:34%}
-.legalrow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:14px;color:rgba(246,242,235,.8)}
-.legalrow nav{display:flex;gap:22px}
+.nb{white-space:nowrap}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.tbl td{padding:4px 10px 4px 0;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.88);vertical-align:baseline}
+.tbl tr:first-child td{border-top:0}
+.tbl td:first-child{color:rgba(246,242,235,.7);width:28%}
+.tbl .mono{font-size:12px}
+.legal{font-size:14px;color:rgba(246,242,235,.82)}
+.legal nav{display:flex;gap:20px;margin-top:8px}
 @media(max-width:900px){.tb .row>div{grid-column:1/-1!important;border-left:0}.tb .row>div+div{border-top:1px solid var(--rule-d)}.art{aspect-ratio:3/1}}
 
 /* motion */
@@ -350,43 +343,40 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
 <header class="nav" id="nav">
   <a class="logo" href="#top" aria-label="Calder Ridge home">
     <svg viewBox="0 0 30 20" aria-hidden="true"><path d="M0 0H30V4H27V8H24V12H21V16H18V20H12V16H9V12H6V8H3V4H0Z"/></svg>
-    <span>Calder Ridge</span>
+    Calder Ridge
   </a>
   <nav aria-label="Primary"><ul id="navlist">
-    <li><a class="cell" href="#operations" data-key="ops"><span class="mono">01</span>Operations</a></li>
-    <li><a class="cell" href="#day" data-key="day"><span class="mono">02</span>Site life</a></li>
-    <li><a class="cell" href="#notes" data-key="notes"><span class="mono">03</span>Field notes</a></li>
-    <li><a class="cell" href="#land" data-key="land"><span class="mono">04</span>Closure</a></li>
-    <li><a class="cell" href="#news" data-key="news"><span class="mono">05</span>News</a></li>
-    <li><a class="cell" href="#careers" data-key="careers"><span class="mono">06</span>Careers</a></li>
+    <li><a class="cell" href="#operations" data-key="ops">Operations</a></li>
+    <li><a class="cell" href="#day" data-key="day">Site life</a></li>
+    <li><a class="cell" href="#notes" data-key="notes">Field notes</a></li>
+    <li><a class="cell" href="#land" data-key="land">Closure</a></li>
+    <li><a class="cell" href="#news" data-key="news">News</a></li>
+    <li><a class="cell" href="#careers" data-key="careers">Careers</a></li>
   </ul></nav>
-  <a class="cell tick" href="#news" title="ASX: CDR, delayed 20 minutes"><span>CDR</span><span>A$4.82</span><span>▲0.06</span></a>
+  <a class="cell tick" href="#news" title="ASX: CDR, delayed 20 minutes"><span>ASX:CDR</span><span>A$4.82</span><span class="up">▲0.06 (1.3%)</span><span class="t" id="tt">15:40 AWST</span></a>
   <button class="menu" id="menu" aria-expanded="false" aria-controls="navlist">Menu</button>
 </header>
 
 <main id="top">
-<section class="hero wrap" id="hero">
+<section class="hero wrap" id="hero" data-key="">
   <h1 class="d1"><span>Dug here.</span><span>Built everywhere.</span></h1>
   <div class="row hlead">
     <p class="c1 lead">We mine iron ore, gold and lithium in Western&nbsp;Australia for steelmakers, refiners and battery makers around the world.</p>
-    <div class="c2 links"><a class="go" href="#operations">See our three mines</a><a class="go" href="#land">How we close a mine</a></div>
+    <div class="c2 links"><a class="go" href="#operations"><span>See our three mines</span></a><a class="go" href="#land"><span>How we close a mine</span></a></div>
   </div>
   <div class="row tblock">
-    <div class="m"><span class="lab">Year to 30 June 2026</span><p class="small" style="margin-top:8px">Audited. Full results in the FY26 annual report.</p></div>
-    <div class="c1 trifr"><span class="lab">Safety · Recordable injury rate, TRIFR</span><b class="fig-n">0.38</b><p>Injuries per million hours worked, down from 0.61. The first number we report.</p></div>
-    <table class="c2 prod">
-      <tr><th><span class="sw" style="--c:var(--fe)"></span>Iron ore shipped</th><td>Mount Ferrell</td><td>38.4 Mt</td></tr>
-      <tr><th><span class="sw" style="--c:var(--au)"></span>Gold poured</th><td>Ridgeback</td><td>412 koz</td></tr>
-      <tr><th><span class="sw" style="--c:var(--sp)"></span>Spodumene concentrate</th><td>Karri Creek</td><td>396 kt</td></tr>
-    </table>
+    <div class="trifr"><span class="lab">Safety · recordable injury rate (TRIFR), year to 30 June 2026</span><b class="fig-n">0.38</b><p>Injuries per million hours worked, down from 0.61. The first number we report.</p></div>
+    <ul class="prod">
+      <li><span class="what"><span class="sw" style="--c:var(--fe)"></span>Iron ore shipped<span>Mount Ferrell, Pilbara</span></span><b class="fig-n">38.4<small>Mt</small></b></li>
+      <li><span class="what"><span class="sw" style="--c:var(--au)"></span>Gold poured<span>Ridgeback, Goldfields</span></span><b class="fig-n">412<small>koz</small></b></li>
+      <li><span class="what"><span class="sw" style="--c:var(--sp)"></span>Spodumene concentrate<span>Karri Creek, South West</span></span><b class="fig-n">396<small>kt</small></b></li>
+    </ul>
   </div>
+  <p class="small hnote">Year to 30 June 2026, audited. Full results in the FY26 annual report.</p>
 </section>
 
 <section class="ops sec wrap" id="operations">
-  <div class="row mk" data-key="ops">
-    <div class="m"><span class="mono">01</span>Operations</div>
-    <h2 class="c d2">Three mines, three geologies</h2>
-  </div>
+  <div class="row sh" data-key="ops"><div class="m">01</div><h2 class="c d2">Three mines, three geologies</h2></div>
   <div class="row">
     <div class="m cap"><b>Fig. 1</b>Our three leases and the geology they sit in.
       <ul class="legend">
@@ -397,7 +387,7 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
     </div>
     <div class="c1 mapfig" id="mapfig"><svg id="wamap" role="img" aria-label="Map of Western Australia showing the Mount Ferrell, Ridgeback and Karri Creek leases and their geological provinces"></svg></div>
     <div class="c2">
-      <p class="lead">Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, up to 1,400&nbsp;km apart.</p>
+      <p class="intro">Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, up to 1,400&nbsp;km apart.</p>
       <table class="ledger">
         <thead><tr><th></th><th><span class="sw" style="--c:var(--fe)"></span>Mt Ferrell</th><th><span class="sw" style="--c:var(--au)"></span>Ridgeback</th><th><span class="sw" style="--c:var(--sp)"></span>Karri Creek</th></tr></thead>
         <tbody>
@@ -416,34 +406,33 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
   </div>
 
   <div class="row leases">
-    <div class="mk2"><span>The three leases</span><span class="small">Each has its own page, with its figures</span></div>
     <article class="lease" id="ferrell" style="--c:var(--fe)">
-      <h3 class="d3"><i></i>Mount Ferrell</h3>
+      <h3 class="h3"><i></i>Mount Ferrell</h3>
       <div class="where"><span>Banjima Country, Pilbara</span><span class="co">22.80° S 118.40° E</span></div>
       <div class="im rv" style="--i:0" data-alt="Ore train crossing the Pilbara below Mount Ferrell"></div>
       <p>Hematite from the Brockman Iron Formation, mined from three pits and railed to our own berth at Port Hedland.</p>
-      <div class="stat"><b class="fig-n">212<small>km</small></b><span>of driverless rail to Port Hedland</span></div>
+      <div class="stat"><b class="fig-n">212<small>km</small></b><span>Driverless rail to Port Hedland</span></div>
     </article>
     <article class="lease" id="ridgeback" style="--c:var(--au)">
-      <h3 class="d3"><i></i>Ridgeback</h3>
+      <h3 class="h3"><i></i>Ridgeback</h3>
       <div class="where"><span>Ngadju Country, Goldfields</span><span class="co">30.92° S 121.61° E</span></div>
       <div class="im rv" style="--i:1" data-alt="Ridgeback headframe and decline portal"></div>
       <p>An open pit that became an underground mine, 40&nbsp;km south&#8209;east of Kalgoorlie. Drilling says the ore body keeps going.</p>
-      <div class="stat"><b class="fig-n">1,140<small>m</small></b><span>to the deepest level, and going deeper</span></div>
+      <div class="stat"><b class="fig-n">1,140<small>m</small></b><span>To the deepest level, and going deeper</span></div>
     </article>
     <article class="lease" id="karri" style="--c:var(--sp)">
-      <h3 class="d3"><i></i>Karri Creek</h3>
+      <h3 class="h3"><i></i>Karri Creek</h3>
       <div class="where"><span>Noongar Country, South West</span><span class="co">33.90° S 116.10° E</span></div>
       <div class="im rv" style="--i:2" data-alt="Spodumene in Karri Creek drill core"></div>
       <p>Spodumene, the lithium-bearing crystal, concentrated on site for battery makers on our own solar and battery power.</p>
-      <div class="stat"><b class="fig-n">70<small>%</small></b><span>of site power from solar and battery</span></div>
+      <div class="stat"><b class="fig-n">70<small>%</small></b><span>Of site power from solar and battery</span></div>
     </article>
   </div>
 
   <div class="deep">
-    <div class="row mk2"><div class="m small">In depth</div><h3 class="c d3">Ridgeback, and the ore body below its deepest level</h3></div>
+    <div class="row dh"><h3 class="c h3">Ridgeback, and the ore body below its deepest level</h3></div>
     <div class="row split">
-      <div class="m"><p class="cap stick"><b>Fig. 2</b>Long section looking north, with this year's drilling.<span class="fig-n readout">1,560<small>m</small></span><span style="display:block;margin-top:6px">to the deepest intersection, RB-052</span></p></div>
+      <div class="m"><p class="cap stick"><b>Fig. 2</b>Long section looking north, with this year's drilling.<span class="fig-n readout">1,560<small>m</small></span><span style="display:block;margin-top:6px">To the deepest intersection, RB-052</span></p></div>
       <div class="c1 im rv" data-alt="Core from hole RB-052 on the logging table"></div>
       <div class="c2 fig"><svg id="figLong" class="draw" viewBox="0 0 540 724" role="img" aria-label="Long section: a benched open pit to 210 metres, a decline beside the ore body dipping east to the deepest level at 1,140 metres, and three 2026 drill holes intersecting the ore body below it, to about 1,560 metres"></svg></div>
     </div>
@@ -452,10 +441,7 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
 
 <section class="day dark" id="day" data-dark>
   <div class="wrap">
-    <div class="row mk" data-key="day">
-      <div class="m"><span class="mono">02</span>Site life</div>
-      <h2 class="c d2">Twenty-four hours in the Ridgeback pit</h2>
-    </div>
+    <div class="row sh" data-key="day"><div class="m">02</div><div class="c"><h2 class="d2">Twenty-four hours in the Ridgeback pit</h2><p class="cap">The bar under the hours is daylight at Ridgeback: sunrise 05:08, sunset 18:08.</p></div></div>
   </div>
   <div class="dscroll">
     <div class="track" id="track">
@@ -471,28 +457,23 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
       </ol>
     </div>
   </div>
-  <div class="wrap"><p class="cap daynote">The bar under the hours is daylight at Ridgeback: sunrise 05:08, sunset 18:08.</p></div>
 </section>
 
 <section class="notes sec wrap" id="notes">
-  <div class="row mk" data-key="notes">
-    <div class="m"><span class="mono">03</span>Field notes</div>
-    <p class="c lead" style="max-width:52ch">From our geologists, surveyors and rehabilitation crews, catalogued as they come in.</p>
-  </div>
-  <ol class="register" id="sheet">
-    <li style="--c:var(--au)"><figure tabindex="0"><div class="im rv" data-alt="Seed collection for the north dump"></div><span class="fn"><i></i>FN-040</span><span class="fd">3 Sep 2026</span><span class="ft">Seed collection, north dump<small>Rehabilitation crew</small></span><span class="fs">Ridgeback</span></figure></li>
-    <li style="--c:var(--fe)"><figure tabindex="0"><div class="im rv" data-alt="Heritage survey on the east pit extension"></div><span class="fn"><i></i>FN-036</span><span class="fd">14 Aug 2026</span><span class="ft">Heritage survey, east pit extension<small>Heritage team</small></span><span class="fs">Mount Ferrell</span></figure></li>
-    <li style="--c:var(--sp)"><figure tabindex="0"><div class="im rv" data-alt="Karri canopy beside the lease"></div><span class="fn"><i></i>FN-031</span><span class="fd">11 Jun 2026</span><span class="ft">Karri canopy beside the lease<small>Environment officer</small></span><span class="fs">Karri Creek</span></figure></li>
-    <li style="--c:var(--fe)"><figure tabindex="0"><div class="im rv" data-alt="Ore train at Coondie Junction"></div><span class="fn"><i></i>FN-024</span><span class="fd">30 May 2026</span><span class="ft">Ore train at Coondie Junction<small>Rail control</small></span><span class="fs">Mount Ferrell</span></figure></li>
-    <li style="--c:var(--au)"><figure tabindex="0"><div class="im rv" data-alt="Soil sampling on the east target"></div><span class="fn"><i></i>FN-015</span><span class="fd">19 Apr 2026</span><span class="ft">Soil sampling, east target<small>Exploration geologist</small></span><span class="fs">Ridgeback</span></figure></li>
+  <div class="row sh" data-key="notes"><div class="m">03</div><div class="c"><h2 class="d2">Field notes</h2><p class="intro" style="margin-top:14px">From our geologists, surveyors and rehabilitation crews, catalogued as they come&nbsp;in.</p></div></div>
+  <ol class="row notesgrid" id="sheet">
+    <li style="--c:var(--au)"><figure tabindex="0"><span class="fn">FN-040</span><div class="im rv" style="--i:0" data-alt="Seed collection for the north dump"></div><span class="ft">Seed collection, north dump</span><span class="fm"><span>Ridgeback, rehabilitation crew</span><span>3 Sep</span></span></figure></li>
+    <li style="--c:var(--fe)"><figure tabindex="0"><span class="fn">FN-036</span><div class="im rv" style="--i:1" data-alt="Heritage survey on the east pit extension"></div><span class="ft">Heritage survey, east pit extension</span><span class="fm"><span>Mount Ferrell, heritage team</span><span>14 Aug</span></span></figure></li>
+    <li style="--c:var(--sp)"><figure tabindex="0"><span class="fn">FN-031</span><div class="im rv" style="--i:2" data-alt="Karri canopy beside the lease"></div><span class="ft">Karri canopy beside the lease</span><span class="fm"><span>Karri Creek, environment</span><span>11 Jun</span></span></figure></li>
+    <li style="--c:var(--fe)"><figure tabindex="0"><span class="fn">FN-024</span><div class="im rv" style="--i:3" data-alt="Ore train at Coondie Junction"></div><span class="ft">Ore train at Coondie Junction</span><span class="fm"><span>Mount Ferrell, rail control</span><span>30 May</span></span></figure></li>
   </ol>
-  <p class="more"><a class="go" href="#">All 40 field notes</a></p>
+  <p class="more"><a class="go" href="#"><span>All 40 field notes from 2026</span></a></p>
 </section>
 
 <section class="closure dark" id="land" data-dark="#2f4239">
   <div class="wrap">
-    <div class="row mk" data-key="land"><div class="m"><span class="mono">04</span>Closure</div></div>
-    <h2 class="d2">We plan how a mine closes before we open it</h2>
+    <div class="row sh" data-key="land"><div class="m">04</div></div>
+    <h2 class="d1">We plan how a mine closes before we open it</h2>
     <div class="row">
       <p class="m cap"><b>North waste dump, Ridgeback</b>Photographed each year from the same survey mark.</p>
       <ol class="c stages" id="stages">
@@ -504,38 +485,43 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
     </div>
     <div class="row clfoot">
       <p class="c1 lead">Topsoil goes back in the order it came out, and the seed comes from the lease itself. Land is only handed back when its Traditional Owners sign it off.</p>
-      <div class="c2 facts">
-        <div><span>Land rehabilitated to date</span><b>6,100 ha</b></div>
-        <div><span>Native species in the seed mix</span><b>84</b></div>
-        <div><span>Agreements with Traditional Owners</span><b>7</b></div>
-        <div><span>Landforms handed back</span><b>12</b></div>
-      </div>
+      <ul class="c2 facts">
+        <li><b class="fig-n">6,100<small>ha</small></b><span>Land rehabilitated to date</span></li>
+        <li><b class="fig-n">84</b><span>Native species in the seed mix</span></li>
+        <li><b class="fig-n">7</b><span>Agreements with Traditional Owners</span></li>
+        <li><b class="fig-n">12</b><span>Landforms handed back</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section class="news sec wrap" id="news">
-  <div class="row mk" data-key="news">
-    <div class="m"><span class="mono">05</span>News</div>
-    <p class="c lead" style="max-width:52ch">Releases to the ASX, and what is happening on our leases.</p>
-  </div>
-  <ul class="nlist">
-    <li><a class="lead-item" href="#"><span class="dt">14 Oct 2026</span><span class="site"><span class="sw" style="--c:var(--sp)"></span>Karri Creek</span><div class="txt"><h3>A second solar farm and a 40&nbsp;MWh battery for Karri Creek</h3><p class="d">Both came online in September, cutting site diesel use by 31&nbsp;million litres a year.</p></div><div class="im rv" data-alt="Karri Creek solar farm"></div></a></li>
-    <li><a href="#"><span class="dt">29 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><div class="txt"><h3>Heritage agreement signed for the east pit extension</h3><p class="d">It covers heritage surveys, contracting and joint decisions on closure.</p></div><span class="code">Media release</span></a></li>
-    <li><a href="#"><span class="dt">3 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><div class="txt"><h3>Drilling extends Ridgeback's mine life to 2040</h3><p class="d">Deeper drilling added 1.1&nbsp;million ounces to the underground resource.</p></div><span class="code">ASX release</span></a></li>
-    <li><a href="#"><span class="dt">28 Aug 2026</span><span class="site"><span class="sw o"></span>Group</span><div class="txt"><h3>Full-year results: record shipments and a final dividend of 42&nbsp;cents</h3><p class="d">Results, presentation and the FY26 annual report.</p></div><span class="code">ASX release</span></a></li>
+  <div class="row sh" data-key="news"><div class="m">05</div><h2 class="c d2">News</h2></div>
+  <a class="row nlead" href="#">
+    <div class="im rv" data-alt="Karri Creek solar farm"></div>
+    <div class="txt">
+      <div class="meta"><span><span class="sw" style="--c:var(--sp)"></span>Karri Creek</span><span>14 Oct 2026</span></div>
+      <h3>A second solar farm and a 40&nbsp;MWh battery for Karri Creek</h3>
+      <p>Both came online in September, cutting site diesel use by 31&nbsp;million litres a year.</p>
+      <span class="go"><span>Read the story</span></span>
+    </div>
+  </a>
+  <ul class="row nthree">
+    <li><a href="#"><div class="meta"><span><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><span>29 Sep 2026</span></div><h3>Heritage agreement signed for the east pit extension</h3><p>It covers heritage surveys, contracting and joint decisions on closure.</p></a></li>
+    <li><a href="#"><div class="meta"><span><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><span>3 Sep 2026</span></div><h3>Drilling extends Ridgeback's mine life to 2040</h3><p>Deeper drilling added 1.1&nbsp;million ounces to the underground resource. ASX release.</p></a></li>
+    <li><a href="#"><div class="meta"><span><span class="sw o"></span>Group</span><span>28 Aug 2026</span></div><h3>Full-year results: record shipments and a final dividend of 42&nbsp;cents</h3><p>Results, presentation and the FY26 annual report. ASX release.</p></a></li>
   </ul>
-  <p class="invline" id="investors"><span>Quarterly report <b>29 Oct 2026</b></span><span>Annual general meeting, Perth <b>20 Nov 2026</b></span><a class="go" href="#">Investor centre</a></p>
+  <p class="invline" id="investors"><span>Quarterly report <b>29 Oct 2026</b></span><span>Annual general meeting, Perth <b>20 Nov 2026</b></span><a class="go" href="#"><span>All news and ASX releases</span></a></p>
 </section>
 
 <section class="careers sec wrap" id="careers">
-  <div class="row mk" data-key="careers" style="align-items:start">
-    <div class="m"><span class="mono">06</span>Careers</div>
+  <div class="row sh" data-key="careers" style="align-items:start">
+    <div class="m">06</div>
     <h2 class="c1 d2">Work on site, or in Perth</h2>
-    <div class="c2"><p class="lead">Fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p><a class="btn" href="#">Search open roles</a></div>
+    <div class="c2"><p class="intro">Fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p><a class="go" href="#"><span>Search all 143 open roles</span></a></div>
   </div>
   <div class="row">
-    <p class="m cap"><b>Six of 143 open roles</b>Rosters drawn as days on, filled, and days off, open.</p>
+    <p class="m cap"><b>Hiring now</b>Rosters drawn as days on, filled, and days off, open.</p>
     <div class="c">
       <table class="roster">
         <thead><tr><th>Role</th><th>Site</th><th>Roster, days on and off</th><th>Openings</th></tr></thead>
@@ -562,26 +548,24 @@ footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underli
     </div>
     <div class="tb">
       <div class="row">
-        <div class="x3"><a class="mark" href="#top"><svg viewBox="0 0 30 20" aria-hidden="true"><path d="M0 0H30V4H27V8H24V12H21V16H18V20H12V16H9V12H6V8H3V4H0Z"/></svg>Calder Ridge</a>
-          <div class="orient"><svg width="16" height="26" viewBox="0 0 16 26" aria-label="North"><path d="M8 0L16 20L8 15L0 20Z" fill="currentColor"/><text x="8" y="26" font-family="JetBrains Mono" font-size="8" text-anchor="middle" fill="currentColor"></text></svg><svg width="140" height="24" viewBox="0 0 140 24" aria-hidden="true"><rect x=".5" y=".5" width="139" height="6" fill="none" stroke="currentColor"/><rect x=".5" y=".5" width="35" height="6" fill="currentColor"/><rect x="70" y=".5" width="35" height="6" fill="currentColor"/><text x="0" y="20" font-family="JetBrains Mono" font-size="10" fill="currentColor">0</text><text x="140" y="20" font-family="JetBrains Mono" font-size="10" fill="currentColor" text-anchor="end">400 km</text></svg></div></div>
-        <div class="x5"><span class="lab">Community line · any hour · any site</span><p class="phone"><i></i>1800 555 019</p><p style="margin-top:8px">For anyone near our leases, about dust, noise, water or anything else. <a href="#" style="text-decoration:underline;text-underline-offset:4px">Report a concern</a></p></div>
-        <div class="x4"><span class="lab">Head office</span><address>Level 24, 108 St Georges Terrace<br>Perth WA 6000 · +61 8 5550 0142</address><ul style="margin-top:10px"><li><a href="#">Media</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+        <div class="x2"><a class="mark" href="#top"><svg viewBox="0 0 30 20" aria-hidden="true"><path d="M0 0H30V4H27V8H24V12H21V16H18V20H12V16H9V12H6V8H3V4H0Z"/></svg>Calder Ridge</a></div>
+        <div class="x5"><span class="lab">Community line, any hour, any site</span><p class="phone"><i></i>1800 555 019</p><p style="margin-top:8px">For anyone near our leases, about dust, noise, water or anything else. <a href="#" class="nb" style="text-decoration:underline;text-underline-offset:4px">Report a concern</a></p></div>
+        <div class="x3"><span class="lab">Head office</span><address>Level 24, 108 St Georges Terrace<br>Perth WA 6000<br>+61 8 5550 0142</address></div>
+        <div class="x2"><span class="lab">Contact</span><ul><li><a href="#">Media</a></li><li><a href="#">Suppliers</a></li><li><a href="#">LinkedIn</a></li></ul></div>
       </div>
       <div class="row">
-        <div class="x3"><span class="lab">Drawing number</span><p class="dno">CR-WEB-01</p><p style="margin-top:8px">Sheet 1 of 1</p></div>
-        <div class="x5"><span class="lab">Revisions</span>
-          <table class="rev"><tr><th>Rev</th><th>Description</th><th>Date</th></tr>
-            <tr><td>C</td><td>FY26 results and closure update</td><td>Oct 2026</td></tr>
-            <tr><td>B</td><td>Karri Creek added</td><td>Mar 2024</td></tr>
-            <tr><td>A</td><td>First issue</td><td>Aug 2019</td></tr></table></div>
-        <div class="x4"><span class="lab">Sign-off</span>
-          <table class="sig"><tr><td>Drawn</td><td>Communications</td></tr><tr><td>Checked</td><td>Company Secretary</td></tr><tr><td>Approved</td><td>Board, 26&nbsp;Aug&nbsp;2026</td></tr></table></div>
+        <div class="x2"><span class="lab">Company</span><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#">Governance</a></li></ul></div>
+        <div class="x5" style="display:grid;grid-template-columns:1fr 1fr;column-gap:24px"><div><span class="lab">Operations</span><ul><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li></ul></div><div><span class="lab">Investors</span><ul><li><a href="#">ASX releases</a></li><li><a href="#">Reports and results</a></li><li><a href="#">Sustainability reports</a></li></ul></div></div>
+        <div class="x5"><span class="lab">Title block</span>
+          <table class="tbl">
+            <tr><td>Drawing</td><td><span class="mono">CR-WEB-01</span>, sheet 1 of 1</td></tr>
+            <tr><td>Revision</td><td>C, FY26 results and closure update, Oct 2026</td></tr>
+            <tr><td>Approved</td><td>Board of Directors, 26&nbsp;Aug&nbsp;2026</td></tr>
+          </table></div>
       </div>
       <div class="row">
-        <div class="x12"><span class="lab">Schedule</span><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#">Investors</a></li><li><a href="#">Suppliers</a></li><li><a href="#careers">Careers</a></li></ul></div>
-      </div>
-      <div class="row">
-        <div class="x12 legalrow"><span>© 2026 Calder Ridge Resources Ltd · ABN 41&nbsp;600&nbsp;555&nbsp;019 · Listed on the ASX since 1994 · Coordinates in GDA2020</span><nav aria-label="Legal"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></nav></div>
+        <div class="x7 legal"><p>© 2026 Calder Ridge Resources Ltd, <span class="nb">ABN 41 600 555 019</span>. Listed on the ASX since 1994. Coordinates in GDA2020.</p></div>
+        <div class="x5 legal"><nav aria-label="Legal" style="margin-top:0"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></nav></div>
       </div>
     </div>
   </div>
@@ -605,6 +589,9 @@ const nav=document.getElementById('nav');
 const setNavH=()=>document.documentElement.style.setProperty('--navh',nav.offsetHeight+'px');setNavH();addEventListener('resize',setNavH);
 const f1=n=>(+n).toFixed(1);
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+
+/* the ticker's timestamp, in Perth time */
+(()=>{const t=document.getElementById('tt'),fm=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Perth',hour:'2-digit',minute:'2-digit',hour12:false});t.textContent=fm.format(new Date(Date.now()-20*60000))+' AWST'})();
 
 /* the roster day runs 04:00 to 04:00 */
 const dayX=h=>((h-4+24)%24)/24;
@@ -705,20 +692,22 @@ document.querySelectorAll('.roster .rs').forEach(r=>{const [on,off]=r.dataset.r.
 
 /* ---------- hero: the title runs the full measure ---------- */
 (()=>{const h=document.querySelector('.hero .d1'),l=h.lastElementChild;
-  const fit=()=>{h.style.fontSize='';const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw)h.style.fontSize=Math.min(fs*w/lw*.99,innerWidth>900?170:120)+'px'};
+  const fit=()=>{h.style.fontSize='';if(innerWidth<=600)return;const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw)h.style.fontSize=Math.min(fs*w/lw*.99,170)+'px'};
   document.fonts.ready.then(fit);addEventListener('resize',fit)})();
 
-/* ---------- header: menu, dark grounds, the current section filled; the depth gauge ---------- */
+/* ---------- header: menu; the ground and the current tab both follow the section under the header ---------- */
 const menu=document.getElementById('menu');menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
 nav.querySelectorAll('ul a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded',false)}));
-const darks=[...document.querySelectorAll('[data-dark]')],marks=[...document.querySelectorAll('.mk[data-key]')],keyed=[...nav.querySelectorAll('[data-key]')];
+const secs=[...document.querySelectorAll('main>section')],keyed=[...nav.querySelectorAll('[data-key]')];
+const keyOf=s=>({operations:'ops',day:'day',notes:'notes',land:'land',news:'news',careers:'careers'})[s.id]||'';
 const fL=document.getElementById('figLong');
 function tick(){
   const vh=innerHeight,y=nav.offsetHeight+1;
-  const d=darks.find(d=>{const r=d.getBoundingClientRect();return r.top<=y&&r.bottom>y});
+  let d=null;const ft=document.querySelector('footer');
+  const under=[...secs,ft].find(s=>{const r=s.getBoundingClientRect();return r.top<=y&&r.bottom>y});
+  if(under&&under.hasAttribute('data-dark'))d=under;
   nav.classList.toggle('dark',!!d);if(d)nav.style.setProperty('--nbg',d.dataset.dark||'var(--ink)');
-  let cur=null;marks.forEach(c=>{if(c.getBoundingClientRect().top<vh*.5)cur=c});
-  const key=cur&&cur.dataset.key;keyed.forEach(a=>a.classList.toggle('cur',!!key&&a.dataset.key===key));
+  const key=under&&under.tagName==='SECTION'?keyOf(under):'';keyed.forEach(a=>a.classList.toggle('cur',!!key&&a.dataset.key===key));
   {const r=fL.getBoundingClientRect(),vb=724/r.height;longsec(((vh*.5-r.top)*vb-36)/.42)}
 }
 let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{tick();ticking=false})},{passive:true});
@@ -732,8 +721,8 @@ document.querySelectorAll('.rv,#stages').forEach(el=>reduce?el.classList.add('in
 const lb=document.getElementById('lb');let last;
 const openLb=f=>{last=f;lb.querySelectorAll('.im,.lbc').forEach(n=>n.remove());
   const src=f.querySelector('.im'),big=document.createElement('div');big.className='im dk';big.dataset.alt=src.dataset.alt;if(src.dataset.src)big.dataset.src=src.dataset.src;
-  const c=document.createElement('div');c.className='lbc';c.style.setProperty('--c',getComputedStyle(f).getPropertyValue('--c'));
-  const q=s=>f.querySelector(s).textContent;c.innerHTML=`<b class="mono"><i></i>${q('.fn')}</b><span>${f.querySelector('.ft').firstChild.textContent}</span><span>${q('.fs')}</span><span>${q('.fd')}</span>`;
+  const c=document.createElement('div');c.className='lbc';
+  const q=s=>f.querySelector(s).textContent;c.innerHTML=`<b class="mono">${q('.fn')}</b><span>${q('.ft')}</span><span>${q('.fm')}</span>`;
   lb.prepend(c);lb.prepend(big);paint(big);lb.classList.add('open');document.getElementById('lbx').focus()};
 document.querySelectorAll('#sheet figure').forEach(f=>{f.addEventListener('click',()=>openLb(f));f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(f)}})});
 const closeLb=()=>{lb.classList.remove('open');last&&last.focus()};
