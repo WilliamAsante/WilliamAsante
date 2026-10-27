@@ -101,24 +101,39 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .tlink:hover{text-decoration-thickness:3px}
 
 /* ---------- nav ---------- */
-.nav{position:sticky;top:0;z-index:50;height:var(--navh);display:flex;align-items:center;gap:28px;padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--rule);transition:background-color .3s,color .3s,border-color .3s}
+/* ---------- header: a sheet's title strip, ruled into cells ---------- */
+.nav{position:sticky;top:0;z-index:50;height:var(--navh);display:flex;align-items:stretch;padding-left:var(--pad);background:var(--bone);border-bottom:1px solid var(--ink);transition:background-color .3s,color .3s,border-color .3s}
 .nav.dark{background:var(--nbg,var(--ink));color:var(--paper);border-bottom-color:var(--rule-d)}
-.logo{display:flex;align-items:center;gap:12px;margin-right:auto;text-decoration:none;font-size:19px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.nav>*{display:flex;align-items:center}
+.nav .cell{border-left:1px solid var(--rule);padding:0 22px}
+.nav.dark .cell{border-left-color:var(--rule-d)}
+.logo{gap:12px;padding-right:28px;text-decoration:none;font-size:19px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
 .logo svg{width:30px;height:24px;flex:none;fill:currentColor}
-.nav ul{display:flex;gap:26px;list-style:none;padding:0}
+.nav nav{flex:1;padding-left:28px}
+.nav ul{display:flex;gap:28px;list-style:none;padding:0}
 .nav ul a{text-decoration:none;font-weight:500;font-size:15px;text-underline-offset:10px;text-decoration-thickness:2px}
 .nav ul a:hover,.nav ul a.cur{text-decoration-line:underline}
-.nav>.btn{padding:10px 18px;font-size:14px}
-.nav.dark>.btn{background:var(--paper);border-color:var(--paper);color:var(--ink)}
-.nav>.btn.cur{background:transparent;color:inherit;border-color:currentColor}
-.menu{display:none;background:none;border:1.5px solid currentColor;border-radius:2px;color:inherit;font:600 14px var(--body);padding:9px 14px;cursor:pointer}
+.nav .meta{flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;font-size:12px;line-height:1.2;white-space:nowrap}
+.nav .meta span{opacity:.72}
+.nav .meta b{font:500 13px var(--mono);letter-spacing:-.01em}
+.nav .meta .up{color:#2f6a3c}.nav.dark .meta .up{color:#9fd3a8}
+.nav .cta{gap:12px;padding:0 var(--pad) 0 26px;background:var(--ink);color:var(--paper);font:600 15px var(--body);text-decoration:none;transition:background .2s,color .2s}
+.nav .cta .hv{font:600 13px/1 var(--body);padding:5px 7px;font-variant-numeric:tabular-nums}
+.nav .cta:hover{background:var(--fe)}
+.nav.dark .cta{background:var(--paper);color:var(--ink)}
+.nav .cta.cur{box-shadow:inset 0 -4px 0 var(--hv)}
+.menu{display:none;background:none;border:0;border-left:1px solid var(--rule);color:inherit;font:600 15px var(--body);padding:0 22px;cursor:pointer}
+.nav.dark .menu{border-left-color:var(--rule-d)}
 .nav ul .mc{display:none}
-@media(max-width:1000px){
-  .menu{display:block}
-  .nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:inherit;padding:8px var(--pad) 20px;border-bottom:1px solid var(--rule)}
+@media(max-width:1240px){.nav .meta.px{display:none}}
+@media(max-width:1060px){
+  .nav .meta{display:none}.menu{display:flex;align-items:center;margin-left:auto}
+  .nav nav{position:absolute;top:100%;left:0;right:0;padding:0;flex:none}
+  .nav ul{display:none;flex-direction:column;gap:0;background:var(--bone);padding:8px var(--pad) 20px;border-bottom:1px solid var(--ink)}
+  .nav.dark ul{background:var(--nbg,var(--ink))}
   .nav.open ul{display:flex}.nav ul a{display:block;padding:12px 0;font-size:18px}
 }
-@media(max-width:520px){.nav>.btn{display:none}.nav ul .mc{display:block}.logo{font-size:16px}.nav{gap:16px}}
+@media(max-width:560px){.nav .cta{display:none}.nav ul .mc{display:block}.logo{font-size:16px;padding-right:16px}.menu{padding:0 var(--pad) 0 18px}}
 
 /* ---------- hero: a survey sheet ---------- */
 .hero{position:relative;height:calc(100svh - var(--navh));min-height:720px;max-height:980px;display:flex;flex-direction:column;justify-content:space-between;padding:40px var(--pad) 22px;overflow:hidden}
@@ -298,21 +313,28 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 @media(max-width:900px){.roster th:nth-child(2),.roster td:nth-child(2){display:none}.rs{display:none}}
 
 /* ---------- footer: the acknowledgement first, the legal line last ---------- */
-footer{background:var(--ink);color:var(--paper)}
-.ack{padding-bottom:var(--s2);border-bottom:1px solid var(--rule-d)}
+/* ---------- footer: the acknowledgement first, then the sheet's title block ---------- */
+footer{background:var(--ink);color:var(--paper);padding-bottom:var(--s2)}
+.ack{padding-bottom:var(--s1)}
 .art{aspect-ratio:7/1}
 .ack .cap{color:rgba(246,242,235,.68);margin:12px 0 var(--s2)}
 .ackp{font:400 clamp(24px,2.4vw,34px)/1.3 var(--body);letter-spacing:-.012em;max-width:42ch;text-wrap:balance}
-.fgrid{padding-top:var(--s2)}
-.fgrid>div:first-child{grid-column:1/8}
-.fcols{grid-column:8/13;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-footer h4{font:600 14px var(--body);color:rgba(246,242,235,.62);margin-bottom:12px}
+.tb{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:1px solid rgba(246,242,235,.7);border-left:1px solid var(--rule-d)}
+.tb>div{border-right:1px solid var(--rule-d);border-bottom:1px solid var(--rule-d);padding:14px 18px 18px;min-width:0}
+.tb .lab{display:block;font:500 12px/1.3 var(--body);color:rgba(246,242,235,.6);margin-bottom:12px}
+.tb .brand{grid-column:span 7;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.tb .mark{display:flex;align-items:center;gap:20px;text-decoration:none;font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118;font-weight:800;font-size:clamp(34px,4.6vw,68px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase}
+.tb .mark svg{width:1.1em;height:.88em;flex:none;fill:currentColor}
+.tb .brand p{font-size:15px;color:rgba(246,242,235,.75);max-width:40ch}
+.tb .c3{grid-column:span 3}.tb .c2{grid-column:span 2}.tb .c5{grid-column:span 5}
+.tb address{font-style:normal;color:rgba(246,242,235,.85)}
 footer ul{list-style:none;padding:0;display:grid;gap:7px}
-footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-underline-offset:4px}
-.addr{margin-top:18px;color:rgba(246,242,235,.75)}
-.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:var(--s2);padding-block:18px 26px;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.62);font-size:14px}
-.legal nav{display:flex;gap:24px}
-@media(max-width:900px){.fgrid>div:first-child,.fcols{grid-column:1/-1}.fcols{margin-top:32px;grid-template-columns:1fr 1fr}.art{aspect-ratio:3/1}}
+footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decoration:underline;text-underline-offset:4px}
+.tb .sm{font-size:13px;padding-block:12px}
+.tb .sm .lab{margin-bottom:4px}
+.tb .sm b{font-weight:500;font-variant-numeric:tabular-nums}
+.tb .legal{display:flex;gap:18px;flex-wrap:wrap}
+@media(max-width:900px){.tb .brand,.tb .c5{grid-column:1/-1}.tb .c3,.tb .c2{grid-column:span 6}.art{aspect-ratio:3/1}}
 
 /* motion */
 .rv{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease) calc(var(--i,0)*.12s)}
@@ -335,7 +357,7 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
     <svg viewBox="0 0 30 24" aria-hidden="true"><path d="M0 0H4V4H8V8H12V12H18V8H22V4H26V0H30V24H0Z"/></svg>
     Calder Ridge
   </a>
-  <nav aria-label="Primary"><ul id="navlist">
+  <nav class="cell" aria-label="Primary"><ul id="navlist">
     <li><a href="#operations" data-key="ops">Operations</a></li>
     <li><a href="#land" data-key="land">Closure</a></li>
     <li><a href="#news" data-key="news">News</a></li>
@@ -343,8 +365,10 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
     <li><a href="#">About</a></li>
     <li class="mc"><a href="#careers" data-key="careers">Careers</a></li>
   </ul></nav>
+  <div class="cell meta px"><span>ASX: CDR, delayed</span><b>A$4.82 <span class="up">+1.3%</span></b></div>
+  <div class="cell meta"><span>Perth</span><b id="clock">--:-- AWST</b></div>
   <button class="menu" id="menu" aria-expanded="false" aria-controls="navlist">Menu</button>
-  <a class="btn" href="#careers" data-key="careers">Careers</a>
+  <a class="cta" href="#careers" data-key="careers">Careers <span class="hv">143</span></a>
 </header>
 
 <main id="top">
@@ -586,18 +610,21 @@ footer a{text-decoration:none}footer ul a:hover{text-decoration:underline;text-u
       <p class="ackp">We acknowledge the Banjima, Ngadju and Noongar peoples, Traditional Owners of the lands where we work, and pay our respects to Elders past and present.</p>
     </div>
   </div>
-  <div class="wrap g12 fgrid">
-    <div>
-      <a class="logo" href="#top"><svg viewBox="0 0 30 24" aria-hidden="true"><path d="M0 0H4V4H8V8H12V12H18V8H22V4H26V0H30V24H0Z"/></svg>Calder Ridge</a>
-      <p class="addr">Level 24, 108 St Georges Terrace<br>Perth WA 6000<br>+61 8 5550 0142</p>
-    </div>
-    <div class="fcols">
-      <div><h4>Company</h4><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#">Investors</a></li><li><a href="#">Suppliers</a></li></ul></div>
-      <div><h4>Operations</h4><ul><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#">Exploration</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="#">Media</a></li><li><a href="#">Community line</a></li><li><a href="#">Report a concern</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+  <div class="wrap">
+    <div class="tb">
+      <div class="brand"><a class="mark" href="#top"><svg viewBox="0 0 30 24" aria-hidden="true"><path d="M0 0H4V4H8V8H12V12H18V8H22V4H26V0H30V24H0Z"/></svg>Calder Ridge</a><p>Iron ore, gold and lithium from three leases in Western Australia. Listed on the ASX since 1994.</p></div>
+      <div class="c3"><span class="lab">Head office</span><address>Level 24, 108 St Georges Terrace<br>Perth WA 6000<br>+61 8 5550 0142</address></div>
+      <div class="c2"><span class="lab">Community line</span><p>1800 555 019<br>Any hour, any site</p></div>
+      <div class="c3"><span class="lab">Company</span><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#">Suppliers</a></li><li><a href="#careers">Careers</a></li></ul></div>
+      <div class="c2"><span class="lab">Operations</span><ul><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#">Exploration</a></li></ul></div>
+      <div class="c2"><span class="lab">Investors</span><ul><li><a href="#">ASX releases</a></li><li><a href="#">Reports</a></li><li><a href="#">Share price</a></li><li><a href="#">Governance</a></li></ul></div>
+      <div class="c5"><span class="lab">Contact</span><ul><li><a href="#">Media enquiries</a></li><li><a href="#">Report a concern, confidentially</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      <div class="c2 sm"><span class="lab">Sheet</span><b>1 of 1</b></div>
+      <div class="c2 sm"><span class="lab">Revision</span><b>FY26, October 2026</b></div>
+      <div class="c3 sm"><span class="lab">Datum</span><b>GDA2020, depths below surface</b></div>
+      <div class="c5 sm"><span class="lab">© 2026 Calder Ridge Resources Ltd, ASX: CDR</span><span class="legal"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></span></div>
     </div>
   </div>
-  <div class="wrap"><div class="legal"><span>© 2026 Calder Ridge Resources Ltd, ASX: CDR</span><nav aria-label="Legal"><a href="#">Privacy</a><a href="#">Modern slavery statement</a><a href="#">Terms</a></nav></div></div>
 </footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Field note viewer"><button id="lbx">Close</button></div>
@@ -618,6 +645,9 @@ const nav=document.getElementById('nav');
 const setNavH=()=>document.documentElement.style.setProperty('--navh',nav.offsetHeight+'px');setNavH();addEventListener('resize',setNavH);
 const f1=n=>(+n).toFixed(1);
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+
+/* the time in Perth, in the header */
+(()=>{const c=document.getElementById('clock'),fm=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Perth',hour:'2-digit',minute:'2-digit',hour12:false});const t=()=>c.textContent=fm.format(new Date())+' AWST';t();setInterval(t,30000)})();
 
 /* the roster day runs 04:00 to 04:00; Fig. 4 and Fig. 5 share it */
 const dayX=h=>((h-4+24)%24)/24;
