@@ -15,28 +15,28 @@
   --land:#d9cfbf;
   --land-2:#e3dccf;
   --ink:#0d1440;
-  --ink-2:#363b5a;
-  --rule:rgba(13,20,64,.2);
-  --rule-d:rgba(246,242,235,.24);
+  --ink-2:#2b3050;
+  --rule:rgba(13,20,64,.22);
+  --rule-d:rgba(246,242,235,.26);
   --fe:#9b2f1f;                   /* Mount Ferrell, hematite */
   --au:#b5821c;                   /* Ridgeback, gold */
   --sp:#7f9a8c;                   /* Karri Creek, spodumene */
-  --gr:#1f3b30;                   /* closure: the land handed back */
-  --hv:#f6c40c;                   /* hi-vis: people, safety and jobs only */
+  --gr:#2f4239;                   /* closure: the spodumene sage, taken down to ground */
+  --hv:#f6c40c;                   /* hi-vis: safety only */
   --focus:#2f6fdb;
   --head:'Archivo','Arial',sans-serif;
   --body:'Instrument Sans',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --pad:clamp(20px,4vw,58px);
-  --s1:clamp(72px,7vw,100px);   /* between sections */
-  --s2:clamp(32px,3.6vw,52px);  /* inside a section */
+  --s1:clamp(72px,8vw,112px);   /* between sections */
+  --s2:clamp(32px,3.6vw,52px);  /* strip to heading, heading to content */
   --s3:24px;                    /* between parts */
-  --navh:66px;
+  --navh:64px;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{background:var(--bone);color:var(--ink);font:17px/1.55 var(--body)}
+body{background:var(--bone);color:var(--ink);font:400 17px/1.55 var(--body)}
 a{color:inherit}
 p{text-wrap:pretty}
 figure{margin:0}
@@ -44,31 +44,30 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .wrap{padding-inline:var(--pad)}
 
-/* one sheet, one grid: a margin rail (columns 1–2) carries numbers, captions and datums; everything else starts at column 3 */
+/* one grid for header, body and footer: a two-column rail, then the content columns */
 .row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
-.m{grid-column:1/3}.c{grid-column:3/13}.c1{grid-column:3/8}.c2{grid-column:8/13}.c6{grid-column:3/9}.c4{grid-column:9/13}
-@media(max-width:900px){.m,.c,.c1,.c2,.c6,.c4{grid-column:1/-1}}
+.m{grid-column:1/3}.c{grid-column:3/13}.c1{grid-column:3/8}.c2{grid-column:8/13}
+@media(max-width:900px){.m,.c,.c1,.c2{grid-column:1/-1}}
 
-/* type: five sizes. Display for titles only; mono for anything a survey would record (quantities, dates, times, IDs, coordinates) */
-.d1,.d2,.d3,.logo,.mark{font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118}
-.d1{font-weight:800;font-size:clamp(44px,7.6vw,108px);line-height:1.04;letter-spacing:-.025em;margin-left:-.045em}
-.d2{font-weight:700;font-size:clamp(32px,3.6vw,52px);line-height:1.02;letter-spacing:-.02em;text-wrap:balance;margin-left:-.03em}
-.d3{font-weight:700;font-size:clamp(26px,2.5vw,36px);line-height:1.05;letter-spacing:-.015em}
-.num,.co{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.co{font-size:12px;white-space:nowrap}
-.lab{display:block;font:500 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.07em}
-.lead{font-size:20px;line-height:1.45;max-width:44ch}
-.mcap{font:500 13px/1.5 var(--body);color:var(--ink-2);text-wrap:pretty}
-.mcap b{display:block;font-weight:600;color:var(--ink);margin-bottom:4px}
-.readout{display:block;margin-top:14px;font:500 30px/1 var(--mono);letter-spacing:-.04em;color:var(--ink)}
-.hv{background:var(--hv);color:var(--ink)}
+/* type, six steps: 120+ title, 72 section, 44 mine, 26 deck, 17 text, 14 small.
+   Display: the wide cut, bold. Mono: IDs, coordinates and table figures only. */
+.d1,.d2,.d3,.fig-n,.logo,.mark{font-family:var(--head);font-stretch:118%;font-variation-settings:'wdth' 118}
+.d1{font-weight:700;font-size:clamp(48px,9.6vw,150px);line-height:1;letter-spacing:-.03em;margin-left:-.05em}
+.d2{font-weight:700;font-size:clamp(38px,5vw,72px);line-height:1;letter-spacing:-.025em;text-wrap:balance;margin-left:-.04em}
+.d3{font-weight:700;font-size:clamp(30px,3vw,44px);line-height:1.04;letter-spacing:-.02em}
+.fig-n{font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums;line-height:.9}
+.fig-n small{font-size:.42em;letter-spacing:0;margin-left:.14em;font-weight:600}
+.deck{font-size:clamp(21px,1.8vw,26px);line-height:1.35;font-weight:500;letter-spacing:-.005em}
+.small{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.lab{display:block;font:500 14px/1.35 var(--body);color:var(--ink-2)}
+.co,.mono{font-family:var(--mono);font-size:13px;letter-spacing:-.01em;white-space:nowrap}
+.tn{font-variant-numeric:tabular-nums}
 
-/* section strips (2px) and plate heads (1px) */
-.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:baseline;border-top:2px solid currentColor;padding-top:12px;margin-bottom:var(--s2);font:600 14px/1.3 var(--body)}
-.strip .n{grid-column:1/3;font:500 13px var(--mono)}
-.strip .t{grid-column:3/9}
-.strip .co{grid-column:9/13;justify-self:end;font-size:13px;opacity:.85}
-@media(max-width:900px){.strip{grid-template-columns:auto 1fr;column-gap:16px}.strip .n,.strip .t{grid-column:auto}.strip .co{grid-column:1/-1;justify-self:start;margin-top:4px}}
+/* section strips: number and name, nothing else */
+.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:baseline;border-top:2px solid currentColor;padding-top:12px;margin-bottom:var(--s2);font:600 15px/1.3 var(--body)}
+.strip .n{grid-column:1/3;font:500 14px var(--mono)}
+.strip .t{grid-column:3/13}
+@media(max-width:900px){.strip{grid-template-columns:auto 1fr;column-gap:16px}.strip .n,.strip .t{grid-column:auto}}
 .opener{margin-bottom:var(--s2)}
 
 /* image slots */
@@ -79,10 +78,10 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .dk.ph{background-color:rgba(246,242,235,.07);background-image:linear-gradient(135deg,transparent 49.8%,rgba(246,242,235,.1) 50%,transparent 50.2%),linear-gradient(45deg,transparent 49.8%,rgba(246,242,235,.1) 50%,transparent 50.2%)}
 .ph-label{position:absolute;left:16px;right:16px;bottom:14px;font:500 13px/1.4 var(--body);color:var(--ink-2)}
 .ph-label::before{content:"Photo: ";color:var(--ink)}
-.dk .ph-label{color:rgba(246,242,235,.72)}.dk .ph-label::before{color:var(--paper)}
-.register .ph-label,.dayband .ph-label,.stages .ph-label,.news .ph-label,.art .ph-label,.lb .ph-label{display:none}
+.dk .ph-label{color:rgba(246,242,235,.75)}.dk .ph-label::before{color:var(--paper)}
+.register .ph-label,.cards .ph-label,.stages .ph-label,.news .ph-label,.art .ph-label,.lb .ph-label{display:none}
 
-/* figures: one drawing spec. 2px primary, 1px secondary; words in sans, numbers on scales in mono; every label haloed */
+/* figures: one drawing spec. 2px primary, 1px secondary; words in sans, scale numbers in mono; labels haloed */
 .fig svg{--k:1;display:block;width:100%;height:auto;overflow:visible}
 .fig svg .p{stroke:var(--ink);stroke-width:calc(2px*var(--k));fill:none;stroke-linejoin:round;stroke-linecap:round}
 .fig svg .s{stroke:var(--ink);stroke-width:calc(1px*var(--k));fill:none}
@@ -92,76 +91,70 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .fig svg .tag text{font:500 12px var(--mono);fill:var(--paper);stroke:none}
 .fig svg .tag .r{font:600 12px var(--body)}
 .fig-scroll{overflow-x:auto}
+.cap{font-size:15px;line-height:1.5;color:var(--ink-2)}
+.cap b{display:block;font-weight:600;color:var(--ink);margin-bottom:4px}
+.readout{display:block;margin-top:18px;font-size:clamp(34px,3vw,46px)}
 
 /* buttons and links */
-.btn{display:inline-flex;align-items:center;justify-content:center;font:600 15px var(--body);padding:14px 24px;border-radius:2px;text-decoration:none;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);transition:background .2s,color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 16px var(--body);padding:15px 26px;border-radius:2px;text-decoration:none;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);transition:background .2s,color .2s}
 .btn:hover{background:transparent;color:var(--ink)}
-.tlink{font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;white-space:nowrap}
+.tlink{font-weight:600;font-size:16px;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;white-space:nowrap}
 .tlink:hover{text-decoration-thickness:3px}
 
-/* ---------- header: the sheet's title strip, every cell ruled ---------- */
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:stretch;height:66px;padding-left:var(--pad);background:var(--bone);border-bottom:1px solid var(--ink);transition:background-color .3s,color .3s}
+/* ---------- header: the sheet's title strip, its dividers on the page's own columns ---------- */
+.nav{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;height:var(--navh);padding:0 var(--pad);background:var(--bone);border-bottom:1px solid var(--ink);transition:background-color .3s,color .3s}
 .nav.dark{background:var(--nbg,var(--ink));color:var(--paper);border-bottom-color:var(--rule-d)}
-.nav .cell{display:flex;align-items:center;border-left:1px solid var(--rule);padding:0 20px;white-space:nowrap;text-decoration:none}
+.logo{grid-column:1/3;display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:18px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+.logo svg,.mark svg{width:30px;height:20px;flex:none;fill:currentColor}
+.nav nav{grid-column:3/8}
+.nav ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:24px;list-style:none;padding:0;height:100%}
+.nav .cell{display:flex;align-items:center;height:100%;border-left:1px solid var(--rule);padding-left:14px;text-decoration:none;white-space:nowrap;position:relative}
 .nav.dark .cell{border-left-color:var(--rule-d)}
-.logo{display:flex;align-items:center;gap:12px;padding-right:26px;text-decoration:none;font-weight:800;font-size:18px;line-height:1;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
-.logo svg{width:28px;height:22px;flex:none;fill:currentColor}
-.nav .sec{flex:1;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:0}
-.nav .sec .lab,.nav .meta .lab{opacity:.82}
-.nav .sec b{font:600 14px var(--body);overflow:hidden;text-overflow:ellipsis}
-.nav .sec b .num{font-size:13px;margin-right:8px;font-weight:500}
-.nav ul{display:flex;list-style:none;padding:0;height:100%}
-.nav ul a{height:100%;font-weight:500;font-size:15px;position:relative}
-.nav ul a:hover{background:rgba(13,20,64,.05)}
-.nav.dark ul a:hover{background:rgba(246,242,235,.08)}
-.nav ul a.cur::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:currentColor}
-.nav .meta{flex-direction:column;align-items:flex-start;justify-content:center;gap:4px}
-.nav .meta b{font:500 13px var(--mono)}
-.nav .cta{display:flex;align-items:center;gap:12px;padding:0 var(--pad) 0 24px;background:var(--ink);color:var(--paper);font:600 15px var(--body);text-decoration:none;transition:background .2s}
-.nav .cta .hv{font:500 13px/1 var(--mono);padding:5px 7px}
-.nav .cta:hover{background:var(--fe)}
-.nav.dark .cta{background:var(--paper);color:var(--ink)}
-.nav .cta.cur{box-shadow:inset 0 -4px 0 var(--hv)}
-.menu{display:none;background:none;border:0;border-left:1px solid var(--rule);color:inherit;font:600 15px var(--body);padding:0 var(--pad) 0 20px;cursor:pointer}
+.nav ul a{font-weight:500;font-size:15px}
+.nav ul a:hover{text-decoration:underline;text-underline-offset:6px}
+.nav .cur::after{content:"";position:absolute;left:0;right:-24px;bottom:-1px;height:3px;background:currentColor}
+.nav .cta.cur::after{right:0}
+.nav .tick{grid-column:8/11;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px}
+.nav .tick .lab{font-size:13px;color:inherit;opacity:.78}
+.nav .tick b{font:500 14px var(--mono)}
+.nav .cta{grid-column:11/13;font-weight:600;font-size:15px;justify-content:space-between;padding-right:0}
+.nav .cta .mono{font-weight:500}
+.nav .cta:hover span:first-child{text-decoration:underline;text-underline-offset:6px}
+.menu{display:none;background:none;border:0;border-left:1px solid var(--rule);color:inherit;font:600 15px var(--body);padding:0 0 0 16px;cursor:pointer}
 .nav.dark .menu{border-left-color:var(--rule-d)}
-@media(max-width:1180px){.nav .sec{visibility:hidden;padding:0;border:0}}
-@media(max-width:960px){
-  .nav{flex-wrap:wrap;height:auto;padding-left:0}
-  .logo{flex:1;height:56px;padding-left:var(--pad)}
-  .menu{display:flex;align-items:center;height:56px;order:2}
-  .nav .sec{display:none}
-  .nav nav{order:5;width:100%}
-  .nav ul{display:none;flex-direction:column;height:auto;border-top:1px solid var(--rule)}
-  .nav.open ul{display:flex}.nav ul a{padding:14px var(--pad);border-left:0;font-size:18px}
-  .nav .meta,.nav .cta{order:3;flex:1;height:36px;flex-direction:row;align-items:center;gap:8px;border-top:1px solid var(--rule);padding:0 12px}
-  .nav .meta:first-of-type{border-left:0;padding-left:var(--pad)}
-  .nav .meta .lab{display:none}
-  .nav .cta{order:4;justify-content:center;padding:0 var(--pad) 0 12px;font-size:14px}
+.nav ul .mc{display:none}
+@media(max-width:1100px){.nav .tick{display:none}.nav .cta{grid-column:9/13}}
+@media(max-width:900px){
+  .nav{display:flex;column-gap:0}
+  .logo{flex:1}
+  .nav .cta{padding:0 16px;border-right:0}
+  .menu{display:flex;align-items:center}
+  .nav nav{position:absolute;top:100%;left:0;right:0}
+  .nav ul{display:none;grid-template-columns:1fr;background:var(--bone);border-bottom:1px solid var(--ink);padding:6px var(--pad) 16px;height:auto}
+  .nav.dark ul{background:var(--nbg,var(--ink))}
+  .nav.open ul{display:grid}.nav ul .cell{border-left:0;padding:12px 0;font-size:18px}
+  .nav ul .mc{display:block}
 }
+@media(max-width:420px){.nav .cta .mono{display:none}}
 
-/* ---------- hero: the sheet's title ---------- */
-.hero{padding-block:var(--s2) var(--s1)}
-.sheetid .lab{color:var(--ink-2);margin-bottom:6px}
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(36px,5vw,64px) var(--s1)}
 .hero h1 span{display:block;white-space:nowrap}
 .hero h1 span:last-child{display:inline-block}
-.hstrip{margin-top:var(--s2)}
-.hstrip .m{padding-top:14px}
-.cells{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}
-.cells>div{padding:14px 24px 0;border-left:1px solid var(--rule)}
-.cells>div:first-child{border-left:0;padding-left:0}
-.cells .v{display:flex;align-items:baseline;gap:12px}
-.cells b{font:500 clamp(48px,5vw,72px)/1 var(--mono);letter-spacing:-.05em}
-.cells .hv{font:500 13px/1 var(--mono);padding:4px 7px}
-.cells p{margin-top:12px;font-size:15px;color:var(--ink-2);max-width:32ch}
-.hfoot{margin-top:var(--s2);align-items:end}
-.hfoot .intro{font-size:clamp(19px,1.5vw,22px);line-height:1.42;font-weight:500;max-width:40ch}
-.acts{display:flex;align-items:center;gap:18px 28px;flex-wrap:wrap}
-@media(max-width:900px){.hero h1 span{white-space:normal}.cells{grid-template-columns:1fr}.cells>div{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-bottom:14px}.cells>div:first-child{border-top:0}.hfoot .acts{margin-top:20px}.sheetid{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}}
+.hdeck{margin-top:var(--s2)}
+.hdeck .deck{max-width:46ch;margin-bottom:26px}
+.acts{display:flex;align-items:center;gap:18px 30px;flex-wrap:wrap}
+.hstrip{margin-top:var(--s2);border-top:1px solid var(--ink)}
+.hstrip>div{grid-column:span 3;position:relative;padding-top:14px;border-left:1px solid var(--rule);padding-left:16px}
+.hstrip>div:first-child{border-left:0;padding-left:0}
+.hstrip .safety::before{content:"";position:absolute;left:0;right:0;top:-1px;height:5px;background:var(--hv)}
+.hstrip .fig-n{display:block;font-size:clamp(44px,4.6vw,68px);margin:12px 0 10px}
+.hstrip p{font-size:15px;color:var(--ink-2)}
+.hnote{margin-top:16px}
+@media(max-width:900px){.hero h1 span{white-space:normal}.hstrip>div{grid-column:span 6;border-left:0;padding-left:0;padding-bottom:16px}.hstrip>div:nth-child(even){padding-left:16px;border-left:1px solid var(--rule)}}
 
 /* ---------- operations ---------- */
-.ops{padding-top:0}
-.ops .lead{margin-top:20px}
-.mapfig{position:relative}
+.ops .lead{font-size:19px;line-height:1.5;margin-bottom:var(--s3);max-width:44ch}
 .mapfig svg{display:block;width:100%}
 .mapfig .coast{fill:var(--land);stroke:var(--ink);stroke-width:1.3;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.4s var(--ease)}
 .mapfig.in .coast{stroke-dashoffset:0}
@@ -172,81 +165,79 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .mapfig .g{font:400 11px var(--mono);fill:var(--ink-2);stroke:var(--bone)}
 .mapfig .sea{font-style:italic;stroke:var(--bone)}
 .legend{list-style:none;padding:0;margin-top:18px;display:grid;gap:8px}
-.legend li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:13px;line-height:1.35;color:var(--ink-2)}
-.legend i{height:14px;margin-top:1px;border:1px solid var(--ink);background:repeating-linear-gradient(-45deg,var(--c) 0 2px,transparent 2px 5px)}
-.ledger{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:14px}
-.ledger th,.ledger td{text-align:left;padding:9px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
-.ledger thead th{font:600 13px var(--body);padding-top:10px}
-.ledger tbody th{font-weight:500;color:var(--ink-2);padding-right:10px;width:31%}
-.ledger td{padding-right:8px}
-.ledger td.num{font-size:13px}
+.legend li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.35;color:var(--ink-2)}
+.legend i{height:14px;margin-top:2px;border:1px solid var(--ink);background:repeating-linear-gradient(-45deg,var(--c) 0 2px,transparent 2px 5px)}
+.ledger{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:15px;font-variant-numeric:tabular-nums}
+.ledger th,.ledger td{text-align:left;padding:10px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.ledger thead th{font-weight:600;font-size:14px}
+.ledger tbody th{font-weight:400;color:var(--ink-2);padding-right:12px;width:36%}
+.ledger td{padding-right:10px}
 .ledger .sw{margin-right:6px}
-.rules{list-style:none;padding:0;margin-top:var(--s2);border-top:1px solid var(--ink)}
-.rules .lab{padding:10px 0 2px;color:var(--ink-2)}
-.rules li{display:grid;grid-template-columns:34px 1fr;padding:10px 0;border-bottom:1px solid var(--rule)}
-.rules li .num{font-size:13px;padding-top:2px}
-.rules b{display:block;font-weight:600;font-size:16px}
-.rules span:not(.num):not(.lab){color:var(--ink-2);font-size:14px;grid-column:2}
-@media(max-width:900px){.mapfig{margin-block:16px var(--s2)}}
+.rules{list-style:none;padding:0;margin-top:var(--s2);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;border-top:1px solid var(--ink)}
+.rules li{padding-top:14px}
+.rules b{display:block;font-weight:600;font-size:18px;margin-bottom:4px}
+.rules span{color:var(--ink-2);font-size:15px}
+@media(max-width:900px){.mapfig{margin-block:16px var(--s2)}.rules{grid-template-columns:1fr}.rules li{padding-bottom:12px}}
 
-/* the mines: a plate each; the comparison lives in the ledger above */
+/* the mines: each composed around its own figure */
 .plate{padding-top:var(--s1)}
-.phead{border-top:1px solid var(--ink);padding-top:14px;margin-bottom:var(--s3);align-items:start}
-.pmeta{display:flex;flex-direction:column;gap:4px;font-size:14px}
-.pmeta .num{font-size:13px;font-weight:500}
-.pmeta span:not(.num){color:var(--ink-2)}
-.phead h3{display:flex;align-items:center;gap:14px}
-.phead h3 i{width:14px;height:14px;background:var(--c);flex:none;margin-top:4px}
-.phead .desc{max-width:44ch;padding-top:4px}
-.plate .photo{aspect-ratio:21/9}
+.phead{border-top:1px solid var(--ink);padding-top:16px;margin-bottom:var(--s2);align-items:start}
+.pmeta{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--ink-2)}
+.pmeta .pn{font:500 14px var(--mono);color:var(--ink)}
+.phead h3{display:flex;align-items:center;gap:16px}
+.phead h3 i{width:16px;height:16px;background:var(--c);flex:none}
+.desc{max-width:44ch;font-size:18px}
+.phead .desc{padding-top:6px}
+.bleed{aspect-ratio:16/6}
 .pfig{margin-top:var(--s2);align-items:start}
-.pfig .mcap{border-top:1px solid var(--ink);padding-top:12px}
-@media(max-width:900px){.pfig .mcap{margin-bottom:12px}.pfig svg{min-width:880px}.phead h3{margin:10px 0}}
+.pfig .cap{border-top:1px solid var(--ink);padding-top:12px}
+.split .im{aspect-ratio:4/5}
+.split .stick{position:sticky;top:calc(var(--navh) + 24px)}
+.kfirst .im{aspect-ratio:3/2}
+.kfirst .desc{margin-top:16px}
+@media(max-width:900px){.pfig .cap{margin-bottom:12px}.pfig .fig-scroll svg{min-width:860px}.split .stick{position:static}.split .fig{margin-top:var(--s3)}.kfirst .im{margin-top:var(--s3)}}
 
-/* ---------- a day on site ---------- */
+/* ---------- site life ---------- */
 .day{background:var(--ink);color:var(--paper);padding-block:var(--s1);margin-top:var(--s1)}
-.day .mcap{color:rgba(246,242,235,.75)}.day .mcap b{color:var(--paper)}
+.day .cap,.day .lab{color:rgba(246,242,235,.8)}.day .cap b{color:var(--paper)}
 .dscroll{overflow-x:auto;padding-inline:var(--pad)}
-.track{position:relative;min-width:1180px}
-.drow{list-style:none;padding:0;display:grid;grid-template-columns:repeat(480,minmax(0,1fr))}
-.drow li{display:flex;flex-direction:column;outline:none}
-.drow .im{aspect-ratio:3/2;transition:transform .4s var(--ease)}
-.drow .txt{padding-block:12px 16px}
-.drow.up li{align-self:end}
-.drow.up .txt{order:-1}
-.drow .tm{font:500 13px var(--mono);display:block;margin-bottom:6px}
-.drow h3{font:600 19px/1.25 var(--body);margin-bottom:6px}
-.drow p{font-size:16px;line-height:1.45;color:rgba(246,242,235,.88);max-width:30ch}
-.drow.up li:hover .im,.drow.up li:focus-visible .im{transform:translateY(-6px)}
-.drow.dn li:hover .im,.drow.dn li:focus-visible .im{transform:translateY(6px)}
-.tax{position:relative;height:64px}
-.tax .line{position:absolute;left:0;right:0;top:28px;height:2px;background:var(--paper)}
-.tax .sun{position:absolute;left:0;right:0;top:31px;height:6px}
-.tax .t{position:absolute;top:21px;width:1px;height:7px;background:var(--paper)}
-.tax .t.maj{top:17px;height:11px}
-.tax .lbl{position:absolute;top:42px;margin-left:5px;font:400 11px var(--mono);color:rgba(246,242,235,.8)}
-.tax .stem{position:absolute;width:1px;background:var(--paper)}
-.tax .stem.u{top:0;height:28px}.tax .stem.d{top:37px;height:27px}
-.tax .mk{position:absolute;top:23px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid var(--paper);background:var(--ink);transition:background .2s}
+.track{position:relative;min-width:1100px}
+.tax{position:relative;height:40px}
+.tax .line{position:absolute;left:0;right:0;top:22px;height:2px;background:var(--paper)}
+.tax .sun{position:absolute;left:0;right:0;top:25px;height:6px}
+.tax .t{position:absolute;top:16px;width:1px;height:6px;background:var(--paper)}
+.tax .t.maj{top:12px;height:10px}
+.tax .lbl{position:absolute;top:0;margin-left:5px;font:400 12px var(--mono);color:rgba(246,242,235,.82)}
+.tax .mk{position:absolute;top:17px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid var(--paper);background:var(--ink);transition:background .2s}
 .tax .mk.on{background:var(--paper)}
+.leads{display:block;width:100%;height:44px}
+.leads path{fill:none;stroke:rgba(246,242,235,.7);stroke-width:1;transition:stroke .2s}
+.leads path.on{stroke:var(--paper);stroke-width:2}
+.cards{list-style:none;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:24px}
+.cards li{outline:none}
+.cards .im{aspect-ratio:3/2;margin-bottom:14px;transition:transform .4s var(--ease)}
+.cards li:hover .im,.cards li:focus-visible .im{transform:translateY(-6px)}
+.cards .tm{font:500 14px var(--mono);display:block;margin-bottom:6px}
+.cards h3{font:600 18px/1.25 var(--body);margin-bottom:6px}
+.cards p{font-size:15px;line-height:1.5;color:rgba(246,242,235,.88)}
+.day .note{margin-top:var(--s3)}
 
 /* ---------- field notes: a register ---------- */
 .notes{padding-top:var(--s1)}
-.notes .m .d2{font-size:clamp(30px,2.8vw,40px);margin-bottom:16px}
-.notes .m .tlink{display:inline-block;margin-top:18px}
 .register{list-style:none;padding:0;border-top:2px solid var(--ink)}
 .register li{border-bottom:1px solid var(--rule)}
-.register figure{display:grid;grid-template-columns:120px 84px 104px minmax(0,1fr) 170px 150px;column-gap:24px;align-items:center;padding:12px 0;cursor:zoom-in;outline-offset:4px}
+.register figure{display:grid;grid-template-columns:160px 92px 120px minmax(0,1fr) 180px 150px;column-gap:24px;align-items:center;padding:10px 0;cursor:zoom-in;outline-offset:4px}
 .register .im{aspect-ratio:4/3;transition:filter .2s}
 .register figure:hover .im{filter:brightness(.95)}
 .register figure:hover .ft{text-decoration:underline;text-underline-offset:4px}
 .register .fn{font:500 13px var(--mono);display:flex;align-items:center;gap:8px}
 .register .fn i{width:9px;height:9px;background:var(--c)}
-.register .fd{font:400 13px var(--mono);color:var(--ink-2)}
+.register .fd{font-size:15px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .register .ft{font-size:18px;font-weight:500;line-height:1.3}
-.register .fw{font-size:14px;color:var(--ink-2)}
-.register .co{font-size:13px;color:var(--ink-2)}
-@media(max-width:900px){.register figure{grid-template-columns:120px 1fr;row-gap:4px;align-items:start}.register .im{grid-row:span 5}.register .fn,.register .fd,.register .ft,.register .fw,.register .co{grid-column:2}.notes .m{margin-bottom:var(--s3)}}
+.register .fw{font-size:15px;color:var(--ink-2)}
+.register .co{color:var(--ink-2)}
+.notes .more{margin-top:18px;display:flex;justify-content:flex-end}
+@media(max-width:900px){.register figure{grid-template-columns:120px 1fr;row-gap:2px;align-items:start}.register .im{grid-row:span 5}.register .fn,.register .fd,.register .ft,.register .fw,.register .co{grid-column:2}}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(13,20,64,.97);color:var(--paper);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vw}
 .lb.open{display:flex}
 .lb .im{width:min(1200px,100%);aspect-ratio:3/2;max-height:76vh}
@@ -254,13 +245,14 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .lb .lbc i{display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px}
 .lb button{position:absolute;top:18px;right:var(--pad);background:none;color:var(--paper);border:1.5px solid currentColor;border-radius:2px;padding:9px 16px;font:600 14px var(--body);cursor:pointer}
 
-/* ---------- closure ---------- */
-.closure{background:var(--gr);color:var(--paper);padding-block:var(--s1) var(--s2);margin-top:var(--s1)}
-.closure .mcap{color:rgba(246,242,235,.75)}.closure .mcap b{color:var(--paper)}
-.closure .mcap{border-top:1px solid rgba(246,242,235,.6);padding-top:12px}
+/* ---------- closure: the second title of the sheet ---------- */
+.closure{background:var(--gr);color:var(--paper);padding-block:var(--s1);margin-top:var(--s1)}
+.closure .cap{color:rgba(246,242,235,.8)}.closure .cap b{color:var(--paper)}
+.closure .cap{border-top:1px solid rgba(246,242,235,.6);padding-top:12px}
+.closure h2{font-size:clamp(44px,7.4vw,112px);line-height:1;max-width:13ch}
 .stages{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px}
 .stages .fr{aspect-ratio:4/3}
-.stages .future{border:1.5px dashed rgba(246,242,235,.5);display:flex;align-items:flex-end;padding:14px;font-size:14px;line-height:1.4;color:rgba(246,242,235,.75)}
+.stages .future{border:1.5px dashed rgba(246,242,235,.55);display:flex;align-items:flex-end;padding:14px;font-size:15px;line-height:1.4;color:rgba(246,242,235,.8)}
 .stages .node{position:relative;height:40px}
 .stages .node::before{content:"";position:absolute;left:0;right:-24px;top:19px;height:2px;background:var(--paper);transform-origin:left;transform:scaleX(0);transition:transform .7s var(--ease) calc(var(--i)*.35s)}
 .stages.in .node::before{transform:scaleX(1)}
@@ -268,55 +260,54 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 .stages li:last-child .node::before{display:none}
 .stages .node u{position:absolute;left:0;top:13px;width:14px;height:14px;border-radius:50%;border:2px solid var(--paper);background:var(--gr)}
 .stages .today .node u{background:var(--paper)}
-.stages b{display:flex;gap:10px;align-items:baseline;font-weight:600}
-.stages b .num{font-weight:500;font-size:13px;opacity:.8}
-.stages span{display:block;font-size:15px;color:rgba(246,242,235,.82)}
-.stages .today b::after{content:"Today";padding:1px 6px;border:1px solid var(--paper);font-size:12px;font-weight:600}
+.stages b{display:flex;gap:10px;align-items:baseline;font-weight:600;font-size:17px;font-variant-numeric:tabular-nums}
+.stages span{display:block;font-size:15px;color:rgba(246,242,235,.85)}
+.tagx{display:inline-block;padding:1px 7px;border:1px solid currentColor;font:600 12px/1.5 var(--body)}
 .clfoot{margin-top:var(--s2);align-items:start}
-.clfoot .lead{color:rgba(246,242,235,.9)}
-.facts{border-top:2px solid var(--paper)}
-.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid var(--rule-d);font-size:15px}
-.facts span{color:rgba(246,242,235,.82)}
-.facts b{font:500 14px var(--mono)}
+.clfoot .deck{color:var(--paper)}
+.facts{border-top:2px solid var(--paper);font-variant-numeric:tabular-nums}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule-d);font-size:16px}
+.facts span{color:rgba(246,242,235,.85)}
+.facts b{font-weight:600}
 @media(max-width:900px){.stages{grid-template-columns:1fr 1fr;row-gap:28px}.stages li:nth-child(2) .node::before{right:0}.facts{margin-top:var(--s3)}}
 
 /* ---------- news ---------- */
 .news{padding-top:var(--s1)}
-.inv{display:grid;grid-template-columns:1fr 1fr auto;gap:24px;align-items:end;border-top:1px solid var(--ink);padding-top:10px;font-size:15px}
-.inv .lab{color:var(--ink-2);margin-bottom:4px}
-.inv b{font-weight:500}
+.inv{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end;border-block:1px solid var(--ink);padding-block:12px;margin-bottom:var(--s2);font-variant-numeric:tabular-nums}
+.inv>div{grid-column:span 3}
+.inv>div:first-child{grid-column:1/3}
+.inv b{font-weight:600}
+.inv .go{grid-column:span 4;justify-self:end}
 .news-lead{align-items:start;text-decoration:none;margin-bottom:var(--s2)}
-.news-lead .meta{display:flex;flex-direction:column;gap:4px;font-size:14px;border-top:1px solid var(--ink);padding-top:12px}
-.news-lead .meta .num{font-size:13px;color:var(--ink-2)}
+.news-lead .meta{display:flex;flex-direction:column;gap:4px;font-size:15px;color:var(--ink-2);border-top:1px solid var(--ink);padding-top:12px;font-variant-numeric:tabular-nums}
 .news-lead .im{aspect-ratio:3/2}
 .news-lead .txt{border-top:1px solid var(--ink);padding-top:12px}
 .news-lead h3{font:600 clamp(26px,2.4vw,32px)/1.2 var(--body);letter-spacing:-.01em;margin-bottom:14px;max-width:24ch}
-.news-lead .deck{color:var(--ink-2);margin-bottom:18px;max-width:40ch}
+.news-lead .deck2{color:var(--ink-2);margin-bottom:18px;max-width:40ch}
 .news-lead:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
 .sw{display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px;box-shadow:inset 0 0 0 1px rgba(13,20,64,.35)}
 .sw.o{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
 .nlist{list-style:none;padding:0;border-top:2px solid var(--ink)}
-.nlist a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule);text-decoration:none}
-.nlist .dt{grid-column:1/3;font-size:13px;color:var(--ink-2)}
-.nlist .site{grid-column:3/5;font-size:14px;color:var(--ink-2)}
+.nlist a{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule);text-decoration:none;font-variant-numeric:tabular-nums}
+.nlist .dt{grid-column:1/3;font-size:15px;color:var(--ink-2)}
+.nlist .site{grid-column:3/5;font-size:15px;color:var(--ink-2)}
 .nlist .txt{grid-column:5/11}
 .nlist h3{font-size:19px;line-height:1.3;font-weight:600}
-.nlist .deck{color:var(--ink-2);font-size:15px;margin-top:2px}
-.nlist .code{grid-column:11/13;text-align:right;font-size:13px;color:var(--ink-2)}
+.nlist .d{color:var(--ink-2);font-size:16px;margin-top:2px}
+.nlist .code{grid-column:11/13;text-align:right;font-size:15px;color:var(--ink-2)}
 .nlist a:hover h3{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
 .more{margin-top:18px;display:flex;justify-content:flex-end}
-@media(max-width:900px){.inv{grid-template-columns:1fr;margin-top:16px}.news-lead .im{margin-block:12px}.nlist a{grid-template-columns:1fr 1fr;gap:4px 16px}.nlist .dt,.nlist .site,.nlist .txt{grid-column:auto}.nlist .txt{grid-column:1/-1}.nlist .code{display:none}}
+@media(max-width:900px){.inv>div,.inv>div:first-child,.inv .go{grid-column:span 6;justify-self:start;margin-bottom:8px}.news-lead .im{margin-block:12px}.nlist a{grid-template-columns:1fr 1fr;gap:4px 16px}.nlist .dt,.nlist .site,.nlist .txt{grid-column:auto}.nlist .txt{grid-column:1/-1}.nlist .code{display:none}}
 
 /* ---------- careers ---------- */
 .careers{padding-block:var(--s1)}
-.careers .c2 .lead{font-size:18px;margin-bottom:22px}
+.careers .c2 .deck{font-size:20px;margin-bottom:22px}
 .roster{width:100%;border-collapse:collapse;border-top:2px solid var(--ink)}
-.roster th{text-align:left;padding:10px 0;border-bottom:1px solid var(--rule)}
-.roster td{padding:13px 0;border-bottom:1px solid var(--rule);vertical-align:middle;font-size:16px}
-.roster td:first-child{font-weight:600;width:34%}
-.roster td:nth-child(2){width:22%}
+.roster th{text-align:left;padding:10px 0;border-bottom:1px solid var(--rule);font-weight:600;font-size:14px}
+.roster td{padding:13px 0;border-bottom:1px solid var(--rule);vertical-align:middle;font-size:16px;font-variant-numeric:tabular-nums}
+.roster td:first-child{font-weight:600;width:32%}
+.roster td:nth-child(2){width:26%}
 .roster td:last-child,.roster th:last-child{text-align:right}
-.roster .num{font-size:14px}
 .rs{display:inline-flex;gap:2px;margin-right:12px;vertical-align:-1px}
 .rs i{width:7px;height:10px;background:var(--ink)}
 .rs i.o{background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
@@ -326,30 +317,25 @@ sub{font-size:.72em;vertical-align:baseline;position:relative;top:.22em;line-hei
 footer{background:var(--ink);color:var(--paper);padding-bottom:var(--pad)}
 .art{aspect-ratio:7/1}
 .ack{padding-block:var(--s2) var(--s1)}
-.ack .mcap{color:rgba(246,242,235,.7);border-top:1px solid rgba(246,242,235,.6);padding-top:12px}
-.ack .mcap b{color:var(--paper)}
+.ack .cap{color:rgba(246,242,235,.78);border-top:1px solid rgba(246,242,235,.6);padding-top:12px}.ack .cap b{color:var(--paper)}
 .ackp{font:400 clamp(26px,2.6vw,38px)/1.28 var(--body);letter-spacing:-.015em;max-width:38ch;text-wrap:balance}
-.tb{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border:2px solid var(--paper)}
-.tb>div{border-right:1px solid var(--rule-d);border-bottom:1px solid var(--rule-d);padding:14px 18px 18px;min-width:0}
-.tb .lab{color:rgba(246,242,235,.62);margin-bottom:12px}
-.tb .s6{grid-column:span 6}.tb .s3{grid-column:span 3}
-.tb .e{border-right:0}.tb .last{border-bottom:0}
-.mark{display:flex;align-items:center;gap:16px;text-decoration:none;font-weight:800;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:-.02em;text-transform:uppercase}
-.mark svg{width:1.15em;height:.9em;flex:none;fill:currentColor}
-.tb .brand{display:flex;flex-direction:column;justify-content:space-between;gap:24px}
-.tb .brand p{font-size:15px;color:rgba(246,242,235,.78);max-width:44ch}
-.tb address{font-style:normal;color:rgba(246,242,235,.88)}
-.tb .num{font-size:13px}
-footer ul{list-style:none;padding:0;display:grid;gap:7px}
-footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decoration:underline;text-underline-offset:4px}
-.rev{width:100%;border-collapse:collapse;font-size:13px}
-.rev td{padding:3px 0;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.85)}
-.rev td:first-child{width:28px}
-.rev .num{font-size:12px}
-.sbar{display:flex;align-items:flex-end;gap:16px;margin-top:12px}
-.sbar svg{display:block}
-.tb .legal{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:14px}
-@media(max-width:900px){.tb .s6,.tb .s3{grid-column:1/-1;border-right:0}.art{aspect-ratio:3/1}}
+.tb{border-top:1px solid var(--paper)}
+.tb .row>div{border-left:1px solid var(--rule-d);padding:14px 0 18px 16px;min-width:0}
+.tb .row>div:first-child{border-left:0;padding-left:0}
+.tb .row+.row{border-top:1px solid var(--rule-d)}
+.tb .lab{color:rgba(246,242,235,.7);font-size:13px;margin-bottom:10px}
+.tb .x2{grid-column:span 2}.tb .x3{grid-column:span 3}.tb .x5{grid-column:span 5}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:15px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.tb .big{font:500 clamp(26px,2.4vw,34px)/1.1 var(--body);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.tb p,.tb address{font-size:15px;line-height:1.5;color:rgba(246,242,235,.85);font-style:normal}
+.tb ul{list-style:none;padding:0;display:grid;gap:4px;font-size:15px}
+.tb ul.two{grid-template-columns:1fr 1fr;column-gap:16px}
+footer a{text-decoration:none}.tb a:hover{text-decoration:underline;text-underline-offset:4px}
+.rev{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.rev th{text-align:left;font-weight:500;color:rgba(246,242,235,.7);padding:0 8px 4px 0}
+.rev td{padding:4px 8px 4px 0;border-top:1px solid var(--rule-d);color:rgba(246,242,235,.88)}
+.tb .dno{font:500 22px var(--mono);letter-spacing:-.02em}
+@media(max-width:900px){.tb .row>div{grid-column:1/-1!important;border-left:0;padding-left:0}.art{aspect-ratio:3/1}}
 
 /* motion */
 .rv{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease) calc(var(--i,0)*.12s)}
@@ -359,7 +345,7 @@ footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decorati
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{clip-path:none;transition:none}
-  .im>img,.nav,.drow .im,.stages .node::before{transition:none}
+  .im>img,.nav,.cards .im,.stages .node::before{transition:none}
   .draw path.anim,.mapfig .coast{stroke-dasharray:none;transition:none}
   .mapfig .late{opacity:1;transition:none}
 }
@@ -369,177 +355,173 @@ footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decorati
 
 <header class="nav" id="nav">
   <a class="logo" href="#top" aria-label="Calder Ridge home">
-    <svg viewBox="0 0 30 24" aria-hidden="true"><path d="M0 0H4V4H8V8H12V12H18V8H22V4H26V0H30V24H0Z"/></svg>
+    <svg viewBox="0 0 30 20" aria-hidden="true"><path d="M0 0H30V4H27V8H24V12H21V16H18V20H12V16H9V12H6V8H3V4H0Z"/></svg>
     Calder Ridge
   </a>
-  <div class="cell sec" aria-hidden="true"><span class="lab">Section</span><b id="secname"><span class="num">00</span>Overview</b></div>
   <nav aria-label="Primary"><ul id="navlist">
     <li><a class="cell" href="#operations" data-key="ops">Operations</a></li>
     <li><a class="cell" href="#land" data-key="land">Closure</a></li>
     <li><a class="cell" href="#news" data-key="news">News</a></li>
     <li><a class="cell" href="#investors">Investors</a></li>
     <li><a class="cell" href="#">About</a></li>
+    <li class="mc"><a class="cell" href="#investors">ASX: CDR A$4.82 ▲0.06</a></li>
   </ul></nav>
-  <div class="cell meta"><span class="lab">ASX: CDR</span><b>A$4.82</b></div>
-  <div class="cell meta"><span class="lab">Perth</span><b id="clock">--:-- AWST</b></div>
+  <div class="cell tick"><span class="lab">ASX: CDR, 20 minutes delayed</span><b>A$4.82 ▲0.06</b></div>
+  <a class="cell cta" href="#careers" data-key="careers"><span>Careers</span><span class="mono">143 roles</span></a>
   <button class="menu" id="menu" aria-expanded="false" aria-controls="navlist">Menu</button>
-  <a class="cta" href="#careers" data-key="careers">Careers <span class="hv">143</span></a>
 </header>
 
 <main id="top">
-<section class="hero wrap" id="hero" data-chap="00|Overview">
-  <div class="row">
-    <div class="m sheetid"><span class="lab">Calder Ridge Resources Ltd</span><span class="lab">ASX: CDR</span><span class="lab">Perth, Western Australia</span></div>
-    <h1 class="c d1"><span>Dug here.</span><span>Built everywhere.</span></h1>
-  </div>
-  <div class="row hstrip">
-    <div class="m"><span class="lab" style="color:var(--ink-2)">Year to 30 June 2026</span></div>
-    <div class="c cells">
-      <div><div class="v"><b>0.38</b><span class="hv">TRIFR</span></div><p>Recordable injuries per million hours worked. Down from 0.61, audited.</p></div>
-      <div><div class="v"><b>12</b></div><p>Landforms rehabilitated and handed back to their Traditional Owners.</p></div>
-      <div><div class="v"><b>70%</b></div><p>Of Karri Creek's power now comes from our own solar and battery.</p></div>
+<section class="hero wrap" id="hero">
+  <h1 class="d1"><span>Dug here.</span><span>Built everywhere.</span></h1>
+  <div class="row hdeck">
+    <div class="c">
+      <p class="deck">We mine iron ore, gold and lithium in Western&nbsp;Australia for steelmakers, refiners and battery makers around the world.</p>
+      <div class="acts"><a class="btn" href="#operations">See our mines</a><a class="tlink" href="#land">How we close a mine</a></div>
     </div>
   </div>
-  <div class="row hfoot">
-    <p class="c1 intro">We mine iron ore, gold and lithium in Western&nbsp;Australia for steelmakers, refiners and battery makers around the world.</p>
-    <div class="c2 acts"><a class="btn" href="#operations">See our mines</a><a class="tlink" href="#land">How we close a mine</a></div>
+  <div class="row hstrip">
+    <div class="safety"><span class="lab">Recordable injury rate (TRIFR)</span><b class="fig-n">0.38</b><p>Per million hours worked, down from 0.61</p></div>
+    <div><span class="lab">Iron ore shipped</span><b class="fig-n">38.4<small>Mt</small></b><p>Mount Ferrell, Pilbara</p></div>
+    <div><span class="lab">Gold poured</span><b class="fig-n">412<small>koz</small></b><p>Ridgeback, Goldfields</p></div>
+    <div><span class="lab">Spodumene concentrate</span><b class="fig-n">396<small>kt</small></b><p>Karri Creek, South West</p></div>
   </div>
+  <p class="small hnote">Year to 30 June 2026, audited. Full results in the FY26 annual report.</p>
 </section>
 
 <section class="ops wrap" id="operations">
-  <header class="strip" data-chap="01|Operations" data-key="ops"><span class="n">01</span><span class="t">Operations in Western Australia</span><span class="co">20°–35° S 113°–129° E</span></header>
-  <div class="row opener">
-    <div class="c">
-      <h2 class="d2">Three mines, three geologies</h2>
-      <p class="lead">Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, up to 1,400&nbsp;km apart, compared below.</p>
-    </div>
-  </div>
+  <header class="strip" data-key="ops"><span class="n">01</span><span class="t">Operations</span></header>
+  <div class="row opener"><h2 class="c d2">Three mines, three geologies</h2></div>
   <div class="row">
-    <div class="m mcap"><b>Fig. 1</b>Our three leases and the geology they sit in.
+    <div class="m cap"><b>Fig. 1</b>Our three leases and the geology they sit in.
       <ul class="legend">
         <li style="--c:var(--fe)"><i></i>Banded iron, Hamersley Basin</li>
         <li style="--c:var(--au)"><i></i>Greenstone, Eastern Goldfields</li>
         <li style="--c:var(--sp)"><i></i>Pegmatite, Greenbushes</li>
       </ul>
     </div>
-    <div class="c6 mapfig" id="mapfig"><svg id="wamap" role="img" aria-label="Map of Western Australia showing the Mount Ferrell, Ridgeback and Karri Creek leases and their geological provinces"></svg></div>
-    <div class="c4">
+    <div class="c1 mapfig" id="mapfig"><svg id="wamap" role="img" aria-label="Map of Western Australia showing the Mount Ferrell, Ridgeback and Karri Creek leases and their geological provinces"></svg></div>
+    <div class="c2">
+      <p class="lead">Banded iron in the Pilbara, gold-bearing greenstone in the Goldfields and lithium pegmatite in the South West, up to 1,400&nbsp;km apart.</p>
       <table class="ledger">
-        <thead><tr><th><span class="lab" style="color:var(--ink-2)">FY26</span></th><th><span class="sw" style="--c:var(--fe)"></span>Mt Ferrell</th><th><span class="sw" style="--c:var(--au)"></span>Ridgeback</th><th><span class="sw" style="--c:var(--sp)"></span>Karri Creek</th></tr></thead>
+        <thead><tr><th></th><th><span class="sw" style="--c:var(--fe)"></span>Mt Ferrell</th><th><span class="sw" style="--c:var(--au)"></span>Ridgeback</th><th><span class="sw" style="--c:var(--sp)"></span>Karri Creek</th></tr></thead>
         <tbody>
           <tr><th>Commodity</th><td>Iron ore</td><td>Gold</td><td>Lithium</td></tr>
-          <tr><th>Region</th><td>Pilbara</td><td>Goldfields</td><td>South West</td></tr>
-          <tr><th>Produced</th><td class="num">38.4 Mt</td><td class="num">412 koz</td><td class="num">396 kt</td></tr>
-          <tr><th>Average grade</th><td class="num">61.8% Fe</td><td class="num">2.9 g/t</td><td class="num">1.4% Li<sub>2</sub>O</td></tr>
-          <tr><th>Reserve life</th><td class="num">22 yr</td><td class="num">14 yr</td><td class="num">19 yr</td></tr>
-          <tr><th>People on site</th><td class="num">1,240</td><td class="num">860</td><td class="num">540</td></tr>
+          <tr><th>Average grade</th><td>61.8% Fe</td><td>2.9 g/t</td><td>1.4% Li<sub>2</sub>O</td></tr>
+          <tr><th>Reserve life</th><td>22 years</td><td>14 years</td><td>19 years</td></tr>
+          <tr><th>People on site</th><td>1,240</td><td>860</td><td>540</td></tr>
           <tr><th>Traditional Owners</th><td>Banjima</td><td>Ngadju</td><td>Noongar</td></tr>
         </tbody>
       </table>
-      <ol class="rules">
-        <li style="display:block;padding:0"><span class="lab">Three rules, at every site</span></li>
-        <li><span class="num">01</span><b>Plan the closure first</b><span>Every pit has an approved closure plan before the first blast.</span></li>
-        <li><span class="num">02</span><b>Protect heritage first</b><span>Traditional Owners survey and sign off ground before we disturb it.</span></li>
-        <li><span class="num">03</span><b>Send everyone home</b><span>No production target outranks a stop-work call from anyone on site.</span></li>
-      </ol>
     </div>
+  </div>
+  <div class="row">
+    <ol class="c rules">
+      <li><b>Plan the closure first</b><span>Every pit has an approved closure plan before the first blast.</span></li>
+      <li><b>Protect heritage first</b><span>Traditional Owners survey and sign off ground before we disturb it.</span></li>
+      <li><b>Send everyone home</b><span>No production target outranks a stop-work call from anyone on site.</span></li>
+    </ol>
   </div>
 </section>
 
-<article class="plate wrap" id="ferrell" style="--c:var(--fe)">
-  <div class="row phead" data-chap="1.1|Mount Ferrell" data-key="ops">
-    <div class="m pmeta"><span class="num">1.1</span><span>Banjima Country</span><span class="co">22.80° S 118.40° E</span></div>
+<!-- 1.1 Mount Ferrell: horizontal. A full-bleed plate with the rail beneath it -->
+<article class="plate" id="ferrell" style="--c:var(--fe)">
+  <div class="wrap"><div class="row phead" data-key="ops">
+    <div class="m pmeta"><span class="pn">1.1</span><span>Banjima Country, Pilbara</span><span class="co">22.80° S 118.40° E</span></div>
     <h3 class="c1 d3"><i></i>Mount Ferrell</h3>
     <p class="c2 desc">Hematite from the Brockman Iron Formation, mined from three pits and railed to our own berth at Port Hedland.</p>
-  </div>
-  <div class="row"><div class="c im photo rv" data-alt="Ore train crossing the Pilbara below Mount Ferrell"></div></div>
-  <figure class="row pfig">
-    <figcaption class="m mcap"><b>Fig. 2</b>Rail from mine to port, with elevation. Driverless since 2021.<span class="readout">212&nbsp;km</span></figcaption>
+  </div></div>
+  <div class="im bleed rv" data-alt="Ore train crossing the Pilbara below Mount Ferrell"></div>
+  <figure class="wrap"><div class="row pfig">
+    <figcaption class="m cap"><b>Fig. 2</b>Rail from mine to port, with elevation. Driverless since 2021.<span class="fig-n readout">212<small>km</small></span></figcaption>
     <div class="c fig"><div class="fig-scroll"><svg id="figRail" class="draw" viewBox="0 -30 1324 236" role="img" aria-label="Rail profile from Mount Ferrell at 606 metres elevation down to Port Hedland at sea level, 212 km, via Turner Siding at 64 km and Coondie Junction at 138 km"></svg></div></div>
-  </figure>
+  </div></figure>
 </article>
 
+<!-- 1.2 Ridgeback: vertical. A portrait plate beside the long section -->
 <article class="plate wrap" id="ridgeback" style="--c:var(--au)">
-  <div class="row phead" data-chap="1.2|Ridgeback" data-key="ops">
-    <div class="m pmeta"><span class="num">1.2</span><span>Ngadju Country</span><span class="co">30.92° S 121.61° E</span></div>
+  <div class="row phead" data-key="ops">
+    <div class="m pmeta"><span class="pn">1.2</span><span>Ngadju Country, Goldfields</span><span class="co">30.92° S 121.61° E</span></div>
     <h3 class="c1 d3"><i></i>Ridgeback</h3>
     <p class="c2 desc">An open pit that became an underground mine, 40&nbsp;km south&#8209;east of Kalgoorlie. Drilling says the ore body keeps going.</p>
   </div>
-  <div class="row"><div class="c im photo rv" data-alt="Ridgeback headframe and decline portal"></div></div>
-  <figure class="row pfig">
-    <figcaption class="m mcap"><b>Fig. 3</b>Long section looking north, with this year's drilling.<span class="readout">1,140&nbsp;m</span><span style="display:block;margin-top:4px">Deepest level</span></figcaption>
-    <div class="c fig"><div class="fig-scroll"><svg id="figLong" class="draw" viewBox="0 0 1324 580" role="img" aria-label="Long section: a benched open pit to 210 metres, a decline beside the ore body dipping east to the deepest level at 1,140 metres, and three 2026 drill holes intersecting the ore body below it, to about 1,560 metres"></svg></div></div>
-  </figure>
+  <div class="row split">
+    <div class="m"><figcaption class="cap stick"><b>Fig. 3</b>Long section looking north, with this year's drilling.<span class="fig-n readout">1,140<small>m</small></span><span style="display:block;margin-top:6px">to the deepest level</span></figcaption></div>
+    <div class="c1 im rv" data-alt="Ridgeback headframe and decline portal"></div>
+    <div class="c2 fig"><svg id="figLong" class="draw" viewBox="0 0 540 724" role="img" aria-label="Long section: a benched open pit to 210 metres, a decline beside the ore body dipping east to the deepest level at 1,140 metres, and three 2026 drill holes intersecting the ore body below it, to about 1,560 metres"></svg></div>
+  </div>
 </article>
 
+<!-- 1.3 Karri Creek: over a day. Led by its power chart -->
 <article class="plate wrap" id="karri" style="--c:var(--sp)">
-  <div class="row phead" data-chap="1.3|Karri Creek" data-key="ops">
-    <div class="m pmeta"><span class="num">1.3</span><span>Noongar Country</span><span class="co">33.90° S 116.10° E</span></div>
-    <h3 class="c1 d3"><i></i>Karri Creek</h3>
-    <p class="c2 desc">Spodumene, the lithium-bearing crystal, concentrated on site for battery makers on our own solar and battery power.</p>
+  <div class="row phead kfirst" data-key="ops">
+    <div class="m pmeta"><span class="pn">1.3</span><span>Noongar Country, South West</span><span class="co">33.90° S 116.10° E</span></div>
+    <div class="c1"><h3 class="d3"><i style="display:inline-block;width:16px;height:16px;background:var(--c);margin-right:16px;vertical-align:.1em"></i>Karri Creek</h3><p class="desc">Spodumene, the lithium-bearing crystal, concentrated on site for battery makers on our own solar and battery power.</p></div>
+    <div class="c2 im rv" data-alt="Spodumene in Karri Creek drill core"></div>
   </div>
-  <div class="row"><div class="c im photo rv" data-alt="Spodumene in Karri Creek drill core"></div></div>
   <figure class="row pfig">
-    <figcaption class="m mcap"><b>Fig. 4</b>Site power across a roster day, FY26.<span class="readout">70%</span><span style="display:block;margin-top:4px">From solar and battery</span></figcaption>
+    <figcaption class="m cap"><b>Fig. 4</b>Site power across a roster day, FY26.<span class="fig-n readout">70<small>%</small></span><span style="display:block;margin-top:6px">from solar and battery</span></figcaption>
     <div class="c fig"><div class="fig-scroll"><svg id="figPower" class="draw" viewBox="0 -34 1324 334" role="img" aria-label="Site load from 04:00 to 04:00: solar covers demand from mid-morning to mid-afternoon, the battery covers the evening, and the grid supplies the night"></svg></div></div>
   </figure>
 </article>
 
 <section class="day" id="day" data-dark>
   <div class="wrap">
-    <header class="strip" data-chap="02|A day on site"><span class="n">02</span><span class="t">A day on site</span><span class="co">30.92° S 121.61° E</span></header>
+    <header class="strip"><span class="n">02</span><span class="t">Site life</span></header>
     <div class="row opener">
-      <p class="m mcap"><b>Fig. 5</b>One roster day in the Ridgeback pit, 04:00 to 04:00. The bar under the axis is daylight: sunrise 05:08, sunset 18:08.</p>
-      <h2 class="c d2">A day at Ridgeback</h2>
+      <p class="m cap">The bar under the hours is daylight: sunrise 05:08, sunset 18:08.</p>
+      <h2 class="c d2">Twenty-four hours in the Ridgeback pit</h2>
     </div>
   </div>
-  <div class="dscroll dayband">
+  <div class="dscroll">
     <div class="track" id="track">
-      <ol class="drow up">
-        <li tabindex="0" data-h="5" style="grid-column:21/103"><div class="txt"><span class="tm">05:00</span><h3>Handover under lights</h3><p>Day crews walk the plant with night shift and sign the safety brief.</p></div><div class="im dk" data-alt="Plant lights before dawn"></div></li>
-        <li tabindex="0" data-h="11" style="grid-column:141/223"><div class="txt"><span class="tm">11:00</span><h3>Water carts and dust</h3><p>Haul roads are wetted on a loop. Boundary monitors report dust every ten minutes.</p></div><div class="im dk" data-alt="Water cart on the haul road"></div></li>
-        <li tabindex="0" data-h="18.25" style="grid-column:286/368"><div class="txt"><span class="tm">18:15</span><h3>Wall inspection</h3><p>Survey prisms on the rim are read as the light drops. Any movement is fenced off.</p></div><div class="im dk" data-alt="Survey team on the pit rim at dusk"></div></li>
-      </ol>
       <div class="tax" id="tax" aria-hidden="true"></div>
-      <ol class="drow dn">
-        <li tabindex="0" data-h="8.5" style="grid-column:91/173"><div class="im dk" data-alt="Drill rigs on the second bench"></div><div class="txt"><span class="tm">08:30</span><h3>Drill and blast</h3><p>168 holes on the second bench. Nobody fires until everyone is accounted for.</p></div></li>
-        <li tabindex="0" data-h="13" style="grid-column:181/263"><div class="im dk" data-alt="Haul trucks on the ramp"></div><div class="txt"><span class="tm">13:00</span><h3>Haul and crush</h3><p>Eight trucks carry ore up the ramp to the crusher. Every load is weighed.</p></div></li>
-        <li tabindex="0" data-h="22" style="grid-column:361/443"><div class="im dk" data-alt="Lighting towers on the benches at night"></div><div class="txt"><span class="tm">22:00</span><h3>Night shift</h3><p>Lighting towers go up and Perth takes over the driverless fleet.</p></div></li>
+      <svg class="leads" id="leads" aria-hidden="true"></svg>
+      <ol class="cards" id="cards">
+        <li tabindex="0" data-h="5"><div class="im dk" data-alt="Plant lights before dawn"></div><span class="tm">05:00</span><h3>Handover under lights</h3><p>Day crews walk the plant with night shift and sign the safety brief.</p></li>
+        <li tabindex="0" data-h="8.5"><div class="im dk" data-alt="Drill rigs on the second bench"></div><span class="tm">08:30</span><h3>Drill and blast</h3><p>168 holes on the second bench. Nobody fires until everyone is accounted for.</p></li>
+        <li tabindex="0" data-h="11"><div class="im dk" data-alt="Water cart on the haul road"></div><span class="tm">11:00</span><h3>Water carts and dust</h3><p>Haul roads are wetted on a loop. Monitors report dust every ten minutes.</p></li>
+        <li tabindex="0" data-h="13"><div class="im dk" data-alt="Haul trucks on the ramp"></div><span class="tm">13:00</span><h3>Haul and crush</h3><p>Eight trucks carry ore up the ramp to the crusher. Every load is weighed.</p></li>
+        <li tabindex="0" data-h="18.25"><div class="im dk" data-alt="Survey team on the pit rim at dusk"></div><span class="tm">18:15</span><h3>Wall inspection</h3><p>Survey prisms on the rim are read as the light drops.</p></li>
+        <li tabindex="0" data-h="22"><div class="im dk" data-alt="Lighting towers on the benches at night"></div><span class="tm">22:00</span><h3>Night shift</h3><p>Lighting towers go up and Perth takes over the driverless fleet.</p></li>
       </ol>
     </div>
   </div>
 </section>
 
 <section class="notes wrap" id="notes">
-  <header class="strip" data-chap="03|Field notes"><span class="n">03</span><span class="t">Field notes, from all three leases</span><span class="co">FN-001 to FN-040</span></header>
+  <header class="strip"><span class="n">03</span><span class="t">Field notes</span></header>
+  <div class="row opener">
+    <p class="m cap">From our geologists, surveyors and rehabilitation crews, catalogued as they come in.</p>
+    <h2 class="c d2">What the crews saw this year</h2>
+  </div>
   <div class="row">
-    <div class="m"><h2 class="d2">Field notes</h2><p class="mcap">From our geologists, surveyors and rehabilitation crews, catalogued as they come in.</p><a class="tlink" href="#">All 40 notes</a></div>
     <ol class="c register" id="sheet">
-      <li style="--c:var(--au)"><figure tabindex="0"><div class="im rv" data-alt="Seed collection for the north dump"></div><span class="fn"><i></i>FN-040</span><span class="fd">03 Sep 2026</span><span class="ft">Seed collection, north dump</span><span class="fw">Rehabilitation crew</span><span class="co">30.89° S 121.63° E</span></figure></li>
+      <li style="--c:var(--au)"><figure tabindex="0"><div class="im rv" data-alt="Seed collection for the north dump"></div><span class="fn"><i></i>FN-040</span><span class="fd">3 Sep 2026</span><span class="ft">Seed collection, north dump</span><span class="fw">Rehabilitation crew</span><span class="co">30.89° S 121.63° E</span></figure></li>
       <li style="--c:var(--fe)"><figure tabindex="0"><div class="im rv" data-alt="Heritage survey on the east pit extension"></div><span class="fn"><i></i>FN-036</span><span class="fd">14 Aug 2026</span><span class="ft">Heritage survey, east pit extension</span><span class="fw">Heritage team</span><span class="co">22.78° S 118.47° E</span></figure></li>
       <li style="--c:var(--sp)"><figure tabindex="0"><div class="im rv" data-alt="Karri canopy beside the lease"></div><span class="fn"><i></i>FN-031</span><span class="fd">11 Jun 2026</span><span class="ft">Karri canopy beside the lease</span><span class="fw">Environment officer</span><span class="co">33.91° S 116.08° E</span></figure></li>
       <li style="--c:var(--fe)"><figure tabindex="0"><div class="im rv" data-alt="Ore train at Coondie Junction"></div><span class="fn"><i></i>FN-024</span><span class="fd">30 May 2026</span><span class="ft">Ore train at Coondie Junction</span><span class="fw">Rail control</span><span class="co">21.21° S 118.52° E</span></figure></li>
       <li style="--c:var(--au)"><figure tabindex="0"><div class="im rv" data-alt="Soil sampling on the east target"></div><span class="fn"><i></i>FN-015</span><span class="fd">19 Apr 2026</span><span class="ft">Soil sampling, east target</span><span class="fw">Exploration geologist</span><span class="co">30.94° S 121.70° E</span></figure></li>
-      <li style="--c:var(--fe)"><figure tabindex="0"><div class="im rv" data-alt="Hamersley Range above Mount Ferrell"></div><span class="fn"><i></i>FN-009</span><span class="fd">14 Mar 2026</span><span class="ft">Hamersley Range above Mount Ferrell</span><span class="fw">Survey team</span><span class="co">22.74° S 118.36° E</span></figure></li>
     </ol>
   </div>
+  <p class="more"><a class="tlink" href="#">All 40 field notes</a></p>
 </section>
 
-<section class="closure" id="land" data-dark="#1f3b30">
+<section class="closure" id="land" data-dark="#2f4239">
   <div class="wrap">
-    <header class="strip" data-chap="04|Closure" data-key="land"><span class="n">04</span><span class="t">Closure, north waste dump, Ridgeback</span><span class="co">30.89° S 121.63° E</span></header>
-    <div class="row opener"><h2 class="c d2">We plan how a mine closes before we open it</h2></div>
+    <header class="strip" data-key="land"><span class="n">04</span><span class="t">Closure</span></header>
+    <h2 class="d2 opener">We plan how a mine closes before we open it</h2>
     <div class="row">
-      <p class="m mcap"><b>Fig. 6</b>The north waste dump, photographed each year from the same survey mark.</p>
+      <p class="m cap"><b>North waste dump, Ridgeback</b>Photographed each year from the same survey mark.</p>
       <ol class="c stages" id="stages">
-        <li style="--i:0"><div class="im dk fr rv" style="--i:0" data-alt="North waste dump reshaped and seeded, 2018"></div><div class="node"><u></u></div><b>Year 0<span class="num">2018</span></b><span>Reshaped, topsoiled and seeded</span></li>
-        <li style="--i:1"><div class="im dk fr rv" style="--i:1" data-alt="North waste dump at year three, 2021"></div><div class="node"><u></u></div><b>Year 3<span class="num">2021</span></b><span>Independent review passed</span></li>
-        <li style="--i:2" class="today"><div class="im dk fr rv" style="--i:2" data-alt="North waste dump today, 2026"></div><div class="node"><u></u></div><b>Year 8<span class="num">2026</span></b><span>84 native species established</span></li>
-        <li style="--i:3"><div class="fr future">Not yet photographed</div><div class="node"><u></u></div><b>Year 10<span class="num">2028</span></b><span>Handback to Ngadju Traditional Owners</span></li>
+        <li style="--i:0"><div class="im dk fr rv" style="--i:0" data-alt="North waste dump reshaped and seeded, 2018"></div><div class="node"><u></u></div><b>Year 0, 2018</b><span>Reshaped, topsoiled and seeded</span></li>
+        <li style="--i:1"><div class="im dk fr rv" style="--i:1" data-alt="North waste dump at year three, 2021"></div><div class="node"><u></u></div><b>Year 3, 2021</b><span>Independent review passed</span></li>
+        <li style="--i:2"><div class="im dk fr rv" style="--i:2" data-alt="North waste dump today, 2026"></div><div class="node"><u></u></div><b>Year 8, 2026 <span class="tagx">Today</span></b><span>84 native species established</span></li>
+        <li style="--i:3"><div class="fr future">Not yet photographed</div><div class="node"><u></u></div><b>Year 10, 2028</b><span>Handback to Ngadju Traditional Owners</span></li>
       </ol>
     </div>
     <div class="row clfoot">
-      <p class="c1 lead">Topsoil goes back in the order it came out, and the seed comes from the lease itself. We monitor every landform for ten years, and it is only handed back when its Traditional Owners sign it off.</p>
+      <p class="c1 deck">Topsoil goes back in the order it came out, and the seed comes from the lease itself. Land is only handed back when its Traditional Owners sign it off.</p>
       <div class="c2 facts">
         <div><span>Land rehabilitated to date</span><b>6,100 ha</b></div>
         <div><span>Native species in the seed mix</span><b>84</b></div>
@@ -551,53 +533,51 @@ footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decorati
 </section>
 
 <section class="news wrap" id="news">
-  <header class="strip" data-chap="05|News" data-key="news"><span class="n">05</span><span class="t">News, results and releases</span><span class="co">ASX: CDR</span></header>
-  <div class="row opener" style="align-items:end">
-    <h2 class="c1 d2">News</h2>
-    <div class="c2 inv" id="investors">
-      <div><span class="lab">Quarterly report</span><b class="num">29 Oct 2026</b></div>
-      <div><span class="lab">AGM, Perth</span><b class="num">20 Nov 2026</b></div>
-      <a class="tlink" href="#">Investor centre</a>
-    </div>
+  <header class="strip" data-key="news"><span class="n">05</span><span class="t">News and investors</span></header>
+  <div class="inv" id="investors">
+    <div><span class="lab">ASX: CDR</span><b>A$4.82 ▲0.06</b></div>
+    <div><span class="lab">Quarterly report</span><b>29 Oct 2026</b></div>
+    <div><span class="lab">Annual general meeting, Perth</span><b>20 Nov 2026</b></div>
+    <a class="tlink go" href="#">Investor centre</a>
   </div>
+  <div class="row opener"><h2 class="c d2">What happened this quarter</h2></div>
   <a class="row news-lead" href="#">
-    <div class="m meta"><span><span class="sw" style="--c:var(--sp)"></span>Karri Creek</span><span class="num">14 Oct 2026</span></div>
+    <div class="m meta"><span><span class="sw" style="--c:var(--sp)"></span>Karri Creek</span><span>14 Oct 2026</span></div>
     <div class="c1 im rv" data-alt="Karri Creek solar farm"></div>
     <div class="c2 txt">
-      <h3>Karri Creek now runs on 70% renewable power</h3>
-      <p class="deck">The second solar farm and a 40&nbsp;MWh battery came online in September, cutting site diesel use by 31&nbsp;million litres a year.</p>
+      <h3>A second solar farm and a 40&nbsp;MWh battery for Karri Creek</h3>
+      <p class="deck2">Both came online in September, cutting site diesel use by 31&nbsp;million litres a year.</p>
       <span class="tlink">Read the story</span>
     </div>
   </a>
   <ul class="nlist">
-    <li><a href="#"><span class="dt num">29 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><div class="txt"><h3>Heritage agreement signed for the east pit extension</h3><p class="deck">It covers heritage surveys, contracting and joint decisions on closure.</p></div><span class="code">Media release</span></a></li>
-    <li><a href="#"><span class="dt num">03 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><div class="txt"><h3>Drilling extends Ridgeback's mine life to 2040</h3><p class="deck">Deeper drilling added 1.1&nbsp;million ounces to the underground resource.</p></div><span class="code num">ASX 0927</span></a></li>
-    <li><a href="#"><span class="dt num">28 Aug 2026</span><span class="site"><span class="sw o"></span>Group</span><div class="txt"><h3>Full-year results: record shipments and a final dividend of 42&nbsp;cents</h3><p class="deck">Results, presentation and the FY26 annual report.</p></div><span class="code num">ASX 0911</span></a></li>
+    <li><a href="#"><span class="dt">29 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</span><div class="txt"><h3>Heritage agreement signed for the east pit extension</h3><p class="d">It covers heritage surveys, contracting and joint decisions on closure.</p></div><span class="code">Media release</span></a></li>
+    <li><a href="#"><span class="dt">3 Sep 2026</span><span class="site"><span class="sw" style="--c:var(--au)"></span>Ridgeback</span><div class="txt"><h3>Drilling extends Ridgeback's mine life to 2040</h3><p class="d">Deeper drilling added 1.1&nbsp;million ounces to the underground resource.</p></div><span class="code">ASX release</span></a></li>
+    <li><a href="#"><span class="dt">28 Aug 2026</span><span class="site"><span class="sw o"></span>Group</span><div class="txt"><h3>Full-year results: record shipments and a final dividend of 42&nbsp;cents</h3><p class="d">Results, presentation and the FY26 annual report.</p></div><span class="code">ASX release</span></a></li>
   </ul>
   <p class="more"><a class="tlink" href="#">All news and ASX releases</a></p>
 </section>
 
 <section class="careers wrap" id="careers">
-  <header class="strip" data-chap="06|Careers" data-key="careers"><span class="n">06</span><span class="t">Careers, Perth and three sites</span><span class="co"></span></header>
+  <header class="strip" data-key="careers"><span class="n">06</span><span class="t">Careers</span></header>
   <div class="row opener" style="align-items:end">
     <h2 class="c1 d2">Work on site, or in Perth</h2>
-    <div class="c2"><p class="lead">Fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p><a class="btn" href="#">Search open roles</a></div>
+    <div class="c2"><p class="deck">Fly-in fly-out and residential rosters, Aboriginal training pathways and a 12-month graduate programme.</p><a class="btn" href="#">Search all 143 roles</a></div>
   </div>
   <div class="row">
-    <p class="m mcap"><b>Hiring now</b>Rosters drawn as days on, filled, and days off, open.</p>
+    <p class="m cap"><b>Six of 143 open roles</b>Rosters drawn as days on, filled, and days off, open.</p>
     <div class="c">
       <table class="roster">
-        <thead><tr><th><span class="lab">Role</span></th><th><span class="lab">Site</span></th><th><span class="lab">Roster, on/off</span></th><th><span class="lab">Openings</span></th></tr></thead>
+        <thead><tr><th>Role</th><th>Site</th><th>Roster, days on and off</th><th>Openings</th></tr></thead>
         <tbody>
-          <tr><td>Haul truck operator</td><td><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</td><td><span class="rs" data-r="8,6"></span><span class="num">8/6</span></td><td class="num">24</td></tr>
-          <tr><td>Underground electrician</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td><span class="rs" data-r="14,7"></span><span class="num">14/7</span></td><td class="num">11</td></tr>
-          <tr><td>Process plant operator</td><td><span class="sw" style="--c:var(--sp)"></span>Karri Creek</td><td><span class="rs" data-r="5,2"></span><span class="num">5/2</span> residential</td><td class="num">9</td></tr>
-          <tr><td>Geotechnical engineer</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td><span class="rs" data-r="8,6"></span><span class="num">8/6</span></td><td class="num">3</td></tr>
-          <tr><td>Rail controller</td><td><span class="sw o"></span>Perth</td><td><span class="rs" data-r="5,2"></span><span class="num">5/2</span> office</td><td class="num">6</td></tr>
-          <tr><td>Apprentice, 2027 intake</td><td><span class="sw o"></span>All sites</td><td>Set by site</td><td class="num">40</td></tr>
+          <tr><td>Haul truck operator</td><td><span class="sw" style="--c:var(--fe)"></span>Mount Ferrell</td><td><span class="rs" data-r="8,6"></span>8 and 6</td><td>24</td></tr>
+          <tr><td>Underground electrician</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td><span class="rs" data-r="14,7"></span>14 and 7</td><td>11</td></tr>
+          <tr><td>Process plant operator</td><td><span class="sw" style="--c:var(--sp)"></span>Karri Creek, residential</td><td><span class="rs" data-r="5,2"></span>5 and 2</td><td>9</td></tr>
+          <tr><td>Geotechnical engineer</td><td><span class="sw" style="--c:var(--au)"></span>Ridgeback</td><td><span class="rs" data-r="8,6"></span>8 and 6</td><td>3</td></tr>
+          <tr><td>Rail controller</td><td><span class="sw o"></span>Perth office</td><td><span class="rs" data-r="5,2"></span>5 and 2</td><td>6</td></tr>
+          <tr><td>Apprentice, 2027 intake</td><td><span class="sw o"></span>All sites</td><td>Set by site</td><td>40</td></tr>
         </tbody>
       </table>
-      <p class="more"><a class="tlink" href="#">Graduate and apprentice programmes</a></p>
     </div>
   </div>
 </section>
@@ -607,21 +587,32 @@ footer a{text-decoration:none}footer ul a:hover,.tb .legal a:hover{text-decorati
   <div class="im art dk" data-alt="Commissioned artwork by a Ngadju artist"></div>
   <div class="wrap">
     <div class="row ack" aria-label="Acknowledgement of Country">
-      <p class="m mcap"><b>Artwork</b>Commission in progress with a Ngadju artist.</p>
+      <p class="m cap"><b>Artwork</b>Commission in progress with a Ngadju artist.</p>
       <p class="c ackp">We acknowledge the Banjima, Ngadju and Noongar peoples, Traditional Owners of the lands where we work, and pay our respects to Elders past and present.</p>
     </div>
     <div class="tb">
-      <div class="s6 brand"><a class="mark" href="#top"><svg viewBox="0 0 30 24" aria-hidden="true"><path d="M0 0H4V4H8V8H12V12H18V8H22V4H26V0H30V24H0Z"/></svg>Calder Ridge</a><p>Iron ore, gold and lithium from three leases in Western Australia. Listed on the ASX since 1994.</p></div>
-      <div class="s3"><span class="lab">Head office</span><address>Level 24, 108 St Georges Terrace<br>Perth WA 6000<br><span class="num">+61 8 5550 0142</span></address></div>
-      <div class="s3 e"><span class="lab">Community line, any hour</span><p><span class="num">1800 555 019</span></p><p style="margin-top:8px;color:rgba(246,242,235,.78);font-size:15px">For anyone near our leases, about dust, noise, water or anything else.</p></div>
-      <div class="s3"><span class="lab">Company</span><ul><li><a href="#">About us</a></li><li><a href="#">Leadership</a></li><li><a href="#">Suppliers</a></li><li><a href="#careers">Careers</a></li></ul></div>
-      <div class="s3"><span class="lab">Operations</span><ul><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#">Exploration</a></li></ul></div>
-      <div class="s3"><span class="lab">Investors</span><ul><li><a href="#">ASX releases</a></li><li><a href="#">Reports</a></li><li><a href="#">Share price</a></li><li><a href="#">Governance</a></li></ul></div>
-      <div class="s3 e"><span class="lab">Contact</span><ul><li><a href="#">Media enquiries</a></li><li><a href="#">Report a concern</a></li><li><a href="#">LinkedIn</a></li></ul></div>
-      <div class="s3 last"><span class="lab">Drawing</span><p class="num">CR-WEB-0001</p><p style="margin-top:6px;font-size:14px;color:rgba(246,242,235,.78)">Sheet <span class="num">1 of 1</span></p></div>
-      <div class="s3 last"><span class="lab">Revisions</span><table class="rev"><tr><td class="num">C</td><td>FY26 results</td><td class="num">10/2026</td></tr><tr><td class="num">B</td><td>Karri Creek added</td><td class="num">03/2024</td></tr><tr><td class="num">A</td><td>First issue</td><td class="num">08/2019</td></tr></table></div>
-      <div class="s3 last"><span class="lab">Datum and scale</span><p class="num">GDA2020</p><div class="sbar"><svg width="120" height="22" viewBox="0 0 120 22" aria-hidden="true"><rect x=".5" y=".5" width="119" height="6" fill="none" stroke="currentColor"/><rect x=".5" y=".5" width="59.5" height="6" fill="currentColor"/><text x="0" y="19" font-family="JetBrains Mono" font-size="10" fill="currentColor">0</text><text x="120" y="19" font-family="JetBrains Mono" font-size="10" fill="currentColor" text-anchor="end">400 km</text></svg><svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><path d="M7 0L14 18L7 13L0 18Z" fill="currentColor"/></svg></div></div>
-      <div class="s3 last e"><span class="lab">© 2026 Calder Ridge Resources Ltd</span><p style="font-size:14px;color:rgba(246,242,235,.78)">ABN <span class="num">41 600 555 019</span></p><div class="legal"><a href="#">Privacy</a><a href="#">Modern slavery</a><a href="#">Terms</a></div></div>
+      <div class="row">
+        <div class="x2"><a class="mark" href="#top"><svg viewBox="0 0 30 20" aria-hidden="true"><path d="M0 0H30V4H27V8H24V12H21V16H18V20H12V16H9V12H6V8H3V4H0Z"/></svg>Calder Ridge</a></div>
+        <div class="x5"><span class="lab">Community line, any hour, any site</span><p class="big">1800 555 019</p><p style="margin-top:8px">For anyone near our leases, about dust, noise, water or anything else.</p></div>
+        <div class="x3"><span class="lab">Head office</span><address>Level 24, 108 St Georges Terrace<br>Perth WA 6000<br>+61 8 5550 0142</address></div>
+        <div class="x2"><span class="lab">Contact</span><ul><li><a href="#">Media enquiries</a></li><li><a href="#">Report a concern</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      </div>
+      <div class="row">
+        <div class="x2"><span class="lab">Drawing</span><p class="dno">CR-WEB-01</p><p>Sheet 1 of 1</p></div>
+        <div class="x5"><span class="lab">Revisions</span>
+          <table class="rev"><tr><th>Rev</th><th>Description</th><th>Date</th><th>By</th></tr>
+            <tr><td>C</td><td>FY26 results and closure update</td><td>Oct 2026</td><td>Comms</td></tr>
+            <tr><td>B</td><td>Karri Creek added</td><td>Mar 2024</td><td>Comms</td></tr>
+            <tr><td>A</td><td>First issue</td><td>Aug 2019</td><td>Comms</td></tr></table></div>
+        <div class="x3"><span class="lab">Schedule</span><ul class="two"><li><a href="#">About us</a></li><li><a href="#ferrell">Mount Ferrell</a></li><li><a href="#">Leadership</a></li><li><a href="#ridgeback">Ridgeback</a></li><li><a href="#">Suppliers</a></li><li><a href="#karri">Karri Creek</a></li><li><a href="#investors">Investors</a></li><li><a href="#careers">Careers</a></li></ul></div>
+        <div class="x2"><span class="lab">Approved</span><p>Board of Directors, 26 Aug 2026</p><p style="margin-top:10px">© 2026 Calder Ridge Resources Ltd. ABN 41 600 555 019</p></div>
+      </div>
+      <div class="row">
+        <div class="x2"></div>
+        <div class="x5"><p><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Modern slavery statement</a> &nbsp;·&nbsp; <a href="#">Terms</a></p></div>
+        <div class="x3"><p>Coordinates in GDA2020.</p></div>
+        <div class="x2"><p>Listed on the ASX since 1994.</p></div>
+      </div>
     </div>
   </div>
 </footer>
@@ -645,16 +636,12 @@ const setNavH=()=>document.documentElement.style.setProperty('--navh',nav.offset
 const f1=n=>(+n).toFixed(1);
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 
-/* the time in Perth, in the header */
-(()=>{const c=document.getElementById('clock'),fm=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Perth',hour:'2-digit',minute:'2-digit',hour12:false});const t=()=>c.textContent=fm.format(new Date())+' AWST';t();setInterval(t,30000)})();
-
-/* the roster day runs 04:00 to 04:00; Fig. 4 and Fig. 5 share it */
+/* the roster day runs 04:00 to 04:00; Fig. 4 and the site-life strip share it */
 const dayX=h=>((h-4+24)%24)/24;
 const SUNRISE=5+8/60,SUNSET=18+8/60;
 
 /* ---------- Fig. 1: Western Australia, drawn to the width it is given ---------- */
 const WA=[[129,-14.9],[128.6,-14.8],[128.35,-14.95],[128.15,-15.4],[128.0,-15.05],[127.75,-14.6],[127.45,-14.25],[127.1,-13.95],[126.85,-13.8],[126.55,-14.05],[126.2,-14.1],[125.95,-14.45],[125.6,-14.3],[125.3,-14.6],[125.05,-15.0],[124.75,-15.25],[124.45,-15.5],[124.2,-15.9],[123.9,-16.15],[123.6,-16.4],[123.55,-16.8],[123.65,-17.25],[123.4,-17.0],[123.0,-16.45],[122.75,-16.8],[122.45,-17.3],[122.2,-17.8],[122.25,-18.1],[121.85,-18.45],[121.5,-18.85],[121.15,-19.3],[120.75,-19.6],[120.2,-19.85],[119.6,-20.0],[119.1,-20.0],[118.6,-20.3],[118.15,-20.38],[117.7,-20.62],[117.25,-20.62],[116.85,-20.5],[116.6,-20.75],[116.2,-20.9],[115.75,-21.2],[115.4,-21.5],[115.0,-21.65],[114.65,-21.8],[114.35,-22.0],[114.2,-22.45],[114.05,-22.1],[114.1,-21.8],[113.85,-22.0],[113.7,-22.5],[113.75,-23.1],[113.8,-23.6],[113.6,-24.1],[113.65,-24.6],[113.45,-25.0],[113.5,-25.5],[113.85,-25.95],[113.65,-26.0],[113.55,-25.65],[113.25,-25.95],[113.15,-26.15],[113.5,-26.6],[113.85,-27.1],[114.1,-27.65],[114.3,-28.2],[114.6,-28.75],[114.95,-29.45],[115.05,-30.05],[115.25,-30.7],[115.5,-31.3],[115.7,-31.75],[115.75,-32.2],[115.7,-32.6],[115.65,-33.05],[115.6,-33.35],[115.4,-33.55],[115.1,-33.6],[115.0,-33.85],[115.05,-34.15],[115.15,-34.35],[115.55,-34.4],[115.9,-34.75],[116.4,-35.0],[116.9,-35.05],[117.4,-35.05],[117.9,-35.12],[118.35,-34.9],[118.9,-34.5],[119.4,-34.45],[119.8,-34.05],[120.3,-33.95],[120.9,-33.85],[121.5,-33.85],[121.9,-33.86],[122.4,-33.9],[123.0,-33.9],[123.5,-33.95],[123.9,-33.6],[124.2,-33.1],[124.6,-32.85],[125.2,-32.6],[125.8,-32.35],[126.4,-32.25],[127.2,-32.25],[127.9,-31.9],[128.5,-31.65],[129,-31.68]];
-/* a coast is never straight: subdivide each segment and let it wander a little (seeded, so it is the same every time) */
 const COAST=(()=>{let r=7;const rnd=()=>((r=r*16807%2147483647)/2147483647)-.5,out=[];
   for(let i=0;i<WA.length-1;i++){const a=WA[i],b=WA[i+1],n=Math.max(1,Math.round(Math.hypot(b[0]-a[0],b[1]-a[1])/.09));out.push(a);
     for(let j=1;j<n;j++){const t=j/n;out.push([a[0]+(b[0]-a[0])*t+rnd()*.07,a[1]+(b[1]-a[1])*t+rnd()*.07])}}
@@ -684,7 +671,6 @@ function drawWA(){
   for(let la=-20;la>=-35;la-=5){const y=P([0,la])[1];if(y>16&&y<H-4)o+=`<text class="g" x="6" y="${f(y-5)}">${-la}° S</text>`}
   for(let lo=115;lo<=125;lo+=5){const x=P([lo,0])[0];o+=`<text class="g" x="${f(x+5)}" y="${H-7}">${lo}° E</text>`}
   {const y=P([0,-27.6])[1];o+=`<text class="sea" x="8" y="${f(y)}">Indian</text><text class="sea" x="8" y="${f(y+16)}">Ocean</text>`}
-  {const [x,y]=P([123.2,-26.2]);o+=`<text class="g" x="${f(x)}" y="${f(y)}" text-anchor="middle">WESTERN AUSTRALIA</text>`}
   svg.innerHTML=o;
   const c=svg.querySelector('.coast');c.style.setProperty('--len',Math.ceil(c.getTotalLength()));
 }
@@ -711,34 +697,34 @@ const rail=(()=>{
     g.setAttribute('transform',`translate(${f1(x)} ${f1(y)}) rotate(${f1(a)}) scale(${sc})`);t.textContent=k>8&&k<204?'km '+Math.round(k):'';g.style.opacity=p>0&&p<1?1:0};
 })();
 
-/* ---------- Fig. 3: long section; a gauge reads the depth at mid-screen ---------- */
+/* ---------- Fig. 3: long section, drawn tall; a gauge reads the depth at mid-screen ---------- */
 const longsec=(()=>{
-  const Y=m=>40+m*.3,X=e=>110+e*.3,ore=d=>1300+d*.55,dc=d=>1060+d*.5;
+  const Y=m=>36+m*.42,X=e=>66+e*.118,ore=d=>1300+d*.55,dc=d=>1060+d*.5;
   let s=`<defs><pattern id="hore" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="6" height="6" fill="var(--bone)"/><rect width="2.4" height="6" fill="var(--au)"/></pattern><pattern id="hinf" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="6" height="6" fill="var(--bone)"/><rect width="1.2" height="6" fill="var(--au)"/></pattern></defs>`;
-  for(let m=0;m<=1600;m+=100)s+=`<path class="s" d="M${m%200?104:100} ${Y(m)}H110"/>`+(m%200?'':`<text class="n" x="94" y="${Y(m)+4}" text-anchor="end">${m.toLocaleString('en-AU')} m</text>`);
-  s+=`<path class="p" d="M110 ${Y(0)}V${Y(1600)}"/><path class="p" d="M110 ${Y(0)}H1316"/>`;
-  let pit=`M${X(560)} ${Y(0)}`;for(let i=1;i<=7;i++)pit+=`L${f1(X(560+i*40-12))} ${Y(i*30)}H${f1(X(560+i*40))}`;
-  for(let i=7;i>=1;i--)pit+=`H${f1(X(1240-i*40))}L${f1(X(1240-i*40+12))} ${Y((i-1)*30)}`;pit+=`H${X(1240)}`;
+  for(let m=0;m<=1600;m+=100)s+=`<path class="s" d="M${m%200?60:56} ${f1(Y(m))}H66"/>`+(m%200?'':`<text class="n" x="50" y="${f1(Y(m)+4)}" text-anchor="end">${m.toLocaleString('en-AU')} m</text>`);
+  s+=`<path class="p" d="M66 ${Y(0)}V${f1(Y(1600))}"/><path class="p" d="M66 ${Y(0)}H536"/>`;
+  let pit=`M${f1(X(560))} ${Y(0)}`;for(let i=1;i<=7;i++)pit+=`L${f1(X(560+i*40-12))} ${f1(Y(i*30))}H${f1(X(560+i*40))}`;
+  for(let i=7;i>=1;i--)pit+=`H${f1(X(1240-i*40))}L${f1(X(1240-i*40+12))} ${f1(Y((i-1)*30))}`;pit+=`H${f1(X(1240))}`;
   s+=`<path d="${pit}Z" fill="rgba(13,20,64,.07)"/><path class="p" d="${pit}"/>`;
-  s+=`<text class="w" x="${X(900)}" y="${Y(0)-12}" text-anchor="middle">Open pit, 210 m deep</text>`;
-  const ob=(a,b)=>`M${f1(X(ore(a)))} ${Y(a)}H${f1(X(ore(a)+100))}L${f1(X(ore(b)+100))} ${Y(b)}H${f1(X(ore(b)))}Z`;
+  s+=`<text class="w" x="${f1(X(900))}" y="${Y(0)-12}" text-anchor="middle">Open pit, 210 m</text>`;
+  const ob=(a,b)=>`M${f1(X(ore(a)))} ${f1(Y(a))}H${f1(X(ore(a)+100))}L${f1(X(ore(b)+100))} ${f1(Y(b))}H${f1(X(ore(b)))}Z`;
   s+=`<path d="${ob(80,1140)}" fill="url(#hore)" stroke="var(--ink)" stroke-width="1"/><path d="${ob(1140,1560)}" fill="url(#hinf)" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 3"/>`;
-  s+=`<path class="s" d="M${f1(X(ore(380)+110))} ${Y(380)}H${f1(X(ore(380)+300))}"/><text class="w" x="${f1(X(ore(380)+320))}" y="${Y(380)+4}">Ore body</text>`;
-  s+=`<path class="s" d="M${f1(X(ore(1380)+110))} ${Y(1380)}H${f1(X(ore(1380)+300))}"/><text class="w" x="${f1(X(ore(1380)+320))}" y="${Y(1380)+4}">Inferred, to about 1,560 m</text>`;
-  let d=`M${X(900)} ${Y(210)}`,k=0;for(let m=256.5;m<=1140.1;m+=46.5){d+=`L${f1(X(k%2?dc(m)-60:dc(m)+60))} ${f1(Y(m))}`;k++}
+  let d=`M${f1(X(900))} ${f1(Y(210))}`,k=0;for(let m=256.5;m<=1140.1;m+=46.5){d+=`L${f1(X(k%2?dc(m)-60:dc(m)+60))} ${f1(Y(m))}`;k++}
   s+=`<path class="p anim" d="${d}"/>`;
-  for(let m=300;m<=1100;m+=100)s+=`<path class="s" d="M${f1(X(dc(m)+60))} ${Y(m)}H${f1(X(ore(m)))}"/>`;
-  s+=`<path class="s" d="M${f1(X(dc(600)-75))} ${Y(600)}H${f1(X(dc(600)-260))}"/><text class="w" x="${f1(X(dc(600)-275))}" y="${Y(600)+4}" text-anchor="end">Decline, with a level every 100 m</text>`;
-  s+=`<path class="p" d="M110 ${Y(1140)}H1316" style="stroke-dasharray:6 4"/><text class="w" x="1316" y="${Y(1140)-8}" text-anchor="end">Deepest level</text>`;
+  for(let m=300;m<=1100;m+=100)s+=`<path class="s" d="M${f1(X(dc(m)+60))} ${f1(Y(m))}H${f1(X(ore(m)))}"/>`;
+  s+=`<path class="s" d="M${f1(X(dc(600)-70))} ${f1(Y(600))}H204"/><text class="w" x="198" y="${f1(Y(600)+4)}" text-anchor="end">Decline</text><text class="w" x="198" y="${f1(Y(600)+22)}" text-anchor="end" style="font-weight:500">a level every 100 m</text>`;
+  s+=`<text class="w" x="${f1(X(ore(150)+120))}" y="${f1(Y(150)+4)}">Ore body</text>`;
+  s+=`<path class="p" d="M66 ${f1(Y(1140))}H536" style="stroke-dasharray:6 4"/><text class="w" x="76" y="${f1(Y(1140)-8)}">Deepest level</text>`;
+  s+=`<text class="w" x="${f1(X(ore(1450)+130))}" y="${f1(Y(1450)+4)}" style="font-weight:500">Inferred, to about 1,560 m</text>`;
   [[2400,'RB-041'],[2800,'RB-047'],[3200,'RB-052']].forEach(([e0,id])=>{const di=(e0-1300)/1.25,de=di+90;
-    s+=`<path class="s" d="M${f1(X(e0))} ${Y(0)}L${f1(X(e0-de*.7))} ${f1(Y(de))}"/><rect x="${f1(X(e0-di*.7)-5)}" y="${f1(Y(di)-5)}" width="10" height="10" fill="var(--au)" stroke="var(--ink)" stroke-width="1.5"/><path class="s" d="M${f1(X(e0))} ${Y(0)}V${Y(0)-8}"/><text class="n" x="${f1(X(e0))}" y="${Y(0)-12}" text-anchor="middle">${id}</text>`});
-  s+=`<text class="w" x="${f1(X(2400)-34)}" y="${Y(0)-12}" text-anchor="end">Drill holes, 2026</text>`;
-  s+=`<g transform="translate(${1316-150} ${Y(1600)-4})"><rect width="150" height="6" fill="none" stroke="var(--ink)"/><rect width="75" height="6" fill="var(--ink)"/><text class="n" x="0" y="22">0</text><text class="n" x="150" y="22" text-anchor="end">500 m</text></g>`;
-  s+=`<g id="gauge"><path class="s" d="M110 0H1316" style="stroke-dasharray:2 3"/><g class="tag"><rect x="-64" y="-11" width="64" height="22" fill="var(--ink)"/><text x="-32" y="4" text-anchor="middle"></text></g></g>`;
+    s+=`<path class="s" d="M${f1(X(e0))} ${Y(0)}L${f1(X(e0-de*.7))} ${f1(Y(de))}"/><rect x="${f1(X(e0-di*.7)-5)}" y="${f1(Y(di)-5)}" width="10" height="10" fill="var(--au)" stroke="var(--ink)" stroke-width="1.5"/><text class="n" x="${f1(X(e0))}" y="${Y(0)-10}" text-anchor="middle">${id}</text>`});
+  s+=`<text class="w" x="${f1(X(2800))}" y="${Y(0)-26}" text-anchor="middle">Drill holes, 2026</text>`;
+  s+=`<g transform="translate(${536-59} ${f1(Y(1600)+6)})"><rect width="59" height="5" fill="none" stroke="var(--ink)"/><rect width="29.5" height="5" fill="var(--ink)"/><text class="n" x="59" y="20" text-anchor="end">500 m</text></g>`;
+  s+=`<g id="gauge"><path class="s" d="M66 0H536" style="stroke-dasharray:2 3"/><g class="tag"><rect x="-64" y="-11" width="64" height="22" fill="var(--ink)"/><text x="-32" y="4" text-anchor="middle"></text></g></g>`;
   const svg=document.getElementById('figLong');svg.innerHTML=s;
   const g=svg.querySelector('#gauge'),t=g.querySelector('text'),tag=g.querySelector('.tag');
   return m=>{const v=Math.round(clamp(m,0,1560)/10)*10,sc=+svg.style.getPropertyValue('--k')||1;
-    tag.setAttribute('transform',`translate(110 0) scale(${sc})`);g.setAttribute('transform',`translate(0 ${Y(v)})`);t.textContent=v.toLocaleString('en-AU')+' m';g.style.opacity=m>0&&m<1600?1:0};
+    tag.setAttribute('transform',`translate(66 0) scale(${sc})`);g.setAttribute('transform',`translate(0 ${f1(Y(v))})`);t.textContent=v.toLocaleString('en-AU')+' m';g.style.opacity=m>0&&m<1600?1:0};
 })();
 
 /* ---------- Fig. 4: site power across the roster day; a cursor reads it as you scroll ---------- */
@@ -777,39 +763,42 @@ document.querySelectorAll('.draw path.anim').forEach(p=>{const L=Math.ceil(p.get
 const dio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');dio.unobserve(e.target)}}),{rootMargin:'0px 0px -12% 0px'});
 document.querySelectorAll('.draw,#mapfig').forEach(el=>reduce?el.classList.add('in'):dio.observe(el));
 
-/* ---------- Fig. 5: the shared axis, with a stem from each moment ---------- */
-const tax=document.getElementById('tax'),items=[...document.querySelectorAll('.drow li')];
+/* ---------- site life: the shared 24-hour axis, and a leader from each hour to its card ---------- */
+const tax=document.getElementById('tax'),leads=document.getElementById('leads'),items=[...document.querySelectorAll('#cards li')];
 (()=>{const sr=dayX(SUNRISE)*100,ss=dayX(SUNSET)*100;
   let s=`<i class="line"></i><i class="sun" style="background:linear-gradient(90deg,rgba(246,242,235,.14) ${sr-2}%,var(--paper) ${sr+1.5}%,var(--paper) ${ss-1.5}%,rgba(246,242,235,.14) ${ss+2}%)"></i>`;
   for(let i=0;i<=24;i++){const x=i/24*100,h=(4+i)%24;s+=`<i class="t${h%3?'':' maj'}" style="left:${x}%"></i>`;if((h%3===0||i===0)&&i<24)s+=`<span class="lbl" style="left:${x}%">${String(h).padStart(2,'0')}:00</span>`}
-  items.forEach((li,i)=>{const x=dayX(+li.dataset.h)*100,up=!!li.closest('.up');s+=`<i class="stem ${up?'u':'d'}" style="left:${x}%"></i><i class="mk" data-i="${i}" style="left:${x}%"></i>`});
+  items.forEach((li,i)=>s+=`<i class="mk" data-i="${i}" style="left:${dayX(+li.dataset.h)*100}%"></i>`);
   tax.innerHTML=s})();
-const hi=i=>tax.querySelectorAll('.mk').forEach(m=>m.classList.toggle('on',+m.dataset.i===i));
+function drawLeads(){
+  const box=leads.getBoundingClientRect(),W=box.width;if(!W)return;leads.setAttribute('viewBox',`0 0 ${W} 44`);
+  leads.innerHTML=items.map((li,i)=>{const x=dayX(+li.dataset.h)*W,c=li.getBoundingClientRect().left-box.left+.5;return`<path data-i="${i}" d="M${f1(x)} 0V18H${f1(c)}V44"/>`}).join('');
+}
+drawLeads();addEventListener('resize',drawLeads);document.fonts.ready.then(drawLeads);
+const hi=i=>{tax.querySelectorAll('.mk').forEach(m=>m.classList.toggle('on',+m.dataset.i===i));leads.querySelectorAll('path').forEach(p=>p.classList.toggle('on',+p.dataset.i===i))};
 items.forEach((li,i)=>{li.addEventListener('mouseenter',()=>hi(i));li.addEventListener('focus',()=>hi(i));li.addEventListener('mouseleave',()=>hi(-1));li.addEventListener('blur',()=>hi(-1))});
 
 /* ---------- careers: rosters drawn as days on and off ---------- */
 document.querySelectorAll('.roster .rs').forEach(r=>{const [on,off]=r.dataset.r.split(',').map(Number);r.innerHTML='<i></i>'.repeat(on)+'<i class="o"></i>'.repeat(off);r.setAttribute('aria-hidden','true')});
 
-/* ---------- hero: the title runs the full measure of the content columns ---------- */
+/* ---------- hero: the title runs the full measure ---------- */
 (()=>{const h=document.querySelector('.hero .d1'),l=h.lastElementChild;
-  const fit=()=>{h.style.fontSize='';const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw)h.style.fontSize=Math.min(fs*w/lw*.99,innerWidth>900?132:96)+'px'};
+  const fit=()=>{h.style.fontSize='';const w=h.clientWidth,lw=l.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(h).fontSize);if(lw)h.style.fontSize=Math.min(fs*w/lw*.99,innerWidth>900?170:120)+'px'};
   document.fonts.ready.then(fit);addEventListener('resize',fit)})();
 
-/* ---------- header: menu, dark grounds, the section readout; and the scroll-read instruments ---------- */
+/* ---------- header: menu, dark grounds, the current section; and the scroll-read instruments ---------- */
 const menu=document.getElementById('menu');menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
 nav.querySelectorAll('ul a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded',false)}));
-const darks=[...document.querySelectorAll('[data-dark]')],chaps=[...document.querySelectorAll('[data-chap]')],keyed=[...nav.querySelectorAll('[data-key]')],secname=document.getElementById('secname');
+const darks=[...document.querySelectorAll('[data-dark]')],chaps=[...document.querySelectorAll('.strip,.phead')],keyed=[...nav.querySelectorAll('[data-key]')];
 const fR=document.getElementById('figRail'),fL=document.getElementById('figLong'),fP=document.getElementById('figPower');
-let lastChap='';
 function tick(){
   const vh=innerHeight,y=nav.offsetHeight+1;
   const d=darks.find(d=>{const r=d.getBoundingClientRect();return r.top<=y&&r.bottom>y});
   nav.classList.toggle('dark',!!d);if(d)nav.style.setProperty('--nbg',d.dataset.dark||'var(--ink)');
-  let cur=chaps[0];chaps.forEach(c=>{if(c.getBoundingClientRect().top<vh*.4)cur=c});
-  if(cur.dataset.chap!==lastChap){lastChap=cur.dataset.chap;const [n,t]=lastChap.split('|');secname.innerHTML=`<span class="num">${n}</span>${t}`}
-  const key=cur.dataset.key;keyed.forEach(a=>a.classList.toggle('cur',!!key&&a.dataset.key===key));
+  let cur=null;chaps.forEach(c=>{if(c.getBoundingClientRect().top<vh*.5)cur=c});
+  const key=cur&&cur.dataset.key;keyed.forEach(a=>a.classList.toggle('cur',!!key&&a.dataset.key===key));
   {const r=fR.getBoundingClientRect();rail((vh*.85-r.top)/(vh*.6))}
-  {const r=fL.getBoundingClientRect(),vb=580/r.height;longsec(((vh*.5-r.top)*vb-40)/.3)}
+  {const r=fL.getBoundingClientRect(),vb=724/r.height;longsec(((vh*.5-r.top)*vb-36)/.42)}
   {const r=fP.getBoundingClientRect();power((vh*.85-r.top)/(vh*.6))}
 }
 let ticking=false;addEventListener('scroll',()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{tick();ticking=false})},{passive:true});
@@ -824,7 +813,7 @@ const lb=document.getElementById('lb');let last;
 const openLb=f=>{last=f;lb.querySelectorAll('.im,.lbc').forEach(n=>n.remove());
   const src=f.querySelector('.im'),big=document.createElement('div');big.className='im dk';big.dataset.alt=src.dataset.alt;if(src.dataset.src)big.dataset.src=src.dataset.src;
   const c=document.createElement('div');c.className='lbc';c.style.setProperty('--c',getComputedStyle(f).getPropertyValue('--c'));
-  const q=s=>f.querySelector(s).textContent;c.innerHTML=`<b class="num"><i></i>${q('.fn')}</b><span>${q('.ft')}</span><span class="co">${q('.co')}</span><span class="num">${q('.fd')}</span>`;
+  const q=s=>f.querySelector(s).textContent;c.innerHTML=`<b class="mono"><i></i>${q('.fn')}</b><span>${q('.ft')}</span><span class="co">${q('.co')}</span><span>${q('.fd')}</span>`;
   lb.prepend(c);lb.prepend(big);paint(big);lb.classList.add('open');document.getElementById('lbx').focus()};
 document.querySelectorAll('#sheet figure').forEach(f=>{f.addEventListener('click',()=>openLb(f));f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(f)}})});
 const closeLb=()=>{lb.classList.remove('open');last&&last.focus()};
